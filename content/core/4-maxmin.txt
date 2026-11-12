@@ -105,6 +105,87 @@ $(-1,-1)$: same numbers → maximum.
 @a $(1,1)$ and $(-1,-1)$ are local maxima. $(0,0)$ is a saddle point.
 
 
+@@topic c-critical3 | Critical points with 3 variables | Sheet 4 · Q9, Q11 · Exam Q5(b)
+@learn
+**Same idea as 2 variables, one more letter.**
+
+**Step 1, find the critical point:** solve
+$$f_x=0,\qquad f_y=0,\qquad f_z=0$$
+In exam questions these are usually simple straight-line equations. Solve one for a letter, substitute into the next.
+
+**Step 2, the Hessian $H$:** the grid of second derivatives.
+$$H=\begin{pmatrix}f_{xx}&f_{xy}&f_{xz}\\f_{xy}&f_{yy}&f_{yz}\\f_{xz}&f_{yz}&f_{zz}\end{pmatrix}$$
+(It is symmetric: $f_{xy}$ appears twice, and so on.)
+
+**Step 3, the leading principal minors:** determinants of the top-left corners.
+$$|H_1|=f_{xx}\qquad |H_2|=\begin{vmatrix}f_{xx}&f_{xy}\\f_{xy}&f_{yy}\end{vmatrix}\qquad |H_3|=\det H$$
+
+**Step 4, read the signs:**
+
+$+,\ +,\ +$ → **minimum**
+
+$-,\ +,\ -$ → **maximum**
+
+any other pattern (with $|H_3|\neq0$) → **saddle**
+
+(This is the same as the 2-variable $D$ test: $D$ is just $|H_2|$.)
+@check The minors are $-4,\ 8,\ -60$. What type of point?
+@checka Pattern $-,+,-$, so a maximum.
+
+@q Sheet 4 · Q11
+Show $f=x^2+y^2+z^2-xz-x+4y-z$ has a single critical point at $(1,-2,1)$, and decide if it is a local max or min.
+@s First derivatives
+$$f_x=2x-z-1\qquad f_y=2y+4\qquad f_z=2z-x-1$$
+@s Set them to zero
+$f_y=0$ gives $y=-2$ straight away.
+
+$f_x=0$ gives $z=2x-1$.
+
+Put that into $f_z=0$: $\ 2(2x-1)-x-1=0\Rightarrow3x-3=0\Rightarrow x=1$, so $z=1$.
+
+Only one answer: $(1,-2,1)$.
+@s Hessian
+Differentiate each first derivative again:
+$$H=\begin{pmatrix}2&0&-1\\0&2&0\\-1&0&2\end{pmatrix}$$
+@s Leading principal minors
+$|H_1|=2$
+
+$|H_2|=2\cdot2-0=4$
+
+$|H_3|$, along the top row: $2(4-0)-0+(-1)(0-(-2))=8-2=6$
+@s Read the signs
+$+,\ +,\ +$ → minimum.
+
+Value: $f(1,-2,1)=1+4+1-1-1-8-1=-5$.
+@a Local minimum at $(1,-2,1)$, value $-5$.
+
+@q Sheet 4 · Q9
+Show that $w=x^2+y^2+z^2+xy+yz+2x-4y+6z$ has a minimum value of $-42$ at $(-5,8,-7)$.
+@s First derivatives
+$$w_x=2x+y+2\qquad w_y=2y+x+z-4\qquad w_z=2z+y+6$$
+@s Check $(-5,8,-7)$ makes them all zero
+$w_x=-10+8+2=0$
+
+$w_y=16-5-7-4=0$
+
+$w_z=-14+8+6=0$
+
+So it is a critical point.
+@s Hessian
+$$H=\begin{pmatrix}2&1&0\\1&2&1\\0&1&2\end{pmatrix}$$
+@s Leading principal minors
+$|H_1|=2$
+
+$|H_2|=2\cdot2-1\cdot1=3$
+
+$|H_3|=2(4-1)-1(2-0)+0=4$
+
+All positive → minimum.
+@s Value
+$$w=25+64+49-40-56-10-32-42=-42$$
+@a Minimum value $-42$ at $(-5,8,-7)$.
+
+
 @@topic c-lagrange | Lagrange multipliers | Sheet 4 · Q16, Q17, Q19
 @learn
 **The problem:** find the biggest or smallest value of $f$, but you are only allowed to be on a certain curve $g=c$ (the **constraint**).

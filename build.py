@@ -8,6 +8,7 @@ def svg(body, cap, vb="0 0 165 160", w=220):
     return f'<figure class="fig"><svg viewBox="{vb}" width="{w}" role="img" aria-label="{cap}">{body}</svg><figcaption>{cap}</figcaption></figure>'
 FIGS = {
 
+ 'halfdisk': svg('<path d="M80,30 A50,50 0 0,1 80,130 Z" class="in"/>'+AX+'<path d="M80,30 A50,50 0 0,1 80,130" class="out"/><line x1="80" y1="30" x2="80" y2="130" class="out"/><text x="133" y="94" class="lb">2</text><text x="85" y="142" class="lb">−2</text>', 'Shaded = domain: right half of the disk. Dashed edges NOT included.'),
  'tree': svg('<text x="104" y="16" class="lb b">w</text>'
    '<line x1="106" y1="20" x2="40" y2="58" class="edge"/><line x1="108" y1="20" x2="108" y2="58" class="edge"/><line x1="110" y1="20" x2="176" y2="58" class="edge"/>'
    '<text x="56" y="36" class="lb">w<tspan dy="2" font-size="7">x</tspan></text><text x="112" y="42" class="lb">w<tspan dy="2" font-size="7">y</tspan></text><text x="150" y="36" class="lb">w<tspan dy="2" font-size="7">z</tspan></text>'

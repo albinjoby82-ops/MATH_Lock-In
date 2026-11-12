@@ -230,6 +230,58 @@ With $y=0$ the equation is $z^3-2=0$, so $z=2^{1/3}$. And $x=z$.
 @a $z_x=\tfrac14,\ z_y=-\tfrac34$ at $(1,1,1)$. Both zero at $(2^{1/3},0,2^{1/3})$.
 
 
+@@topic c-jacobian | Jacobian matrix | Sheet 4 · Q4, Q5 · Exam Q3(b)
+@learn
+**When you have several functions at once**, e.g. $f_1,f_2,f_3$ all depending on $x,y,z$.
+
+**The Jacobian matrix $J$** is a grid of all their first partial derivatives.
+
+Each **row** is one function. Each **column** is one variable.
+$$J=\begin{pmatrix}\dfrac{\partial f_1}{\partial x}&\dfrac{\partial f_1}{\partial y}&\dfrac{\partial f_1}{\partial z}\\[2mm]\dfrac{\partial f_2}{\partial x}&\dfrac{\partial f_2}{\partial y}&\dfrac{\partial f_2}{\partial z}\\[2mm]\dfrac{\partial f_3}{\partial x}&\dfrac{\partial f_3}{\partial y}&\dfrac{\partial f_3}{\partial z}\end{pmatrix}$$
+
+The exam then asks for its **determinant** (one number).
+
+**2×2 determinant:**
+$$\begin{vmatrix}a&b\\c&d\end{vmatrix}=ad-bc$$
+
+**3×3 determinant:** go along the top row. Each top entry times the 2×2 left when you cover its row and column. Signs go $+,\ -,\ +$.
+$$\begin{vmatrix}a&b&c\\d&e&f\\g&h&i\end{vmatrix}=a\begin{vmatrix}e&f\\h&i\end{vmatrix}-b\begin{vmatrix}d&f\\g&i\end{vmatrix}+c\begin{vmatrix}d&e\\g&h\end{vmatrix}$$
+@check Determinant of $\begin{pmatrix}2&1\\3&4\end{pmatrix}$?
+@checka $2\cdot4-1\cdot3=8-3=5$.
+
+@q Sheet 4 · Q4
+$f_1=2x_1+3x_2+x_3$, $f_2=3x_1+x_2+2x_3$, $f_3=x_1+2x_2+3x_3$. Find the Jacobian matrix and its determinant.
+@s Fill the grid
+Each function is just numbers times variables, so each partial is just the number in front.
+
+Row 1 ($f_1$): $2,\ 3,\ 1$. Row 2 ($f_2$): $3,\ 1,\ 2$. Row 3 ($f_3$): $1,\ 2,\ 3$.
+$$J=\begin{pmatrix}2&3&1\\3&1&2\\1&2&3\end{pmatrix}$$
+@s Expand along the top row
+$$\det J=2\begin{vmatrix}1&2\\2&3\end{vmatrix}-3\begin{vmatrix}3&2\\1&3\end{vmatrix}+1\begin{vmatrix}3&1\\1&2\end{vmatrix}$$
+@s Work out each 2×2
+$(1)(3)-(2)(2)=-1$
+
+$(3)(3)-(2)(1)=7$
+
+$(3)(2)-(1)(1)=5$
+@s Combine
+$$2(-1)-3(7)+1(5)=-2-21+5=-18$$
+@a $\det J=-18$
+
+@q Sheet 4 · Q5
+$f_1=x_1^2+x_2^2$, $f_2=2x_1x_2$. Find the Jacobian matrix. What equation holds between $x_1$ and $x_2$ when its determinant is $0$?
+@s Fill the grid
+Row 1: $\dfrac{\partial f_1}{\partial x_1}=2x_1$, $\ \dfrac{\partial f_1}{\partial x_2}=2x_2$.
+
+Row 2: $\dfrac{\partial f_2}{\partial x_1}=2x_2$, $\ \dfrac{\partial f_2}{\partial x_2}=2x_1$.
+$$J=\begin{pmatrix}2x_1&2x_2\\2x_2&2x_1\end{pmatrix}$$
+@s Determinant
+$$ad-bc=(2x_1)(2x_1)-(2x_2)(2x_2)=4x_1^2-4x_2^2$$
+@s Set it to zero
+$$4x_1^2=4x_2^2\ \Rightarrow\ x_1^2=x_2^2$$
+@a $J=\begin{pmatrix}2x_1&2x_2\\2x_2&2x_1\end{pmatrix}$; determinant is $0$ when $x_1^2=x_2^2$ (i.e. $x_1=\pm x_2$).
+
+
 @@topic c-approx | Linear approximation and % error | Sheet 2 · Q9 to Q11
 @learn
 **Linear approximation.** Zoom in close enough and any surface looks flat. So near a point $(a,b)$ that you know:

@@ -1,0 +1,346 @@
+@@part 6 · Sample exam (do this last)
+
+@@topic x-q1 | Exam Q1: domain, sketch, limit | Sample exam · Q1
+@learn
+**The real exam:** 2 hours, 6 questions, all equal marks. That's about **20 minutes per question**.
+
+**Rules that cost marks if you forget them:**
+
+Leave answers **exact** ($\sqrt{14}$, $\cos2$, $\tfrac{11\pi}{2}$), not decimals.
+
+**Show all working.**
+
+**No formula sheet**, so the formulas in the Learn boxes need to be in your head.
+
+**How to use this section:** do each question on paper with a timer first, then check it step by step.
+
+**This question uses:** Domains, Limits.
+@check What 2 things can make a point not allowed in the domain?
+@checka Dividing by zero, and a negative inside a square root (and $\ln$ of something $\le0$).
+
+@q Sample exam · Q1(a)
+Let $f(x,y)=\dfrac{\ln(x)}{\sqrt{4-x^2-y^2}}$. Determine the domain of $f$ in set notation.
+@s Spot everything that could break
+Three things to check:
+
+$\ln(x)$ → needs $x>0$.
+
+Square root → inside $\ge0$.
+
+Fraction → bottom $\neq0$.
+@s Combine the root and the fraction
+Inside the root must be $\ge0$ and the whole root $\neq0$, so strictly positive:
+$$4-x^2-y^2>0\ \Longleftrightarrow\ x^2+y^2<4$$
+@s Put both conditions together
+Both must be true at the same time ("and").
+@a $\text{dom}(f)=\{(x,y)\in\mathbb{R}^2\mid x>0\ \text{and}\ x^2+y^2<4\}$
+
+@q Sample exam · Q1(b)
+Sketch the domain from part (a).
+@s Draw each condition
+$x^2+y^2<4$: inside the circle, centre $(0,0)$, radius $2$. Not the edge, so **dashed** circle.
+
+$x>0$: right of the $y$-axis. Not the axis itself, so **dashed** along the axis too.
+@s Shade where both are true
+The right half of the disk.
+{{fig:halfdisk}}
+@a The open half-disk: centre $(0,0)$, radius $2$, to the right of the $y$-axis, with no edges included.
+
+@q Sample exam · Q1(c)
+Determine $\displaystyle\lim_{(x,y)\to(1,0)}f(x,y)$.
+@s Is the point allowed?
+$x=1>0$ ✓ and $1^2+0^2=1<4$ ✓. So $(1,0)$ is in the domain.
+@s So just plug in
+$f$ is made of continuous pieces, so where it is defined the limit is just the value:
+$$\frac{\ln1}{\sqrt{4-1-0}}=\frac{0}{\sqrt3}=0$$
+@a $0$ (because $(1,0)$ is in the domain and $f$ is continuous there).
+
+
+@@topic x-q2 | Exam Q2: partials and chain rule | Sample exam · Q2
+@learn
+**This question uses:** Partial derivatives, Chain rule.
+
+Part (c) is the hard one: it gives you numbers for $w_r$ and $w_s$ and asks for $w_x$. Write the two chain rule equations, put the numbers in, and you get two simultaneous equations for $w_x$ and $w_y$.
+@check If $w=w(x,y)$ with $x$ and $y$ depending on $r$, what is $w_r$?
+@checka $w_r=w_x\,x_r+w_y\,y_r$.
+
+@q Sample exam · Q2(a)
+Find $f_x$ and $f_y$ for $f(x,y)=\sqrt{\sin(x^2y^3)}$.
+@s See the layers
+Three layers, outside to inside:
+$$\sqrt{\ \cdot\ }\quad\to\quad\sin(\ \cdot\ )\quad\to\quad x^2y^3$$
+Chain rule = differentiate each layer and multiply.
+@s Layer by layer
+Root: $(\sqrt u)'=\dfrac{1}{2\sqrt u}$.
+
+$\sin$: $\sin\to\cos$.
+
+Inside, in $x$: $x^2y^3\to2xy^3$.
+@s Multiply for $f_x$
+$$f_x=\frac{1}{2\sqrt{\sin(x^2y^3)}}\cdot\cos(x^2y^3)\cdot2xy^3=\frac{xy^3\cos(x^2y^3)}{\sqrt{\sin(x^2y^3)}}$$
+@s Same for $f_y$
+Only the inside changes: in $y$, $x^2y^3\to3x^2y^2$.
+$$f_y=\frac{1}{2\sqrt{\sin(x^2y^3)}}\cdot\cos(x^2y^3)\cdot3x^2y^2=\frac{3x^2y^2\cos(x^2y^3)}{2\sqrt{\sin(x^2y^3)}}$$
+@a $f_x=\dfrac{xy^3\cos(x^2y^3)}{\sqrt{\sin(x^2y^3)}},\qquad f_y=\dfrac{3x^2y^2\cos(x^2y^3)}{2\sqrt{\sin(x^2y^3)}}$
+
+@q Sample exam · Q2(b)
+Use the chain rule to find $w'(1)$ if $w=\sin(xyz)$ and $x=1+t^2$, $y=1-2t$, $z=t^3-2$.
+@s Chain rule
+$$w'(t)=w_x\,x'+w_y\,y'+w_z\,z'$$
+@s The pieces
+$$w_x=yz\cos(xyz)\qquad w_y=xz\cos(xyz)\qquad w_z=xy\cos(xyz)$$
+$$x'=2t\qquad y'=-2\qquad z'=3t^2$$
+@s Find everything at $t=1$
+$x=2,\ y=-1,\ z=-1$, so $xyz=2$.
+
+$yz=1,\quad xz=-2,\quad xy=-2$
+
+$x'=2,\quad y'=-2,\quad z'=3$
+@s Multiply and add
+$$w'(1)=\cos2\,\big[(1)(2)+(-2)(-2)+(-2)(3)\big]=\cos2\,(2+4-6)$$
+@a $w'(1)=0$
+
+@q Sample exam · Q2(c)
+$x=r^2+s^2$, $y=\cos(rs)$. Find $w_x$ if $r=2$, $s=\tfrac\pi4$, $w_r=8$, $w_s=\pi$.
+@s Chain rule, twice
+$$w_r=w_x\,x_r+w_y\,y_r\qquad w_s=w_x\,x_s+w_y\,y_s$$
+@s The four small derivatives
+$x_r=2r,\quad x_s=2s$
+
+$y_r=-s\sin(rs),\quad y_s=-r\sin(rs)$
+@s Put in $r=2$, $s=\pi/4$
+$rs=\tfrac\pi2$ and $\sin\tfrac\pi2=1$:
+
+$x_r=4,\quad x_s=\tfrac\pi2,\quad y_r=-\tfrac\pi4,\quad y_s=-2$
+@s Two equations
+$$8=4w_x-\tfrac\pi4w_y\qquad\text{(i)}$$
+$$\pi=\tfrac\pi2w_x-2w_y\qquad\text{(ii)}$$
+@s Get rid of $w_y$
+Multiply (i) by $\tfrac8\pi$ so it has $-2w_y$ like (ii):
+$$\tfrac{64}{\pi}=\tfrac{32}{\pi}w_x-2w_y$$
+Subtract (ii):
+$$\tfrac{64}{\pi}-\pi=\left(\tfrac{32}{\pi}-\tfrac\pi2\right)w_x$$
+@s Spot the shortcut
+The left side is exactly $2\times$ the bracket: $2\left(\tfrac{32}{\pi}-\tfrac\pi2\right)=\tfrac{64}\pi-\pi$. So $w_x=2$.
+
+Check in (i): $8=8-\tfrac\pi4w_y$, so $w_y=0$. ✓
+@a $w_x=2$
+
+
+@@topic x-q3 | Exam Q3: implicit, Jacobian, % error | Sample exam · Q3
+@learn
+**This question uses:** Implicit differentiation, Jacobian matrix, Linear approximation and % error.
+
+Three separate mini-questions. Each one is a recipe you can learn.
+@check Percentage error shortcut for $Q=k\,a^2b^3$?
+@checka $\%Q\approx2(\%a)+3(\%b)$.
+
+@q Sample exam · Q3(a)
+$xyz+e^{x+y+z}=3$ defines $z(x,y)$. Find $z_x$ and $z_y$ at $(2,-1,-1)$.
+@s Differentiate in $x$ ($y$ is a constant)
+$xyz$: $y$ is a number, and $x\cdot z$ needs the product rule → $y(z+x\,z_x)$.
+
+$e^{x+y+z}$: chain rule, inside gives $1+z_x$ → $e^{x+y+z}(1+z_x)$.
+$$y(z+x\,z_x)+e^{x+y+z}(1+z_x)=0$$
+@s Solve for $z_x$
+Expand and collect the $z_x$ terms:
+$$z_x\left(xy+e^{x+y+z}\right)=-\left(yz+e^{x+y+z}\right)$$
+$$z_x=-\frac{yz+e^{x+y+z}}{xy+e^{x+y+z}}$$
+@s Plug in the point
+$x+y+z=0$, so $e^0=1$. Also $yz=1$, $xy=-2$:
+$$z_x=-\frac{1+1}{-2+1}=-\frac{2}{-1}=2$$
+@s $z_y$ the same way
+The equation looks the same if you swap $x$ and $y$, so swap them in the answer:
+$$z_y=-\frac{xz+e^{x+y+z}}{xy+e^{x+y+z}}=-\frac{-2+1}{-2+1}=-1$$
+@a $z_x=2,\qquad z_y=-1$
+
+@q Sample exam · Q3(b)
+$f_1=x+2y+3z$, $f_2=e^y+e^z$, $f_3=\ln(xyz)$. (i) Find the Jacobian matrix. (ii) Find its determinant at $(1,1,1)$.
+@s Tidy $f_3$ first
+$\ln(xyz)=\ln x+\ln y+\ln z$, so its partials are $\tfrac1x,\ \tfrac1y,\ \tfrac1z$.
+@s Fill the grid
+Row 1 ($f_1$): $1,\ 2,\ 3$
+
+Row 2 ($f_2$): $0,\ e^y,\ e^z$ (no $x$ in it, so $0$ first)
+
+Row 3 ($f_3$): $\tfrac1x,\ \tfrac1y,\ \tfrac1z$
+$$J=\begin{pmatrix}1&2&3\\0&e^y&e^z\\ \frac1x&\frac1y&\frac1z\end{pmatrix}$$
+@s At $(1,1,1)$
+$$J=\begin{pmatrix}1&2&3\\0&e&e\\1&1&1\end{pmatrix}$$
+@s Expand along the top row
+$$1\,(e\cdot1-e\cdot1)-2\,(0\cdot1-e\cdot1)+3\,(0\cdot1-e\cdot1)$$
+$$=0+2e-3e=-e$$
+@a $J$ as above; $\det J(1,1,1)=-e$
+
+@q Sample exam · Q3(c)
+$L=4\pi R^2\sigma T^4$. Find the approximate percentage error in $L$ if $R$ increases by 4% and $T$ decreases by 1%.
+@s Powers become multipliers
+$4\pi$ and $\sigma$ are constants. $R$ has power $2$, $T$ has power $4$:
+$$\%L\approx2(\%R)+4(\%T)$$
+@s Put the numbers in
+Increase → $+4$. Decrease → $-1$.
+$$\%L\approx2(4)+4(-1)=8-4=4$$
+@a About a $4\%$ increase.
+
+
+@@topic x-q4 | Exam Q4: gradient and directions | Sample exam · Q4
+@learn
+**This question uses:** Gradient and directional derivative.
+
+New bit: **a unit vector from point $P$ towards point $Q$**. Subtract to get the arrow, then divide by its length:
+$$\mathbf v=Q-P\qquad\mathbf u=\frac{\mathbf v}{\|\mathbf v\|}$$
+@check Arrow from $P=(1,1)$ to $Q=(4,5)$, as a unit vector?
+@checka $\mathbf v=\langle3,4\rangle$, length $5$, so $\mathbf u=\left\langle\tfrac35,\tfrac45\right\rangle$.
+
+@q Sample exam · Q4(a)
+$T(x,y,z)=e^{x^2-4y^2-9z^2}$. Find $\nabla T$ at $P=(2,-1,0)$.
+@s Partials (chain rule on $e$)
+$e^{\text{stuff}}\to e^{\text{stuff}}\times(\text{stuff})'$. Each one keeps the same $e$ part:
+$$\nabla T=e^{x^2-4y^2-9z^2}\,\langle2x,\ -8y,\ -18z\rangle$$
+@s At $P$
+Exponent: $4-4-0=0$, so $e^0=1$.
+$$\nabla T=\langle4,\ 8,\ 0\rangle$$
+@a $\nabla T(P)=\langle4,8,0\rangle$
+
+@q Sample exam · Q4(b)
+Find a unit vector $\mathbf u$ pointing from $P=(2,-1,0)$ towards $Q=(3,-3,3)$.
+@s Arrow from P to Q
+Subtract $P$ from $Q$:
+$$\mathbf v=\langle3-2,\ -3-(-1),\ 3-0\rangle=\langle1,\ -2,\ 3\rangle$$
+@s Length
+$$\|\mathbf v\|=\sqrt{1+4+9}=\sqrt{14}$$
+@a $\mathbf u=\dfrac{1}{\sqrt{14}}\langle1,-2,3\rangle$
+
+@q Sample exam · Q4(c)
+Find the rate of change of $T$ at $P$ in the direction of $\mathbf u$.
+@s It's the directional derivative
+$$D_{\mathbf u}T=\nabla T\cdot\mathbf u$$
+@s Dot product
+$$\frac{1}{\sqrt{14}}\langle4,8,0\rangle\cdot\langle1,-2,3\rangle=\frac{4-16+0}{\sqrt{14}}$$
+@a $-\dfrac{12}{\sqrt{14}}$ (temperature is falling in that direction)
+
+@q Sample exam · Q4(d) and (e)
+(d) In which direction does $T$ increase fastest at $P$? (e) What is that maximum rate?
+@s Fastest increase
+Always the direction of the gradient: $\langle4,8,0\rangle$.
+@s Maximum rate
+The length of the gradient:
+$$\|\nabla T\|=\sqrt{16+64+0}=\sqrt{80}=4\sqrt5$$
+@a (d) Direction $\langle4,8,0\rangle$. (e) Maximum rate $4\sqrt5$.
+
+
+@@topic x-q5 | Exam Q5: tangent plane, 3-variable max/min | Sample exam · Q5
+@learn
+**This question uses:** Tangent lines and planes, Critical points with 3 variables.
+
+Part (b) is the full 3-variable recipe: critical point → Hessian → leading principal minors → read the signs.
+@check Signs $+,+,+$ mean?
+@checka Minimum.
+
+@q Sample exam · Q5(a)
+Find the tangent plane to $\cos(x+2y+3z)=0$ at $Q=\left(\tfrac\pi2,\pi,\pi\right)$.
+@s Gradient
+Chain rule. The inside $x+2y+3z$ gives $1,2,3$:
+$$\nabla F=-\sin(x+2y+3z)\,\langle1,\ 2,\ 3\rangle$$
+@s At Q
+$x+2y+3z=\tfrac\pi2+2\pi+3\pi=\tfrac{11\pi}{2}$.
+
+$\sin\tfrac{11\pi}{2}$: take away $4\pi$ (two full turns) to get $\sin\tfrac{3\pi}{2}=-1$.
+
+So $-\sin=+1$ and
+$$\nabla F=\langle1,\ 2,\ 3\rangle$$
+@s Plane formula
+$$1\left(x-\tfrac\pi2\right)+2(y-\pi)+3(z-\pi)=0$$
+@s Tidy
+$x+2y+3z=\tfrac\pi2+2\pi+3\pi=\tfrac{11\pi}2$
+@a $x+2y+3z=\dfrac{11\pi}{2}$
+
+@q Sample exam · Q5(b)
+$f=-2x^2-y^2-4z^2-yz+4x-y+7z$. (i) Find the critical point $P$. (ii) Find the leading principal minors of the Hessian. (iii) Max, min or saddle?
+@s First derivatives
+$$f_x=-4x+4\qquad f_y=-2y-z-1\qquad f_z=-8z-y+7$$
+@s Solve
+$f_x=0\Rightarrow x=1$.
+
+$f_y=0\Rightarrow z=-2y-1$.
+
+Put into $f_z=0$: $\ -8(-2y-1)-y+7=15y+15=0\Rightarrow y=-1$, then $z=1$.
+
+$P=(1,-1,1)$.
+@s Hessian
+$$H=\begin{pmatrix}-4&0&0\\0&-2&-1\\0&-1&-8\end{pmatrix}$$
+@s Leading principal minors
+$|H_1|=-4$
+
+$|H_2|=(-4)(-2)-0=8$
+
+$|H_3|=-4\big[(-2)(-8)-(-1)(-1)\big]=-4(16-1)=-60$
+@s Read the signs
+$-,\ +,\ -$ → maximum.
+@a $P=(1,-1,1)$; minors $-4,\ 8,\ -60$; $P$ is a local maximum.
+
+
+@@topic x-q6 | Exam Q6: Lagrange and an ODE | Sample exam · Q6
+@learn
+**This question uses:** Lagrange multipliers (two constraints), Second order with right side ≠ 0.
+
+For (a): one constraint is just $z=1$, so put $z=1$ in early. It makes everything easier.
+
+For (b): the roots are complex with no real part ($\pm2i$), so $y_h$ is just cos and sin.
+@check Roots $\pm2i$. What is $y_h$?
+@checka $C_1\cos2t+C_2\sin2t$ (real part $0$, so no $e$ in front).
+
+@q Sample exam · Q6(a)
+Find the max and min of $f=x^2yz+1$ subject to $z=1$ and $x^2+y^2+z^2=10$.
+@s Gradients
+$\nabla f=\langle2xyz,\ x^2z,\ x^2y\rangle$
+
+$g_1=z$: $\ \nabla g_1=\langle0,0,1\rangle$
+
+$g_2=x^2+y^2+z^2$: $\ \nabla g_2=\langle2x,2y,2z\rangle$
+@s Lagrange equations
+$\nabla f=\lambda\nabla g_1+\mu\nabla g_2$, and put $z=1$ straight in:
+$$2xy=2\mu x\qquad(1)$$
+$$x^2=2\mu y\qquad(2)$$
+$$x^2y=\lambda+2\mu\qquad(3)$$
+(3) only tells us $\lambda$, which we don't need.
+@s Factor (1)
+$$x(y-\mu)=0\ \Rightarrow\ x=0\ \text{ or }\ y=\mu$$
+@s Case $x=0$
+Constraint: $0+y^2+1=10\Rightarrow y=\pm3$. Then $f=0+1=1$.
+@s Case $y=\mu$
+(2) becomes $x^2=2y^2$. Constraint: $2y^2+y^2+1=10\Rightarrow y^2=3\Rightarrow y=\pm\sqrt3$, and $x^2=6$.
+
+$f=x^2y+1=6y+1=\pm6\sqrt3+1$.
+@s Compare all values
+$1$, $\ 1+6\sqrt3$, $\ 1-6\sqrt3$.
+@a Maximum $1+6\sqrt3$ (at $(\pm\sqrt6,\sqrt3,1)$). Minimum $1-6\sqrt3$ (at $(\pm\sqrt6,-\sqrt3,1)$).
+
+@q Sample exam · Q6(b)
+Find the general solution of $y''+4y=t^2+\cos t$.
+@s Step 1: $y_h$
+$$r^2+4=0\Rightarrow r=\pm2i$$
+Complex with $\alpha=0$, $\beta=2$:
+$$y_h=C_1\cos2t+C_2\sin2t$$
+@s Step 2: guess $y_p$
+Right side = degree 2 polynomial + $\cos t$:
+$$y_p=At^2+Bt+C+D\cos t+E\sin t$$
+No clash: $\cos t$ is not $\cos2t$.
+@s Differentiate twice
+$$y_p''=2A-D\cos t-E\sin t$$
+@s Put it in
+$$y_p''+4y_p=4At^2+4Bt+(2A+4C)+3D\cos t+3E\sin t$$
+This must equal $t^2+\cos t$.
+@s Match coefficients
+$t^2$: $4A=1\Rightarrow A=\tfrac14$
+
+$t$: $4B=0\Rightarrow B=0$
+
+number: $2A+4C=0\Rightarrow C=-\tfrac18$
+
+$\cos t$: $3D=1\Rightarrow D=\tfrac13$
+
+$\sin t$: $3E=0\Rightarrow E=0$
+@s Add them
+$$y=y_h+y_p$$
+@a $y=C_1\cos2t+C_2\sin2t+\dfrac{t^2}{4}-\dfrac18+\dfrac13\cos t$

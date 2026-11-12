@@ -16,6 +16,8 @@ Only two things are not allowed:
 2. Square root of a negative → the inside must be $\ge 0$. (And $\ln$ needs the inside $>0$.)
 
 **Recipe:** write the condition, then say what shape it is on the $xy$-plane.
+
+**In the exam** you must give it in set notation, like $\{(x,y)\in\mathbb{R}^2\mid x>0\}$, and sketch it. Shade the allowed region. Dashed edge = not included, solid edge = included.
 @check Is $(0,0)$ in the domain of $f(x,y)=\dfrac{1}{x+y}$?
 @checka No. The bottom is $0+0=0$, and you cannot divide by zero.
 

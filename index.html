@@ -94,13 +94,13 @@ var cur={t:0,q:0,shown:0};
 try{var h=JSON.parse(localStorage.getItem(KEY+'-pos-'+mode));if(h&&topics[h.t]&&topics[h.t].qs[h.q]){cur.t=h.t;cur.q=h.q}}catch(e){}
 function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
 function math(node){if(window.renderMathInElement)renderMathInElement(node,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})}
-function short(ref){return ref.replace(/^Sheet \d+ · /,'')}
+function short(ref){return ref.replace(/^(Sheet \d+|Sample exam) · /,'')}
 function nav(){
   var n=document.getElementById('nav');n.innerHTML='';
   var total=0,done=0;topics.forEach(function(t){t.qs.forEach(function(q){total++;if(st[q.id]==='done')done++})});
   n.appendChild(el('h1','','MATH Lock-In'));
   var ms=el('div','mode');
-  [['core','Pass path'],['full','All homework']].forEach(function(m){var b=el('button',mode===m[0]?'on':'',m[1]);b.onclick=function(){if(mode===m[0])return;mode=m[0];try{localStorage.setItem(KEY+'-mode',mode)}catch(e){}load();cur={t:0,q:0,shown:0};try{var hh=JSON.parse(localStorage.getItem(KEY+'-pos-'+mode));if(hh&&topics[hh.t]&&topics[hh.t].qs[hh.q]){cur.t=hh.t;cur.q=hh.q}}catch(e){}render();window.scrollTo(0,0)};ms.appendChild(b)});
+  [['core','Exam path'],['full','All homework']].forEach(function(m){var b=el('button',mode===m[0]?'on':'',m[1]);b.onclick=function(){if(mode===m[0])return;mode=m[0];try{localStorage.setItem(KEY+'-mode',mode)}catch(e){}load();cur={t:0,q:0,shown:0};try{var hh=JSON.parse(localStorage.getItem(KEY+'-pos-'+mode));if(hh&&topics[hh.t]&&topics[hh.t].qs[hh.q]){cur.t=hh.t;cur.q=hh.q}}catch(e){}render();window.scrollTo(0,0)};ms.appendChild(b)});
   n.appendChild(ms);
   n.appendChild(el('div','sub','MATH20290 · '+done+' of '+total+' done'));
   var bar=el('div','bar','<i style="width:'+(100*done/total)+'%"></i>');n.appendChild(bar);
@@ -114,7 +114,7 @@ function nav(){
       n.appendChild(b);
     });
   });
-  if(mode==='core')n.appendChild(el('div','cut','<b>Skipped on the pass path:</b> level curves, continuity, Hessian/Jacobian, 3-variable max/min, the wire problem, variation of parameters, 3rd/4th order ODEs. They are all under <b>All homework</b> if you have time.'));
+  if(mode==='core')n.appendChild(el('div','cut','<b>Matched to the sample exam.</b> Not on it, so skipped here: level curves, continuity, the hot plate and wire problems, variation of parameters, 3rd/4th order ODEs. They are under <b>All homework</b>.'));
 }
 function render(){
   try{localStorage.setItem(KEY+'-pos-'+mode,JSON.stringify({t:cur.t,q:cur.q}))}catch(e){}

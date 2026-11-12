@@ -192,7 +192,7 @@ $g$ is a sum → guess the sum of the guesses
 
 Put the guess into the equation and match coefficients to find $A,B,\dots$
 
-**Clash rule:** if your guess already appears in $y_h$, multiply it by $x$.
+**Clash rule:** if your guess already appears in $y_h$, multiply it by $x$. ($\cos t$ and $\cos2t$ are different, so they don't clash.)
 
 **Initial conditions go in at the very end**, using the full $y=y_h+y_p$.
 @check $y''-y=e^{x}$ has $y_h=C_1e^x+C_2e^{-x}$. What should you guess for $y_p$?

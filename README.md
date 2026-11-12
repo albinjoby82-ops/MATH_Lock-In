@@ -4,7 +4,7 @@ Cram site for **MATH20290 Multivariable Calculus for Engineers** (UCD, 2026/27).
 
 Two modes:
 
-- **Pass path** (default): 45 core questions in 14 topics. Each topic starts with a short from-scratch explanation and a quick check question. Built for someone who missed the lectures and needs to pass.
+- **Exam path** (default): core questions matched to the official sample exam, plus a fully explained walkthrough of that sample exam at the end. Each topic starts with a short from-scratch explanation and a quick check question.
 - **All homework**: every question from Problem Sheets 1 to 5 (145 parts) in 22 topics.
 
 **Live site:** https://albinjoby82-ops.github.io/MATH_Lock-In/
