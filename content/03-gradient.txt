@@ -1,0 +1,294 @@
+@@part Gradient and directional derivatives
+
+@@topic gradient | Gradient and directional derivative | Sheet 3 · Q1 to Q3
+@method
+**Gradient** = the vector of partial derivatives:
+$$\nabla f=\langle f_x,\ f_y,\ f_z\rangle$$
+
+**Directional derivative** in direction $\mathbf v$:
+
+1. Make a unit vector: $\mathbf u=\dfrac{\mathbf v}{\|\mathbf v\|}$.
+2. Find $\nabla f$ at the point.
+3. Dot them: $D_{\mathbf u}f=\nabla f\cdot\mathbf u$.
+
+**Fastest increase:** direction $\mathbf u=\dfrac{\nabla f}{\|\nabla f\|}$, rate $=\|\nabla f\|$.
+
+**Fastest decrease:** direction $-\mathbf u$, rate $=-\|\nabla f\|$.
+
+@q Sheet 3 · Q1(a)
+Find the gradient of $f(x,y)=y-x$ at $(2,1)$.
+@s Partial derivatives
+$$f_x=-1\qquad f_y=1$$
+@s At the point
+They are constants, so the point does not matter.
+@a $\nabla f(2,1)=\langle -1,\,1\rangle$
+
+@q Sheet 3 · Q1(b)
+Find the gradient of $f(x,y)=\ln(x^2+y^2)$ at $(1,1)$.
+@s Partial derivatives
+$$f_x=\frac{2x}{x^2+y^2}\qquad f_y=\frac{2y}{x^2+y^2}$$
+@s At (1, 1)
+$$f_x=\frac22=1\qquad f_y=\frac22=1$$
+@a $\nabla f(1,1)=\langle 1,\,1\rangle$
+
+@q Sheet 3 · Q1(c)
+Find the gradient of $f(x,y,z)=x^2+y^2-2z^2+z\ln x$ at $(1,1,1)$.
+@s Partial derivatives
+$$f_x=2x+\frac zx\qquad f_y=2y\qquad f_z=-4z+\ln x$$
+@s At (1, 1, 1)
+$$f_x=2+1=3\qquad f_y=2\qquad f_z=-4+\ln 1=-4$$
+@a $\nabla f(1,1,1)=\langle 3,\,2,\,-4\rangle$
+
+@q Sheet 3 · Q1(d)
+Find the gradient of $f(x,y,z)=(x^2+y^2+z^2)^{-1/2}+\ln(xyz)$ at $(-1,2,-2)$.
+@s Split the log
+$\ln(xyz)=\ln x+\ln y+\ln z$ (as far as derivatives go), so it gives $\tfrac1x,\tfrac1y,\tfrac1z$.
+@s Partial derivatives
+$$f_x=-\frac{x}{(x^2+y^2+z^2)^{3/2}}+\frac1x$$
+$f_y$ and $f_z$ look the same with $y$ and $z$.
+@s Number needed at the point
+$x^2+y^2+z^2=1+4+4=9$, so $9^{3/2}=27$.
+@s At (−1, 2, −2)
+$$f_x=\frac{1}{27}-1=-\frac{26}{27}$$
+$$f_y=-\frac{2}{27}+\frac12=\frac{23}{54}$$
+$$f_z=\frac{2}{27}-\frac12=-\frac{23}{54}$$
+@a $\nabla f=\left\langle -\dfrac{26}{27},\ \dfrac{23}{54},\ -\dfrac{23}{54}\right\rangle$
+
+@q Sheet 3 · Q2(a)
+Find the directional derivative of $f(x,y)=2xy-3y^2$ at $P_0=(5,5)$ in the direction $\mathbf v=\langle 4,3\rangle$.
+@s Unit vector
+$\|\mathbf v\|=\sqrt{16+9}=5$.
+$$\mathbf u=\left\langle\tfrac45,\tfrac35\right\rangle$$
+@s Gradient
+$$\nabla f=\langle 2y,\ 2x-6y\rangle\ \Longrightarrow\ \nabla f(5,5)=\langle 10,\,-20\rangle$$
+@s Dot product
+$$D_{\mathbf u}f=10\cdot\tfrac45-20\cdot\tfrac35=8-12=-4$$
+@a $-4$
+
+@q Sheet 3 · Q2(b)
+Find the directional derivative of $f(x,y)=2x^2+y^2$ at $P_0=(-1,1)$ in the direction $\mathbf v=\langle 3,-4\rangle$.
+@s Unit vector
+$\|\mathbf v\|=\sqrt{9+16}=5$.
+$$\mathbf u=\left\langle\tfrac35,-\tfrac45\right\rangle$$
+@s Gradient
+$$\nabla f=\langle 4x,\ 2y\rangle\ \Longrightarrow\ \nabla f(-1,1)=\langle -4,\,2\rangle$$
+@s Dot product
+$$D_{\mathbf u}f=-4\cdot\tfrac35+2\cdot\left(-\tfrac45\right)=-\tfrac{12}{5}-\tfrac85=-4$$
+@a $-4$
+
+@q Sheet 3 · Q2(c)
+Find the directional derivative of $f(x,y,z)=xy+yz+zx$ at $P_0=(1,-1,2)$ in the direction $\mathbf v=\langle 3,6,-2\rangle$.
+@s Unit vector
+$\|\mathbf v\|=\sqrt{9+36+4}=7$.
+$$\mathbf u=\left\langle\tfrac37,\tfrac67,-\tfrac27\right\rangle$$
+@s Gradient
+$$\nabla f=\langle y+z,\ x+z,\ x+y\rangle\ \Longrightarrow\ \nabla f(1,-1,2)=\langle 1,\,3,\,0\rangle$$
+@s Dot product
+$$D_{\mathbf u}f=\tfrac37+\tfrac{18}{7}+0=3$$
+@a $3$
+
+@q Sheet 3 · Q2(d)
+Find the directional derivative of $f(x,y,z)=\cos(xy)+e^{yz}+\ln(zx)$ at $P_0=(1,0,\tfrac12)$ in the direction $\mathbf v=\langle 1,2,2\rangle$.
+@s Unit vector
+$\|\mathbf v\|=\sqrt{1+4+4}=3$.
+$$\mathbf u=\left\langle\tfrac13,\tfrac23,\tfrac23\right\rangle$$
+@s Gradient
+$$f_x=-y\sin(xy)+\frac1x\qquad f_y=-x\sin(xy)+ze^{yz}\qquad f_z=ye^{yz}+\frac1z$$
+@s At (1, 0, 1/2)
+$$f_x=0+1=1\qquad f_y=0+\tfrac12=\tfrac12\qquad f_z=0+2=2$$
+@s Dot product
+$$D_{\mathbf u}f=1\cdot\tfrac13+\tfrac12\cdot\tfrac23+2\cdot\tfrac23=\tfrac13+\tfrac13+\tfrac43=2$$
+@a $2$
+
+@q Sheet 3 · Q3(a)
+Find the directions of most rapid increase and decrease of $f(x,y)=x^2+xy+y^2$ at $P_0=(-1,1)$, and the directional derivatives in those directions.
+@s Gradient
+$$\nabla f=\langle 2x+y,\ x+2y\rangle\ \Longrightarrow\ \nabla f(-1,1)=\langle -1,\,1\rangle$$
+@s Its length
+$$\|\nabla f\|=\sqrt{1+1}=\sqrt2$$
+@s Directions
+Increase fastest: $\mathbf u=\left\langle-\tfrac{1}{\sqrt2},\tfrac{1}{\sqrt2}\right\rangle$. Decrease fastest: $-\mathbf u=\left\langle\tfrac{1}{\sqrt2},-\tfrac{1}{\sqrt2}\right\rangle$.
+@a Rates: $D_{\mathbf u}f=\sqrt2$ and $D_{-\mathbf u}f=-\sqrt2$
+
+@q Sheet 3 · Q3(b)
+Find the directions of most rapid increase and decrease of $f(x,y)=x^2y+e^{xy}\sin y$ at $P_0=(1,0)$, and the directional derivatives in those directions.
+@s Gradient
+$$f_x=2xy+ye^{xy}\sin y$$
+$$f_y=x^2+xe^{xy}\sin y+e^{xy}\cos y$$
+@s At (1, 0)
+$$f_x=0\qquad f_y=1+0+1=2$$
+So $\nabla f(1,0)=\langle 0,2\rangle$, length $2$.
+@s Directions
+Increase fastest: $\mathbf u=\langle 0,1\rangle=\mathbf j$. Decrease fastest: $-\mathbf u=\langle 0,-1\rangle$.
+@a Rates: $2$ and $-2$
+
+@q Sheet 3 · Q3(c)
+Find the directions of most rapid increase and decrease of $f(x,y,z)=\dfrac xy-yz$ at $P_0=(4,1,1)$, and the directional derivatives in those directions.
+@s Gradient
+$$\nabla f=\left\langle\frac1y,\ -\frac{x}{y^2}-z,\ -y\right\rangle\ \Longrightarrow\ \nabla f(4,1,1)=\langle 1,\,-5,\,-1\rangle$$
+@s Its length
+$$\|\nabla f\|=\sqrt{1+25+1}=\sqrt{27}=3\sqrt3$$
+@s Directions
+Increase fastest: $\mathbf u=\left\langle\tfrac{1}{3\sqrt3},-\tfrac{5}{3\sqrt3},-\tfrac{1}{3\sqrt3}\right\rangle$. Decrease fastest: $-\mathbf u$.
+@a Rates: $3\sqrt3$ and $-3\sqrt3$
+
+@q Sheet 3 · Q3(d)
+Find the directions of most rapid increase and decrease of $f(x,y,z)=\ln(x^2+y^2-1)+y+6z$ at $P_0=(1,1,0)$, and the directional derivatives in those directions.
+@s Gradient
+$$\nabla f=\left\langle\frac{2x}{x^2+y^2-1},\ \frac{2y}{x^2+y^2-1}+1,\ 6\right\rangle$$
+@s At (1, 1, 0)
+The bottom is $1+1-1=1$.
+$$\nabla f=\langle 2,\,3,\,6\rangle\qquad\|\nabla f\|=\sqrt{4+9+36}=7$$
+@s Directions
+Increase fastest: $\mathbf u=\left\langle\tfrac27,\tfrac37,\tfrac67\right\rangle$. Decrease fastest: $-\mathbf u$.
+@a Rates: $7$ and $-7$
+
+
+@@topic directions | Direction problems | Sheet 3 · Q4 to Q8
+@method
+Everything comes from $D_{\mathbf u}f=\nabla f\cdot\mathbf u$ with $\mathbf u$ a unit vector.
+
+**Derivative zero** → $\mathbf u$ is perpendicular to $\nabla f$. Perpendicular to $\langle a,b\rangle$ is $\langle b,-a\rangle$. Then make it a unit vector. Answer is $\pm\mathbf u$.
+
+**Can the rate be $k$?** Only if $-\|\nabla f\|\le k\le\|\nabla f\|$.
+
+**Rate equals a given number** → write $\mathbf u=\langle a,b\rangle$ with $a^2+b^2=1$ and solve.
+
+@q Sheet 3 · Q4
+In what directions is the directional derivative of $f(x,y)=xy+y^2$ at $P=(3,2)$ equal to zero?
+@s Gradient
+$$\nabla f=\langle y,\ x+2y\rangle\ \Longrightarrow\ \nabla f(3,2)=\langle 2,\,7\rangle$$
+@s Perpendicular vector
+Swap and change one sign: $\mathbf v=\langle 7,-2\rangle$. Check: $2\cdot7+7\cdot(-2)=0$.
+@s Unit vector
+$\|\mathbf v\|=\sqrt{49+4}=\sqrt{53}$.
+@a $\mathbf u=\left\langle\dfrac{7}{\sqrt{53}},-\dfrac{2}{\sqrt{53}}\right\rangle$ and $-\mathbf u=\left\langle-\dfrac{7}{\sqrt{53}},\dfrac{2}{\sqrt{53}}\right\rangle$
+
+@q Sheet 3 · Q5
+In what directions is the directional derivative of $f(x,y)=\dfrac{x^2-y^2}{x^2+y^2}$ at $P=(1,1)$ equal to zero?
+@s $f_x$ by the quotient rule
+$$f_x=\frac{2x(x^2+y^2)-(x^2-y^2)2x}{(x^2+y^2)^2}=\frac{4xy^2}{(x^2+y^2)^2}$$
+@s $f_y$ by the quotient rule
+$$f_y=\frac{-2y(x^2+y^2)-(x^2-y^2)2y}{(x^2+y^2)^2}=-\frac{4x^2y}{(x^2+y^2)^2}$$
+@s At (1, 1)
+$$\nabla f(1,1)=\left\langle\tfrac44,-\tfrac44\right\rangle=\langle 1,-1\rangle$$
+@s Perpendicular unit vector
+$\langle 1,1\rangle$ is perpendicular ($1-1=0$). Its length is $\sqrt2$.
+@a $\mathbf u=\left\langle\dfrac{1}{\sqrt2},\dfrac{1}{\sqrt2}\right\rangle$ and $-\mathbf u=\left\langle-\dfrac{1}{\sqrt2},-\dfrac{1}{\sqrt2}\right\rangle$
+
+@q Sheet 3 · Q6
+Is there a direction $\mathbf u$ in which the rate of change of $f(x,y)=x^2-3xy+4y^2$ at $P=(1,2)$ equals 14?
+@s Gradient
+$$\nabla f=\langle 2x-3y,\ -3x+8y\rangle\ \Longrightarrow\ \nabla f(1,2)=\langle -4,\,13\rangle$$
+@s Biggest possible rate
+$$\|\nabla f\|=\sqrt{16+169}=\sqrt{185}\approx 13.6$$
+@s Compare
+$14>13.6$. The rate can never be bigger than $\|\nabla f\|$.
+@a No.
+
+@q Sheet 3 · Q7
+In what direction (unit vector) does the directional derivative of $f(x,y)=xy$ at $(0,2)$ equal $-1$? Can it ever equal $-3$?
+@s Gradient
+$$\nabla f=\langle y,\,x\rangle\ \Longrightarrow\ \nabla f(0,2)=\langle 2,\,0\rangle$$
+@s Unknown unit vector
+Let $\mathbf u=\langle a,b\rangle$ with $a^2+b^2=1$.
+$$D_{\mathbf u}f=2a+0b=2a$$
+@s Set equal to −1
+$$2a=-1\ \Longrightarrow\ a=-\tfrac12$$
+$$b^2=1-\tfrac14=\tfrac34\ \Longrightarrow\ b=\pm\tfrac{\sqrt3}{2}$$
+@s Can it be −3?
+The rate always lies between $-\|\nabla f\|=-2$ and $+2$. $-3$ is outside that range.
+@a $\mathbf u=-\tfrac12\mathbf i+\tfrac{\sqrt3}{2}\mathbf j$ (also $-\tfrac12\mathbf i-\tfrac{\sqrt3}{2}\mathbf j$). It can never be $-3$.
+
+@q Sheet 3 · Q8
+$f$ has directional derivative $2$ at $(0,0)$ in the direction of $\mathbf i+2\mathbf j$, and $3$ in the direction of $2\mathbf i-\mathbf j$. Find the unit vector direction in which $f$ increases most rapidly at $(0,0)$.
+@s Name the unknown gradient
+Let $\nabla f(0,0)=\langle r,s\rangle$. We want this vector.
+@s Unit vectors
+Both have length $\sqrt5$:
+$$\mathbf u=\left\langle\tfrac1{\sqrt5},\tfrac2{\sqrt5}\right\rangle\qquad\mathbf v=\left\langle\tfrac2{\sqrt5},-\tfrac1{\sqrt5}\right\rangle$$
+@s Two equations
+$$\frac{r+2s}{\sqrt5}=2\qquad\frac{2r-s}{\sqrt5}=3$$
+So $r+2s=2\sqrt5$ and $2r-s=3\sqrt5$.
+@s Solve
+Add the first to $2\times$ the second: $5r=8\sqrt5$, so $r=\tfrac{8}{\sqrt5}$. Then $s=2r-3\sqrt5=\tfrac{1}{\sqrt5}$.
+@s Make it a unit vector
+$\nabla f$ is parallel to $\langle 8,1\rangle$, which has length $\sqrt{65}$.
+@a $\dfrac{8}{\sqrt{65}}\mathbf i+\dfrac{1}{\sqrt{65}}\mathbf j$
+
+
+@@topic tangents | Tangent lines and tangent planes | Sheet 3 · Q9, Q10
+@method
+Write the curve or surface as $f=\text{constant}$. **The gradient is perpendicular to it.**
+
+**Tangent line** at $(a,b)$:
+$$f_x(a,b)(x-a)+f_y(a,b)(y-b)=0$$
+
+**Tangent plane** at $(a,b,c)$:
+$$f_x(x-a)+f_y(y-b)+f_z(z-c)=0$$
+with the partials evaluated at the point.
+
+@q Sheet 3 · Q9(a)
+Find the tangent line to $x^2+y^2=4$ at $(\sqrt2,\sqrt2)$.
+@s Gradient
+$f=x^2+y^2$.
+$$\nabla f=\langle 2x,2y\rangle\ \Longrightarrow\ \nabla f(\sqrt2,\sqrt2)=\langle 2\sqrt2,\,2\sqrt2\rangle$$
+@s Tangent line formula
+$$2\sqrt2(x-\sqrt2)+2\sqrt2(y-\sqrt2)=0$$
+@s Tidy
+Divide by 2 and expand: $\sqrt2x-2+\sqrt2y-2=0$.
+@a $\sqrt2\,x+\sqrt2\,y=4$
+
+@q Sheet 3 · Q9(b)
+Find the tangent line to $x^2-y=1$ at $(\sqrt2,1)$.
+@s Gradient
+$f=x^2-y$.
+$$\nabla f=\langle 2x,-1\rangle\ \Longrightarrow\ \nabla f(\sqrt2,1)=\langle 2\sqrt2,\,-1\rangle$$
+@s Tangent line formula
+$$2\sqrt2(x-\sqrt2)-(y-1)=0$$
+@s Tidy
+$2\sqrt2x-4-y+1=0$.
+@a $y=2\sqrt2\,x-3$
+
+@q Sheet 3 · Q10(a)
+Find the tangent plane to $x^2+y^2-z^2=18$ at $(3,5,-4)$.
+@s Gradient
+$$\nabla f=\langle 2x,2y,-2z\rangle\ \Longrightarrow\ \nabla f(3,5,-4)=\langle 6,\,10,\,8\rangle$$
+@s Tangent plane formula
+$$6(x-3)+10(y-5)+8(z+4)=0$$
+@s Tidy
+$6x+10y+8z=18+50-32=36$. Divide by 2.
+@a $3x+5y+4z=18$
+
+@q Sheet 3 · Q10(b)
+Find the tangent plane to $2z-x^2=0$ at $(2,0,2)$.
+@s Gradient
+$$\nabla f=\langle -2x,0,2\rangle\ \Longrightarrow\ \nabla f(2,0,2)=\langle -4,\,0,\,2\rangle$$
+@s Tangent plane formula
+$$-4(x-2)+0+2(z-2)=0$$
+@s Tidy
+$-4x+8+2z-4=0$. Divide by 2.
+@a $-2x+z+2=0$
+
+@q Sheet 3 · Q10(c)
+Find the tangent plane to $\cos(\pi x)-x^2y+e^{xz}+yz=4$ at $(0,1,2)$.
+@s Partial derivatives
+$$f_x=-\pi\sin(\pi x)-2xy+ze^{xz}$$
+$$f_y=-x^2+z\qquad f_z=xe^{xz}+y$$
+@s At (0, 1, 2)
+$$f_x=0-0+2=2\qquad f_y=0+2=2\qquad f_z=0+1=1$$
+@s Tangent plane formula
+$$2(x-0)+2(y-1)+1(z-2)=0$$
+@a $2x+2y+z-4=0$
+
+@q Sheet 3 · Q10(d)
+Find the tangent plane to $x^2+y^2-2xy-x+3y-z=-4$ at $(2,-3,18)$.
+@s Partial derivatives
+$$f_x=2x-2y-1\qquad f_y=2y-2x+3\qquad f_z=-1$$
+@s At (2, −3, 18)
+$$f_x=4+6-1=9\qquad f_y=-6-4+3=-7\qquad f_z=-1$$
+@s Tangent plane formula
+$$9(x-2)-7(y+3)-(z-18)=0$$
+@s Tidy
+$9x-7y-z=18+21-18$.
+@a $9x-7y-z=21$

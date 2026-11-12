@@ -1,0 +1,510 @@
+@@part Second derivatives and optimisation
+
+@@topic second | Second derivatives, Hessian and Jacobian | Sheet 4 · Q1 to Q6
+@method
+**Second derivatives:** differentiate twice. $f_{xy}$ = differentiate in $x$, then in $y$.
+
+**Hessian** (matrix of second derivatives):
+$$H=\begin{pmatrix}f_{xx}&f_{xy}\\ f_{xy}&f_{yy}\end{pmatrix}\qquad\det H=f_{xx}f_{yy}-f_{xy}^2$$
+
+**Jacobian** (matrix of first derivatives of several functions). Row $i$ = the partial derivatives of $f_i$:
+$$J=\begin{pmatrix}\dfrac{\partial f_1}{\partial x_1}&\dfrac{\partial f_1}{\partial x_2}\\[2mm] \dfrac{\partial f_2}{\partial x_1}&\dfrac{\partial f_2}{\partial x_2}\end{pmatrix}$$
+
+@q Sheet 4 · Q1(a)
+Find $f_{xx}$, $f_{yy}$, $f_{xy}$ for $f(x,y)=x^2y^3$.
+@s First derivatives
+$$f_x=2xy^3\qquad f_y=3x^2y^2$$
+@s Second derivatives
+$f_{xx}$: differentiate $f_x$ in $x$. $f_{yy}$: differentiate $f_y$ in $y$. $f_{xy}$: differentiate $f_x$ in $y$.
+@a $f_{xx}=2y^3,\qquad f_{yy}=6x^2y,\qquad f_{xy}=6xy^2$
+
+@q Sheet 4 · Q1(b)
+Find $f_{xx}$, $f_{yy}$, $f_{xy}$ for $f(x,y)=(x+1)^3\ln y$.
+@s First derivatives
+$$f_x=3(x+1)^2\ln y\qquad f_y=\frac{(x+1)^3}{y}$$
+@s Second derivatives
+$$f_{xx}=6(x+1)\ln y$$
+$$f_{yy}=-\frac{(x+1)^3}{y^2}$$
+$$f_{xy}=\frac{3(x+1)^2}{y}$$
+@a $f_{xx}=6(x+1)\ln y,\quad f_{yy}=-\dfrac{(x+1)^3}{y^2},\quad f_{xy}=\dfrac{3(x+1)^2}{y}$
+
+@q Sheet 4 · Q1(c)
+Find $f_{xx}$, $f_{yy}$, $f_{xy}$ for $f(x,y)=e^{3y}\sin 2x$.
+@s First derivatives
+$$f_x=2e^{3y}\cos 2x\qquad f_y=3e^{3y}\sin 2x$$
+@s Second derivatives
+$$f_{xx}=-4e^{3y}\sin 2x\qquad f_{yy}=9e^{3y}\sin 2x\qquad f_{xy}=6e^{3y}\cos 2x$$
+@a $f_{xx}=-4e^{3y}\sin 2x,\quad f_{yy}=9e^{3y}\sin 2x,\quad f_{xy}=6e^{3y}\cos 2x$
+
+@q Sheet 4 · Q1(d)
+Find $f_{xx}$, $f_{yy}$, $f_{xy}$ for $f(x,y)=\dfrac{xy+1}{y+2}$.
+@s $f_x$
+The bottom has no $x$, so it is just a number:
+$$f_x=\frac{y}{y+2}$$
+@s $f_y$ by the quotient rule
+$$f_y=\frac{x(y+2)-(xy+1)}{(y+2)^2}=\frac{2x-1}{(y+2)^2}$$
+@s $f_{xx}$
+$f_x$ has no $x$ in it: $f_{xx}=0$.
+@s $f_{yy}$
+$(2x-1)$ is a number. $(y+2)^{-2}\to -2(y+2)^{-3}$.
+$$f_{yy}=-\frac{2(2x-1)}{(y+2)^3}$$
+@s $f_{xy}$
+Differentiate $f_y$ in $x$:
+$$f_{xy}=\frac{2}{(y+2)^2}$$
+@a $f_{xx}=0,\quad f_{yy}=-\dfrac{2(2x-1)}{(y+2)^3},\quad f_{xy}=\dfrac{2}{(y+2)^2}$
+
+@q Sheet 4 · Q2
+Find the Hessian of $f(x,y)=x^2y^3$. Show its determinant is $0$ only if $x=0$ or $y=0$.
+@s Second derivatives (from Q1a)
+$$f_{xx}=2y^3\qquad f_{yy}=6x^2y\qquad f_{xy}=6xy^2$$
+@s Hessian
+$$H=\begin{pmatrix}2y^3&6xy^2\\ 6xy^2&6x^2y\end{pmatrix}$$
+@s Determinant
+$$\det H=(2y^3)(6x^2y)-(6xy^2)^2=12x^2y^4-36x^2y^4=-24x^2y^4$$
+@s When is it zero?
+$-24x^2y^4=0$ only when $x=0$ or $y=0$.
+@a $H=\begin{pmatrix}2y^3&6xy^2\\ 6xy^2&6x^2y\end{pmatrix}$, $\det H=-24x^2y^4$
+
+@q Sheet 4 · Q3
+Find the Hessian of $f(x,y)=e^x\sin y$. Can its determinant ever be $0$?
+@s First derivatives
+$$f_x=e^x\sin y\qquad f_y=e^x\cos y$$
+@s Second derivatives
+$$f_{xx}=e^x\sin y\qquad f_{yy}=-e^x\sin y\qquad f_{xy}=e^x\cos y$$
+@s Hessian
+$$H=\begin{pmatrix}e^x\sin y&e^x\cos y\\ e^x\cos y&-e^x\sin y\end{pmatrix}$$
+@s Determinant
+$$\det H=-e^{2x}\sin^2y-e^{2x}\cos^2y=-e^{2x}(\sin^2y+\cos^2y)=-e^{2x}$$
+@s Can it be zero?
+$e^{2x}$ is never zero.
+@a $\det H=-e^{2x}$, which is never $0$.
+
+@q Sheet 4 · Q4
+$f_1=2x_1+3x_2+x_3$, $f_2=3x_1+x_2+2x_3$, $f_3=x_1+2x_2+3x_3$. Find the Jacobian matrix and its determinant.
+@s Jacobian
+Each row is the coefficients of that function:
+$$J=\begin{pmatrix}2&3&1\\3&1&2\\1&2&3\end{pmatrix}$$
+@s Determinant: expand along the top row
+$$\det J=2\begin{vmatrix}1&2\\2&3\end{vmatrix}-3\begin{vmatrix}3&2\\1&3\end{vmatrix}+1\begin{vmatrix}3&1\\1&2\end{vmatrix}$$
+@s Calculate
+$$=2(3-4)-3(9-2)+1(6-1)=-2-21+5=-18$$
+@a $\det J=-18$
+
+@q Sheet 4 · Q5
+$f_1=x_1^2+x_2^2$, $f_2=2x_1x_2$. Find the Jacobian matrix. What equation holds between $x_1$ and $x_2$ when the Jacobian determinant is $0$?
+@s Jacobian
+$$J=\begin{pmatrix}2x_1&2x_2\\2x_2&2x_1\end{pmatrix}$$
+@s Determinant
+$$\det J=4x_1^2-4x_2^2$$
+@s Set to zero
+$$x_1^2=x_2^2$$
+@a $x_1^2=x_2^2$, i.e. $x_1=x_2$ or $x_1=-x_2$
+
+@q Sheet 4 · Q6
+$f_1=\cos x_1\cos x_2$, $f_2=\sin x_1\sin x_2$. Find the Jacobian matrix and show its determinant is $0$ when $\tan^2x_1=\tan^2x_2$.
+@s Jacobian
+$$J=\begin{pmatrix}-\sin x_1\cos x_2&-\cos x_1\sin x_2\\ \cos x_1\sin x_2&\sin x_1\cos x_2\end{pmatrix}$$
+@s Determinant
+$$\det J=-\sin^2x_1\cos^2x_2+\cos^2x_1\sin^2x_2$$
+@s Set to zero
+$$\sin^2x_1\cos^2x_2=\cos^2x_1\sin^2x_2$$
+@s Divide both sides by cos²x₁ cos²x₂
+$$\frac{\sin^2x_1}{\cos^2x_1}=\frac{\sin^2x_2}{\cos^2x_2}\ \Longleftrightarrow\ \tan^2x_1=\tan^2x_2$$
+@a $\det J=\cos^2x_1\sin^2x_2-\sin^2x_1\cos^2x_2$, zero when $\tan^2x_1=\tan^2x_2$
+
+
+@@topic critical2 | Critical points in two variables | Sheet 4 · Q7, Q8, Q12, Q13
+@method
+**Find them:** solve $f_x=0$ and $f_y=0$ together.
+
+**Classify them** with $D=f_{xx}f_{yy}-f_{xy}^2$ at each point:
+
+$D>0$ and $f_{xx}>0$ → **local minimum**
+
+$D>0$ and $f_{xx}<0$ → **local maximum**
+
+$D<0$ → **saddle point**
+
+$D=0$ → test tells you nothing. Look at $f$ along two paths.
+
+Tricks for solving: add or subtract the two equations, or factorise.
+
+@q Sheet 4 · Q7(a)
+Find the critical points of $f(x,y)=x^3+y^3-3xy$.
+@s Set the partials to zero
+$$f_x=3x^2-3y=0\ \Longrightarrow\ y=x^2$$
+$$f_y=3y^2-3x=0\ \Longrightarrow\ x=y^2$$
+@s Substitute
+Put $y=x^2$ into $x=y^2$:
+$$x=x^4\ \Longrightarrow\ x(x^3-1)=0\ \Longrightarrow\ x=0\text{ or }x=1$$
+@s Get y
+$y=x^2$: $x=0\Rightarrow y=0$; $x=1\Rightarrow y=1$.
+@a $(0,0)$ and $(1,1)$
+
+@q Sheet 4 · Q7(b)
+Find the critical points of $f(x,y)=x^3+3xy^2-12x-6y$.
+@s Set the partials to zero
+$$f_x=3x^2+3y^2-12=0\ \Longrightarrow\ x^2+y^2=4$$
+$$f_y=6xy-6=0\ \Longrightarrow\ xy=1$$
+@s Trick: build (x + y)² and (x − y)²
+$$(x+y)^2=x^2+y^2+2xy=4+2=6$$
+$$(x-y)^2=x^2+y^2-2xy=4-2=2$$
+@s Take roots
+$$x+y=\pm\sqrt6\qquad x-y=\pm\sqrt2$$
+Four sign combinations give four points.
+@s Solve
+$x=\dfrac{(x+y)+(x-y)}{2}$ and $y=\dfrac{(x+y)-(x-y)}{2}$:
+$$\left(\tfrac{\sqrt6+\sqrt2}{2},\tfrac{\sqrt6-\sqrt2}{2}\right),\ \left(\tfrac{\sqrt6-\sqrt2}{2},\tfrac{\sqrt6+\sqrt2}{2}\right)$$
+and the negatives of both.
+@s Match the sheet's form
+$\left(\tfrac{\sqrt6\pm\sqrt2}{2}\right)^2=2\pm\sqrt3$, so $\tfrac{\sqrt6+\sqrt2}{2}=\sqrt{2+\sqrt3}$ and $\tfrac{\sqrt6-\sqrt2}{2}=\sqrt{2-\sqrt3}$.
+@a $\left(\sqrt{2+\sqrt3},\sqrt{2-\sqrt3}\right)$, $\left(\sqrt{2-\sqrt3},\sqrt{2+\sqrt3}\right)$, $\left(-\sqrt{2+\sqrt3},-\sqrt{2-\sqrt3}\right)$, $\left(-\sqrt{2-\sqrt3},-\sqrt{2+\sqrt3}\right)$
+
+@q Sheet 4 · Q7(c)
+Find the critical points of $f(x,y)=x^4+y^4-3x^3-y^3$.
+@s Set the partials to zero
+$$f_x=4x^3-9x^2=x^2(4x-9)=0\ \Longrightarrow\ x=0\text{ or }x=\tfrac94$$
+$$f_y=4y^3-3y^2=y^2(4y-3)=0\ \Longrightarrow\ y=0\text{ or }y=\tfrac34$$
+@s Combine
+The $x$ equation and $y$ equation are separate, so every combination works.
+@a $(0,0)$, $\left(0,\tfrac34\right)$, $\left(\tfrac94,0\right)$, $\left(\tfrac94,\tfrac34\right)$
+
+@q Sheet 4 · Q8(a)
+Find and classify the critical points of $f(x,y)=x^2-y^2$.
+@s Critical point
+$f_x=2x=0$, $f_y=-2y=0$. Only $(0,0)$.
+@s Second derivatives
+$$f_{xx}=2\qquad f_{yy}=-2\qquad f_{xy}=0$$
+@s Test
+$$D=(2)(-2)-0^2=-4<0$$
+@a $(0,0)$ is a saddle point.
+
+@q Sheet 4 · Q8(b)
+Find and classify the critical points of $f(x,y)=x^2+2y^2-4x+4y$.
+@s Critical point
+$$f_x=2x-4=0\Rightarrow x=2\qquad f_y=4y+4=0\Rightarrow y=-1$$
+@s Second derivatives
+$$f_{xx}=2\qquad f_{yy}=4\qquad f_{xy}=0$$
+@s Test
+$$D=2\cdot4-0=8>0,\qquad f_{xx}=2>0$$
+@a $(2,-1)$ is a local minimum.
+
+@q Sheet 4 · Q8(c)
+Find and classify the critical points of $f(x,y)=y(x-1)+\dfrac8x$.
+@s Critical point
+$$f_y=x-1=0\Rightarrow x=1$$
+$$f_x=y-\frac{8}{x^2}=0\Rightarrow y=8$$
+@s Second derivatives
+$$f_{xx}=\frac{16}{x^3}\qquad f_{yy}=0\qquad f_{xy}=1$$
+@s Test at (1, 8)
+$$D=16\cdot0-1^2=-1<0$$
+@a $(1,8)$ is a saddle point.
+
+@q Sheet 4 · Q8(d)
+Find and classify the critical points of $f(x,y)=xy\,e^{-(x^2+y^2)/2}$.
+@s Short name
+Write $E=e^{-(x^2+y^2)/2}$. Then $E_x=-xE$ and $E_y=-yE$. $E$ is never zero.
+@s First derivatives (product rule)
+$$f_x=yE+xy(-xE)=y(1-x^2)E$$
+$$f_y=x(1-y^2)E$$
+@s Solve
+$f_x=0$: $y=0$ or $x=\pm1$. $f_y=0$: $x=0$ or $y=\pm1$.
+
+If $y=0$ then $f_y=xE=0$ forces $x=0$. If $x=\pm1$ then $y=\pm1$.
+
+Points: $(0,0),\ (1,1),\ (1,-1),\ (-1,1),\ (-1,-1)$.
+@s Second derivatives
+$$f_{xx}=y(x^3-3x)E\qquad f_{yy}=x(y^3-3y)E\qquad f_{xy}=(1-x^2)(1-y^2)E$$
+@s Test at (0, 0)
+$f_{xx}=f_{yy}=0$, $f_{xy}=1$. $D=-1<0$: saddle.
+@s Test at the four (±1, ±1) points
+There $f_{xy}=0$ and $E=e^{-1}$, so $D=f_{xx}f_{yy}=4e^{-2}>0$ every time. The sign of $f_{xx}=y(x^3-3x)e^{-1}$ decides:
+
+$(1,1)$: $f_{xx}=-2e^{-1}<0$ → max.
+
+$(-1,-1)$: $f_{xx}=-2e^{-1}<0$ → max.
+
+$(1,-1)$: $f_{xx}=2e^{-1}>0$ → min.
+
+$(-1,1)$: $f_{xx}=2e^{-1}>0$ → min.
+@a $(0,0)$ saddle; $(1,1)$ and $(-1,-1)$ local maxima; $(1,-1)$ and $(-1,1)$ local minima.
+
+@q Sheet 4 · Q12
+Investigate the critical points of $f(x,y)=x^4+y^4-2x^2+4xy-2y^2$, finding the local minimum values.
+@s Set the partials to zero
+$$f_x=4x^3-4x+4y=0$$
+$$f_y=4y^3+4x-4y=0$$
+@s Add the two equations
+$$4x^3+4y^3=0\ \Longrightarrow\ y^3=-x^3\ \Longrightarrow\ y=-x$$
+@s Put y = −x into the first
+$$4x^3-8x=0\ \Longrightarrow\ 4x(x^2-2)=0\ \Longrightarrow\ x=0,\ \pm\sqrt2$$
+Points: $(0,0)$, $(\sqrt2,-\sqrt2)$, $(-\sqrt2,\sqrt2)$.
+@s Second derivatives
+$$f_{xx}=12x^2-4\qquad f_{yy}=12y^2-4\qquad f_{xy}=4$$
+@s Test at (±√2, ∓√2)
+$f_{xx}=f_{yy}=20$. $D=400-16=384>0$ and $f_{xx}>0$: local minima.
+$$f=4+4-4-8-4=-8$$
+@s Test at (0, 0)
+$D=(-4)(-4)-16=0$. Test fails. Look at paths:
+
+Along $y=x$: $f=2x^4>0$.
+
+Along $y=0$: $f=x^4-2x^2<0$ for small $x$.
+
+Positive one way, negative another: saddle.
+@a Local minima at $(\sqrt2,-\sqrt2)$ and $(-\sqrt2,\sqrt2)$ with value $-8$. $(0,0)$ is a saddle point.
+
+@q Sheet 4 · Q13
+Find the real critical points of $f(x,y)=4xy-x^2-y^2-x^2y^2$ and classify them.
+@s Set the partials to zero
+$$f_x=4y-2x-2xy^2=0$$
+$$f_y=4x-2y-2x^2y=0$$
+@s Subtract the second from the first
+$$6y-6x-2xy^2+2x^2y=0\ \Longrightarrow\ 6(y-x)-2xy(y-x)=0$$
+$$(y-x)(6-2xy)=0$$
+So $y=x$ or $xy=3$.
+@s Case y = x
+$$4x-2x-2x^3=0\ \Longrightarrow\ 2x(1-x^2)=0\ \Longrightarrow\ x=0,\pm1$$
+Points: $(0,0)$, $(1,1)$, $(-1,-1)$.
+@s Case xy = 3
+$f_x$: $4y-2x-2(xy)y=4y-2x-6y=-2x-2y=0$, so $y=-x$. Then $xy=-x^2=3$: no real solution.
+@s Second derivatives
+$$f_{xx}=-2-2y^2\qquad f_{yy}=-2-2x^2\qquad f_{xy}=4-4xy$$
+@s Test
+$(0,0)$: $D=(-2)(-2)-16=-12<0$ → saddle.
+
+$(1,1)$ and $(-1,-1)$: $f_{xx}=-4$, $f_{yy}=-4$, $f_{xy}=0$. $D=16>0$, $f_{xx}<0$ → local maxima.
+@a $(1,1)$ and $(-1,-1)$ are local maxima (value $1$). $(0,0)$ is a saddle point.
+
+
+@@topic critical3 | Critical points in three variables | Sheet 4 · Q9, Q10, Q11
+@method
+**Find them:** solve $f_x=f_y=f_z=0$.
+
+**Classify them** using the $3\times3$ Hessian and its three "top-left corner" determinants $d_1,d_2,d_3$:
+
+$$d_1=f_{xx}\qquad d_2=\begin{vmatrix}f_{xx}&f_{xy}\\f_{xy}&f_{yy}\end{vmatrix}\qquad d_3=\det H$$
+
+$d_1>0,\ d_2>0,\ d_3>0$ → **local minimum**
+
+$d_1<0,\ d_2>0,\ d_3<0$ → **local maximum**
+
+@q Sheet 4 · Q9
+Show that $w=x^2+y^2+z^2+xy+yz+2x-4y+6z$ has a minimum value of $-42$ at $(-5,8,-7)$.
+@s Partials
+$$w_x=2x+y+2\qquad w_y=2y+x+z-4\qquad w_z=2z+y+6$$
+@s Check the point is critical
+$$w_x=-10+8+2=0$$
+$$w_y=16-5-7-4=0$$
+$$w_z=-14+8+6=0$$
+@s Hessian
+$$H=\begin{pmatrix}2&1&0\\1&2&1\\0&1&2\end{pmatrix}$$
+@s Corner determinants
+$$d_1=2\qquad d_2=4-1=3\qquad d_3=2(4-1)-1(2-0)+0=4$$
+All positive: minimum.
+@s Value
+$$w=25+64+49-40-56-10-32-42=-42$$
+@a Minimum value $-42$ at $(-5,8,-7)$.
+
+@q Sheet 4 · Q10
+Find the local maximum and minimum values of $f=xyz+\dfrac{1}{2x}+\dfrac1y+\dfrac2z$.
+@s Set the partials to zero
+$$f_x=yz-\frac{1}{2x^2}=0\qquad f_y=xz-\frac{1}{y^2}=0\qquad f_z=xy-\frac{2}{z^2}=0$$
+@s Trick: multiply by x, y, z
+Each equation then starts with $xyz$:
+$$xyz=\frac{1}{2x}=\frac1y=\frac2z$$
+Call this common value $k$.
+@s Write x, y, z using k
+$$x=\frac{1}{2k}\qquad y=\frac1k\qquad z=\frac2k$$
+@s Find k
+$$k=xyz=\frac{1}{2k}\cdot\frac1k\cdot\frac2k=\frac{1}{k^3}\ \Longrightarrow\ k^4=1\ \Longrightarrow\ k=\pm1$$
+Points: $\left(\tfrac12,1,2\right)$ and $\left(-\tfrac12,-1,-2\right)$.
+@s Second derivatives
+$$f_{xx}=\frac{1}{x^3}\quad f_{yy}=\frac{2}{y^3}\quad f_{zz}=\frac{4}{z^3}\quad f_{xy}=z\quad f_{xz}=y\quad f_{yz}=x$$
+@s Test at (1/2, 1, 2)
+$$H=\begin{pmatrix}8&2&1\\2&2&\tfrac12\\1&\tfrac12&\tfrac12\end{pmatrix}\qquad d_1=8,\ d_2=12,\ d_3=4$$
+All positive: local minimum. Value: $1+1+1+1=4$.
+@s Test at (−1/2, −1, −2)
+Every entry of $H$ changes sign: $d_1=-8,\ d_2=12,\ d_3=-4$. Pattern $-,+,-$: local maximum. Value: $-4$.
+@a Local minimum $4$ at $\left(\tfrac12,1,2\right)$. Local maximum $-4$ at $\left(-\tfrac12,-1,-2\right)$.
+
+@q Sheet 4 · Q11
+Show $f=x^2+y^2+z^2-xz-x+4y-z$ has a single critical point at $(1,-2,1)$ and decide whether it is a local max or min.
+@s Set the partials to zero
+$$f_x=2x-z-1=0\qquad f_y=2y+4=0\qquad f_z=2z-x-1=0$$
+@s Solve
+$y=-2$. From the first, $z=2x-1$. Into the third: $4x-2-x-1=0\Rightarrow x=1$, then $z=1$.
+
+Linear equations, one solution: a single critical point $(1,-2,1)$.
+@s Hessian
+$$H=\begin{pmatrix}2&0&-1\\0&2&0\\-1&0&2\end{pmatrix}$$
+@s Corner determinants
+$$d_1=2\qquad d_2=4\qquad d_3=2(4)-0+(-1)(0+2)=6$$
+All positive.
+@s Value
+$$f=1+4+1-1-1-8-1=-5$$
+@a Local minimum at $(1,-2,1)$, value $-5$.
+
+
+@@topic region | Max and min on a region, applied problems | Sheet 4 · Q14, Q15
+@method
+**Closed region (e.g. a disk):**
+
+1. Find critical points **inside**.
+2. On the **boundary**, use its equation to turn $f$ into a one-variable function. Find its max and min (do not forget endpoints).
+3. Compare all the values.
+
+**Word problems:** write the quantity to maximise, use the constraint to remove one variable, set partials to zero.
+
+@q Sheet 4 · Q14
+A plate is the disk $x^2+y^2\le1$. Temperature is $T(x,y)=x^2+2y^2-x$. Find the hottest and coldest points.
+@s Inside the disk
+$$T_x=2x-1=0\Rightarrow x=\tfrac12\qquad T_y=4y=0\Rightarrow y=0$$
+$\left(\tfrac12,0\right)$ is inside. $T=\tfrac14-\tfrac12=-\tfrac14$.
+@s On the boundary
+On the circle $y^2=1-x^2$, with $-1\le x\le1$:
+$$T=x^2+2(1-x^2)-x=2-x-x^2$$
+@s Max and min of that
+$$\frac{dT}{dx}=-1-2x=0\Rightarrow x=-\tfrac12$$
+$$T\left(-\tfrac12\right)=2+\tfrac12-\tfrac14=\tfrac94$$
+Endpoints: $x=1$ gives $T=0$; $x=-1$ gives $T=2$.
+@s y at x = −1/2
+$y^2=1-\tfrac14=\tfrac34$, so $y=\pm\tfrac{\sqrt3}{2}$.
+@s Compare
+Values: $-\tfrac14,\ \tfrac94,\ 0,\ 2$.
+@a Hottest: $T=\tfrac94$ at $\left(-\tfrac12,\pm\tfrac{\sqrt3}{2}\right)$. Coldest: $T=-\tfrac14$ at $\left(\tfrac12,0\right)$.
+
+@q Sheet 4 · Q15
+A wire of length 2 cm is bent into a five-sided figure: three sides of a rectangle, topped by two equal sides of an isosceles triangle. Find the maximum enclosed area.
+@s Name the lengths
+{{fig:house}}
+Rectangle width $w$, height $h$. Each sloping side $s$.
+@s Constraint (wire length)
+$$w+2h+2s=2\ \Longrightarrow\ h=1-\tfrac w2-s$$
+@s Area
+Triangle height is $\sqrt{s^2-\tfrac{w^2}{4}}$ (Pythagoras on half the triangle).
+$$A=wh+\tfrac w2\sqrt{s^2-\tfrac{w^2}{4}}$$
+$$A(w,s)=w\left(1-\tfrac w2-s\right)+\tfrac w2\sqrt{s^2-\tfrac{w^2}{4}}$$
+@s Set $A_s$ = 0
+$$A_s=-w+\frac w2\cdot\frac{s}{\sqrt{s^2-\frac{w^2}{4}}}=0\ \Longrightarrow\ s=2\sqrt{s^2-\tfrac{w^2}{4}}$$
+Square: $s^2=4s^2-w^2$, so $w=\sqrt3\,s$. The triangle height is then $\tfrac s2$.
+@s Set $A_w$ = 0
+$$A_w=1-w-s+\tfrac12\sqrt{s^2-\tfrac{w^2}{4}}-\frac{w^2}{8\sqrt{s^2-\frac{w^2}{4}}}=0$$
+Put in $\sqrt{\ }=\tfrac s2$ and $w^2=3s^2$:
+$$1-\sqrt3s-s+\tfrac s4-\tfrac{3s}{4}=0\ \Longrightarrow\ s=\frac{1}{\sqrt3+\frac32}=\frac{2}{3+2\sqrt3}$$
+@s The lengths
+$$s=\frac{2}{3+2\sqrt3},\qquad w=\sqrt3s=\frac{2\sqrt3}{3+2\sqrt3}=4-2\sqrt3,\qquad h=1-\tfrac w2-s=1-\tfrac{\sqrt3}{3}$$
+@s The area
+$$A=wh+\tfrac w2\cdot\tfrac s2=(4-2\sqrt3)\left(1-\tfrac{\sqrt3}{3}\right)+\tfrac{(4-2\sqrt3)}{4}\cdot\tfrac{4\sqrt3-6}{3}=2-\sqrt3$$
+@a Maximum area $=2-\sqrt3=\dfrac{\sqrt3}{3+2\sqrt3}\approx0.268\ \text{cm}^2$
+
+
+@@topic lagrange | Lagrange multipliers | Sheet 4 · Q16 to Q20
+@method
+Maximise or minimise $f$ subject to $g=c$.
+
+**One constraint:** solve
+$$\nabla f=\lambda\nabla g\qquad\text{and}\qquad g=c$$
+
+**Two constraints** $g=c_1$, $h=c_2$: solve
+$$\nabla f=\lambda\nabla g+\mu\nabla h\qquad\text{with both constraints}$$
+
+Then plug every solution into $f$. Biggest = max, smallest = min.
+
+**Solving tips:** never divide by something that might be zero: handle that case separately. Subtract equations in pairs to get factorised equations.
+
+@q Sheet 4 · Q16
+Find the max and min of $f(x,y)=xy^6$ subject to $x^2+y^4=4$.
+@s Lagrange equations
+$g=x^2+y^4$. $\nabla f=\lambda\nabla g$:
+$$y^6=2\lambda x\qquad 6xy^5=4\lambda y^3$$
+@s Case y = 0
+Then $f=0$.
+@s Case y ≠ 0
+Divide the second by $y^3$: $6xy^2=4\lambda$, so $\lambda=\tfrac32xy^2$. Into the first:
+$$y^6=3x^2y^2\ \Longrightarrow\ y^4=3x^2$$
+@s Use the constraint
+$$x^2+3x^2=4\ \Longrightarrow\ x=\pm1,\qquad y^4=3$$
+@s Values of f
+$y^6=(y^4)^{3/2}=3\sqrt3$. So $f=xy^6=\pm3\sqrt3$.
+@a Maximum $3\sqrt3$ (at $x=1$), minimum $-3\sqrt3$ (at $x=-1$).
+
+@q Sheet 4 · Q17
+Find the max and min of $f(x,y,z)=x^2yz$ subject to $x^2+y^2+z^2=2$.
+@s Lagrange equations
+$$2xyz=2\lambda x\qquad x^2z=2\lambda y\qquad x^2y=2\lambda z$$
+@s Zero cases
+If $x=0$, $y=0$ or $z=0$ then $f=0$. So assume none are zero.
+@s Solve
+First equation: $\lambda=yz$.
+
+Second: $x^2z=2y^2z\Rightarrow x^2=2y^2$.
+
+Third: $x^2y=2yz^2\Rightarrow x^2=2z^2$.
+@s Use the constraint
+$y^2=z^2=\tfrac{x^2}{2}$:
+$$x^2+\tfrac{x^2}{2}+\tfrac{x^2}{2}=2\ \Longrightarrow\ x^2=1,\ y^2=z^2=\tfrac12$$
+@s Values of f
+$f=x^2yz=1\cdot yz$, and $yz=\pm\tfrac12$ depending on signs.
+@a Maximum $\tfrac12$, minimum $-\tfrac12$.
+
+@q Sheet 4 · Q18
+Show that the maximum of $x^2y^2z^2$ subject to $x+y+z=0$ and $x^2+y^2+z^2=1$ is $\tfrac1{54}$.
+@s Lagrange equations
+$$2xy^2z^2=\lambda+2\mu x$$
+$$2x^2yz^2=\lambda+2\mu y$$
+$$2x^2y^2z=\lambda+2\mu z$$
+@s Subtract them in pairs
+First minus second: $2xyz^2(y-x)=2\mu(x-y)$, so
+$$(x-y)(xyz\cdot z+\mu)=0$$
+Same way: $(y-z)(xyz\cdot x+\mu)=0$ and $(x-z)(xyz\cdot y+\mu)=0$.
+@s Two of them must be equal
+If $x,y,z$ were all different we would need $xyz\cdot x=xyz\cdot y=xyz\cdot z$. That forces $xyz=0$ (then $f=0$, clearly not the max) or $x=y=z$ (contradiction). So two are equal. Say $x=y$.
+@s Use the constraints
+$x+y+z=0\Rightarrow z=-2x$.
+$$x^2+x^2+4x^2=1\ \Longrightarrow\ x^2=\tfrac16$$
+@s Value
+$$x^2y^2z^2=x^2\cdot x^2\cdot4x^2=4x^6=\frac{4}{216}=\frac{1}{54}$$
+@a Maximum value $\dfrac{1}{54}$.
+
+@q Sheet 4 · Q19
+Find the minimum of $x^2+y^2+z^2$ subject to $x+y+z=1$ and $x-y+2z=1$.
+@s Lagrange equations
+$\nabla g=\langle1,1,1\rangle$, $\nabla h=\langle1,-1,2\rangle$.
+$$2x=\lambda+\mu\qquad 2y=\lambda-\mu\qquad 2z=\lambda+2\mu$$
+@s Put into the first constraint
+$$x+y+z=\frac{3\lambda+2\mu}{2}=1\ \Longrightarrow\ 3\lambda+2\mu=2$$
+@s Put into the second constraint
+$$x-y+2z=\frac{2\lambda+6\mu}{2}=1\ \Longrightarrow\ \lambda+3\mu=1$$
+@s Solve for λ and μ
+From the second, $\lambda=1-3\mu$. Then $3-9\mu+2\mu=2\Rightarrow\mu=\tfrac17$, $\lambda=\tfrac47$.
+@s The point
+$$x=\tfrac{5}{14}\qquad y=\tfrac{3}{14}\qquad z=\tfrac{6}{14}$$
+@s Value
+$$\frac{25+9+36}{196}=\frac{70}{196}=\frac{5}{14}$$
+@a Minimum value $\dfrac{5}{14}$.
+
+@q Sheet 4 · Q20
+Find the minimum of $x^2+y^2+z^2$ subject to $x+y+z=5$ and $xyz=4$.
+@s Lagrange equations
+$\nabla g=\langle1,1,1\rangle$, $\nabla h=\langle yz,xz,xy\rangle$.
+$$2x=\lambda+\mu yz\qquad 2y=\lambda+\mu xz\qquad 2z=\lambda+\mu xy$$
+@s Subtract them in pairs
+First minus second: $2(x-y)=\mu z(y-x)$, so
+$$(x-y)(2+\mu z)=0$$
+Same way: $(y-z)(2+\mu x)=0$ and $(x-z)(2+\mu y)=0$.
+@s Two of them must be equal
+If all were different, $x=y=z=-\tfrac2\mu$: contradiction. Say $x=y$.
+@s Use the constraints
+$z=5-2x$ and $x^2z=4$:
+$$x^2(5-2x)=4\ \Longrightarrow\ 2x^3-5x^2+4=0$$
+@s Solve the cubic
+$x=2$ works ($16-20+4=0$). Factor:
+$$(x-2)(2x^2-x-2)=0\ \Longrightarrow\ x=2\ \text{or}\ x=\frac{1\pm\sqrt{17}}{4}$$
+@s Compare values of x² + y² + z²
+$x=y=2,\ z=1$: $4+4+1=9$.
+
+$x=y\approx1.28,\ z\approx2.44$: $\approx9.23$.
+
+$x=y\approx-0.78,\ z\approx6.56$: $\approx44.3$.
+@a Minimum value $9$, at $(2,2,1)$ and its rearrangements.

@@ -1,0 +1,295 @@
+@@part Partial derivatives
+
+@@topic partials | First order partial derivatives | Sheet 2 · Q1, Q2
+@method
+$f_x$: differentiate in $x$, **treat every other letter as a number**.
+
+$f_y$: differentiate in $y$, treat every other letter as a number.
+
+All the usual rules still apply: product rule, quotient rule, chain rule.
+
+$$\left(\frac{u}{v}\right)'=\frac{u'v-uv'}{v^2}\qquad (uv)'=u'v+uv'$$
+
+@q Sheet 2 · Q1(a)
+Find $f_x$ and $f_y$ for $f(x,y)=x^2-xy+2y^2-3x+y$.
+@s Differentiate in x (y is a number)
+$$f_x=2x-y+0-3+0=2x-y-3$$
+@s Differentiate in y (x is a number)
+$$f_y=0-x+4y-0+1=-x+4y+1$$
+@a $f_x=2x-y-3,\qquad f_y=-x+4y+1$
+
+@q Sheet 2 · Q1(b)
+Find $f_x$ and $f_y$ for $f(x,y)=x\cos 3y+\sin xy$.
+@s Differentiate in x
+$\cos 3y$ is just a number multiplying $x$. For $\sin(xy)$ use the chain rule: the inside $xy$ differentiates to $y$.
+$$f_x=\cos 3y+y\cos xy$$
+@s Differentiate in y
+$x$ is a number. $\cos 3y\to -3\sin 3y$. Inside of $\sin(xy)$ differentiates to $x$.
+$$f_y=-3x\sin 3y+x\cos xy$$
+@a $f_x=\cos 3y+y\cos xy,\qquad f_y=-3x\sin 3y+x\cos xy$
+
+@q Sheet 2 · Q1(c)
+Find $f_x$ and $f_y$ for $f(x,y)=\dfrac{x+y}{x-y}$.
+@s Quotient rule in x
+Top $u=x+y$, bottom $v=x-y$. In $x$: $u'=1$, $v'=1$.
+$$f_x=\frac{1\cdot(x-y)-(x+y)\cdot 1}{(x-y)^2}=-\frac{2y}{(x-y)^2}$$
+@s Quotient rule in y
+In $y$: $u'=1$, $v'=-1$.
+$$f_y=\frac{1\cdot(x-y)-(x+y)\cdot(-1)}{(x-y)^2}=\frac{2x}{(x-y)^2}$$
+@a $f_x=-\dfrac{2y}{(x-y)^2},\qquad f_y=\dfrac{2x}{(x-y)^2}$
+
+@q Sheet 2 · Q1(d)
+Find $f_x$ and $f_y$ for $f(x,y)=e^{2x-3y}$.
+@s Chain rule
+$e^{\text{stuff}}$ differentiates to $e^{\text{stuff}}\times(\text{stuff})'$.
+
+In $x$ the inside gives $2$. In $y$ the inside gives $-3$.
+@a $f_x=2e^{2x-3y},\qquad f_y=-3e^{2x-3y}$
+
+@q Sheet 2 · Q1(e)
+Find $f_x$ and $f_y$ for $f(x,y)=x\ln(x^2+y^3)$.
+@s Differentiate in x: product rule
+$u=x$, $v=\ln(x^2+y^3)$. Then $u'=1$ and $v'=\dfrac{2x}{x^2+y^3}$.
+$$f_x=\ln(x^2+y^3)+\frac{2x^2}{x^2+y^3}$$
+@s Differentiate in y
+$x$ out front is just a number. The inside differentiates to $3y^2$.
+$$f_y=x\cdot\frac{3y^2}{x^2+y^3}=\frac{3xy^2}{x^2+y^3}$$
+@a $f_x=\ln(x^2+y^3)+\dfrac{2x^2}{x^2+y^3},\qquad f_y=\dfrac{3xy^2}{x^2+y^3}$
+
+@q Sheet 2 · Q1(f)
+Find $f_x$ and $f_y$ for $f(x,y)=\sqrt{1+x^2-2y^2}$.
+@s Rule for a root
+$$\left(\sqrt{u}\right)'=\frac{u'}{2\sqrt u}$$
+@s Differentiate in x
+Inside gives $2x$:
+$$f_x=\frac{2x}{2\sqrt{1+x^2-2y^2}}=\frac{x}{\sqrt{1+x^2-2y^2}}$$
+@s Differentiate in y
+Inside gives $-4y$:
+$$f_y=\frac{-4y}{2\sqrt{1+x^2-2y^2}}=-\frac{2y}{\sqrt{1+x^2-2y^2}}$$
+@a $f_x=\dfrac{x}{\sqrt{1+x^2-2y^2}},\qquad f_y=-\dfrac{2y}{\sqrt{1+x^2-2y^2}}$
+
+@q Sheet 2 · Q2(a)
+Find $f_x$, $f_y$, $f_z$ for $f(x,y,z)=1+xy^2-2z^2$.
+@s One letter at a time
+In $x$: only $xy^2$ has an $x$. In $y$: $xy^2\to 2xy$. In $z$: $-2z^2\to -4z$.
+@a $f_x=y^2,\qquad f_y=2xy,\qquad f_z=-4z$
+
+@q Sheet 2 · Q2(b)
+Find $f_x$, $f_y$, $f_z$ for $f(x,y,z)=(x+1)(y+2)^2(z+3)^3$.
+@s Idea
+Each bracket contains only one letter. Differentiate that one bracket, leave the other two alone.
+@s Do it
+$$f_x=(y+2)^2(z+3)^3$$
+$$f_y=2(x+1)(y+2)(z+3)^3$$
+$$f_z=3(x+1)(y+2)^2(z+3)^2$$
+@a $f_x=(y+2)^2(z+3)^3,\quad f_y=2(x+1)(y+2)(z+3)^3,\quad f_z=3(x+1)(y+2)^2(z+3)^2$
+
+@q Sheet 2 · Q2(c)
+Find $f_x$, $f_y$, $f_z$ for $f(x,y,z)=\cos(xy)+\sin(2yz)$.
+@s In x
+Only $\cos(xy)$ has $x$. Inside gives $y$.
+$$f_x=-y\sin(xy)$$
+@s In y
+Both terms have $y$. Insides give $x$ and $2z$.
+$$f_y=-x\sin(xy)+2z\cos(2yz)$$
+@s In z
+Only $\sin(2yz)$ has $z$. Inside gives $2y$.
+$$f_z=2y\cos(2yz)$$
+@a $f_x=-y\sin(xy),\quad f_y=-x\sin(xy)+2z\cos(2yz),\quad f_z=2y\cos(2yz)$
+
+
+@@topic chainrule | The chain rule | Sheet 2 · Q3 to Q6
+@method
+**One variable underneath** ($x,y,z$ depend on $t$):
+$$\frac{dw}{dt}=w_x\,x'(t)+w_y\,y'(t)+w_z\,z'(t)$$
+
+**Two variables underneath** ($x,y$ depend on $r,s$):
+$$w_r=w_x\,x_r+w_y\,y_r\qquad w_s=w_x\,x_s+w_y\,y_s$$
+
+For the "hence show" part: square $w_r$ and $w_s$, add (or subtract), and the cross terms cancel.
+
+@q Sheet 2 · Q3
+$w=xy^2e^{2z}$ with $x=3t^2+1$, $y=6t$, $z=t^3-1$. Find $w'(t)$ in terms of $t$.
+@s Write the chain rule
+$$w'(t)=w_x\,x'(t)+w_y\,y'(t)+w_z\,z'(t)$$
+@s Partial derivatives of w
+$$w_x=y^2e^{2z}\qquad w_y=2xye^{2z}\qquad w_z=2xy^2e^{2z}$$
+@s Derivatives in t
+$$x'=6t\qquad y'=6\qquad z'=3t^2$$
+@s Multiply and add
+$$w'=y^2e^{2z}(6t)+2xye^{2z}(6)+2xy^2e^{2z}(3t^2)$$
+@s Replace x, y, z by their formulas in t
+Use $y^2=36t^2$ and $e^{2z}=e^{2(t^3-1)}$.
+
+Term 1: $36t^2\cdot 6t=216t^3$.
+
+Term 2: $12(3t^2+1)(6t)=72t(3t^2+1)$.
+
+Term 3: $6t^2(3t^2+1)(36t^2)=216t^4(3t^2+1)$.
+@a $w'(t)=\left[216t^3+72t(3t^2+1)+216t^4(3t^2+1)\right]e^{2(t^3-1)}$
+
+@q Sheet 2 · Q4
+$x=r^3-3rs^2$, $y=3r^2s-s^3$. Find $w_r$, $w_s$ in terms of $w_x,w_y,r,s$. Hence show $w_r^2+w_s^2=9(r^2+s^2)^2(w_x^2+w_y^2)$.
+@s Chain rule
+$$w_r=w_x\,x_r+w_y\,y_r\qquad w_s=w_x\,x_s+w_y\,y_s$$
+@s The four small derivatives
+$$x_r=3r^2-3s^2\qquad x_s=-6rs$$
+$$y_r=6rs\qquad y_s=3r^2-3s^2$$
+@s Put them in
+$$w_r=3(r^2-s^2)w_x+6rs\,w_y$$
+$$w_s=-6rs\,w_x+3(r^2-s^2)w_y$$
+@s Square each
+$$w_r^2=9\left[(r^2-s^2)^2w_x^2+4rs(r^2-s^2)w_xw_y+4r^2s^2w_y^2\right]$$
+$$w_s^2=9\left[4r^2s^2w_x^2-4rs(r^2-s^2)w_xw_y+(r^2-s^2)^2w_y^2\right]$$
+@s Add: the middle terms cancel
+$$w_r^2+w_s^2=9\left[(r^2-s^2)^2+4r^2s^2\right](w_x^2+w_y^2)$$
+@s Simplify the bracket
+$$(r^2-s^2)^2+4r^2s^2=r^4+2r^2s^2+s^4=(r^2+s^2)^2$$
+@a $w_r=3(r^2-s^2)w_x+6rs\,w_y,\quad w_s=-6rs\,w_x+3(r^2-s^2)w_y$, and $w_r^2+w_s^2=9(r^2+s^2)^2(w_x^2+w_y^2)$
+
+@q Sheet 2 · Q5
+$x=e^r\cosh s$, $y=e^r\sinh s$. Find $w_r$, $w_s$. Hence show $w_r^2-w_s^2=e^{2r}(w_x^2-w_y^2)=(x^2-y^2)(w_x^2-w_y^2)$.
+@s Remember
+$(\cosh s)'=\sinh s$, $(\sinh s)'=\cosh s$, and $\cosh^2s-\sinh^2s=1$.
+@s The four small derivatives
+$$x_r=e^r\cosh s\qquad x_s=e^r\sinh s$$
+$$y_r=e^r\sinh s\qquad y_s=e^r\cosh s$$
+@s Chain rule
+$$w_r=e^r\cosh s\,w_x+e^r\sinh s\,w_y$$
+$$w_s=e^r\sinh s\,w_x+e^r\cosh s\,w_y$$
+@s Square each
+$$w_r^2=e^{2r}\left[\cosh^2s\,w_x^2+2\cosh s\sinh s\,w_xw_y+\sinh^2s\,w_y^2\right]$$
+$$w_s^2=e^{2r}\left[\sinh^2s\,w_x^2+2\cosh s\sinh s\,w_xw_y+\cosh^2s\,w_y^2\right]$$
+@s Subtract: the middle terms cancel
+$$w_r^2-w_s^2=e^{2r}(\cosh^2s-\sinh^2s)(w_x^2-w_y^2)=e^{2r}(w_x^2-w_y^2)$$
+@s The last equality
+$$x^2-y^2=e^{2r}(\cosh^2s-\sinh^2s)=e^{2r}$$
+So $e^{2r}$ can be replaced by $x^2-y^2$.
+@a $w_r=e^r\cosh s\,w_x+e^r\sinh s\,w_y,\quad w_s=e^r\sinh s\,w_x+e^r\cosh s\,w_y$, and the identity follows.
+
+@q Sheet 2 · Q6
+$x=r^2-s^2$, $y=2rs$. Find $w_r$, $w_s$. Hence show $w_x=\dfrac{rw_r-sw_s}{2(r^2+s^2)}$, $w_y=\dfrac{sw_r+rw_s}{2(r^2+s^2)}$ and $w_r^2+w_s^2=4(r^2+s^2)(w_x^2+w_y^2)$.
+@s The four small derivatives
+$$x_r=2r\qquad x_s=-2s\qquad y_r=2s\qquad y_s=2r$$
+@s Chain rule
+$$w_r=2r\,w_x+2s\,w_y$$
+$$w_s=-2s\,w_x+2r\,w_y$$
+@s Get $w_x$: kill $w_y$
+Do $r\times(\text{first})-s\times(\text{second})$:
+$$rw_r-sw_s=2r^2w_x+2rs\,w_y+2s^2w_x-2rs\,w_y=2(r^2+s^2)w_x$$
+$$w_x=\frac{rw_r-sw_s}{2(r^2+s^2)}$$
+@s Get $w_y$: kill $w_x$
+Do $s\times(\text{first})+r\times(\text{second})$:
+$$sw_r+rw_s=2(r^2+s^2)w_y\ \Longrightarrow\ w_y=\frac{sw_r+rw_s}{2(r^2+s^2)}$$
+@s Square and add
+$$w_r^2=4r^2w_x^2+8rs\,w_xw_y+4s^2w_y^2$$
+$$w_s^2=4s^2w_x^2-8rs\,w_xw_y+4r^2w_y^2$$
+$$w_r^2+w_s^2=4(r^2+s^2)(w_x^2+w_y^2)$$
+@a $w_r=2r\,w_x+2s\,w_y,\quad w_s=-2s\,w_x+2r\,w_y$, and all three identities follow.
+
+
+@@topic implicit | Implicit partial differentiation | Sheet 2 · Q7, Q8
+@method
+$z$ is secretly a function of $x$ and $y$.
+
+**To get $z_x$:** differentiate the whole equation in $x$. $y$ is a number. Every time you differentiate something with $z$, multiply by $z_x$. Then solve for $z_x$.
+
+**To get $z_y$:** same thing in $y$.
+
+**Where is $z_x=z_y=0$?** Set the tops of both fractions to zero, then put what you find back into the **original equation**.
+
+@q Sheet 2 · Q7
+$z^2-x^2-2y^2+xz=3$ defines $z(x,y)$. Find $z_x$ and $z_y$ at $(-1,1,3)$. Find the points where $z_x=z_y=0$.
+@s Differentiate in x
+$z^2\to 2z\,z_x$. The term $xz$ needs the product rule: $z+x\,z_x$.
+$$2z\,z_x-2x+z+x\,z_x=0$$
+@s Solve for $z_x$
+$$z_x(2z+x)=2x-z\ \Longrightarrow\ z_x=\frac{2x-z}{x+2z}$$
+@s Differentiate in y
+$$2z\,z_y-4y+x\,z_y=0\ \Longrightarrow\ z_y=\frac{4y}{x+2z}$$
+@s Plug in (−1, 1, 3)
+$$z_x=\frac{-2-3}{-1+6}=-1\qquad z_y=\frac{4}{-1+6}=\frac45$$
+@s Where are both zero?
+Tops must be zero: $2x-z=0$ and $4y=0$. So $z=2x$ and $y=0$.
+@s Put back into the original equation
+$$(2x)^2-x^2-0+x(2x)=3\ \Longrightarrow\ 5x^2=3\ \Longrightarrow\ x=\pm\sqrt{0.6}$$
+Then $z=2x$.
+@a $z_x=-1,\ z_y=\tfrac45$. Both are zero at $(\sqrt{0.6},\,0,\,2\sqrt{0.6})$ and $(-\sqrt{0.6},\,0,\,-2\sqrt{0.6})$.
+
+@q Sheet 2 · Q8
+$z^3-xy+yz+y^3-2=0$ defines $z(x,y)$. Find $z_x$, $z_y$; evaluate at $(1,1,1)$; find where $z_x=z_y=0$.
+@s Differentiate in x
+$$3z^2z_x-y+y\,z_x=0\ \Longrightarrow\ z_x=\frac{y}{3z^2+y}$$
+@s Differentiate in y
+$yz$ needs the product rule: $z+y\,z_y$.
+$$3z^2z_y-x+z+y\,z_y+3y^2=0$$
+$$z_y=\frac{x-z-3y^2}{3z^2+y}$$
+@s Plug in (1, 1, 1)
+$$z_x=\frac{1}{3+1}=\frac14\qquad z_y=\frac{1-1-3}{3+1}=-\frac34$$
+@s Where are both zero?
+Tops zero: $y=0$ and $x-z-3y^2=0$, so $x=z$.
+@s Put back into the original equation
+With $y=0$: $z^3-2=0$, so $z=2^{1/3}$, and $x=z$.
+@a $z_x=\dfrac{y}{3z^2+y},\ z_y=\dfrac{x-z-3y^2}{3z^2+y}$. At $(1,1,1)$: $z_x=\tfrac14$, $z_y=-\tfrac34$. Both zero at $(2^{1/3},0,2^{1/3})$.
+
+
+@@topic errors | Percentage error and linear approximation | Sheet 2 · Q9 to Q12
+@method
+**Percentage error for a power law** $Q=k\,a^{m}b^{n}$: the powers come down as multipliers.
+$$\%\text{ error in }Q\approx m\,(\%\text{ error in }a)+n\,(\%\text{ error in }b)$$
+Overestimated / increased = $+$. Underestimated / decreased = $-$.
+
+**Linear approximation** near an easy point $(a,b)$:
+$$f(x,y)\approx f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)$$
+Pick $(a,b)$ so that $f(a,b)$ is a nice number.
+
+@q Sheet 2 · Q9
+$\eta=\dfrac{kx}{z^4}$. Estimate the percentage error in $\eta$ if $x$ is overestimated by 0.5% and $z$ is underestimated by 1%.
+@s Write it as a power law
+$$\eta=k\,x^{1}z^{-4}$$
+@s Formula
+$$\%\eta\approx 1\cdot(\%x)+(-4)\cdot(\%z)$$
+@s Signs
+Overestimated: $\%x=+0.5$. Underestimated: $\%z=-1$.
+@s Calculate
+$$\%\eta\approx 0.5-4(-1)=4.5$$
+@a $4.5\%$
+
+@q Sheet 2 · Q10
+$D=\dfrac{kHL}{V^{1/2}}$. Find the approximate percentage error in $D$ if $H$ and $V$ both increase by 1% and $L$ decreases by 2%.
+@s Write it as a power law
+$$D=k\,H^{1}L^{1}V^{-1/2}$$
+@s Formula
+$$\%D\approx(\%H)+(\%L)-\tfrac12(\%V)$$
+@s Calculate
+$$\%D\approx 1+(-2)-\tfrac12(1)=-\tfrac32$$
+@a $-1.5\%$
+
+@q Sheet 2 · Q11
+Let $f(x,y)=(x^2+y^3)^{1/2}$. Use linear approximation to estimate $\left((1.02)^2+(2.01)^3\right)^{1/2}$ to two decimal places.
+@s Pick the easy point
+$(1.02,2.01)$ is close to $(1,2)$.
+$$f(1,2)=\sqrt{1+8}=3$$
+@s Partial derivatives
+$$f_x=\frac{x}{\sqrt{x^2+y^3}}\qquad f_y=\frac{3y^2}{2\sqrt{x^2+y^3}}$$
+@s Evaluate at (1, 2)
+$$f_x(1,2)=\frac13\qquad f_y(1,2)=\frac{12}{6}=2$$
+@s Linear approximation
+Steps: $x-a=0.02$, $y-b=0.01$.
+$$f\approx 3+\tfrac13(0.02)+2(0.01)=3+0.0067+0.02$$
+@a $\approx 3.03$
+
+@q Sheet 2 · Q12
+Use linear approximation to estimate $\left((3.8)^2+2(2.1)^3\right)^{1/5}$.
+@s Choose the function and easy point
+$f(x,y)=(x^2+2y^3)^{1/5}$. $(3.8,2.1)$ is close to $(4,2)$.
+$$f(4,2)=(16+16)^{1/5}=32^{1/5}=2$$
+@s Partial derivatives
+$$f_x=\tfrac15\cdot 2x\,(x^2+2y^3)^{-4/5}\qquad f_y=\tfrac15\cdot 6y^2(x^2+2y^3)^{-4/5}$$
+@s Evaluate at (4, 2)
+$32^{-4/5}=\dfrac{1}{2^4}=\dfrac1{16}$.
+$$f_x(4,2)=\frac{8}{5\cdot16}=\frac1{10}\qquad f_y(4,2)=\frac{24}{5\cdot 16}=\frac3{10}$$
+@s Linear approximation
+Steps: $x-a=-0.2$, $y-b=+0.1$.
+$$f\approx 2+\tfrac1{10}(-0.2)+\tfrac3{10}(0.1)=2-0.02+0.03$$
+@a $\approx 2.01$

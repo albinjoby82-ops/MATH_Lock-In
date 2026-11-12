@@ -1,0 +1,675 @@
+@@part Differential equations
+
+@@topic firstorder | First order equations | Sheet 5 · Q1, Q2
+@method
+**Separable** $y'=g(x)\,h(y)$: put all $y$ on one side, all $x$ on the other, integrate both sides.
+$$\int\frac{dy}{h(y)}=\int g(x)\,dx$$
+
+**Linear** $y'+p(x)\,y=q(x)$: multiply by the integrating factor
+$$\mu=e^{\int p\,dx}\qquad\text{then}\qquad(\mu y)'=\mu q$$
+Integrate, then divide by $\mu$.
+
+**Bernoulli** $y'+p\,y=q\,y^{n}$: substitute $u=y^{1-n}$ to make it linear.
+
+Initial condition: plug it in at the end to find the constant.
+
+@q Sheet 5 · Q1(a)
+Solve $y'=ty$, $y(0)=1$.
+@s Separate
+$$\frac{dy}{y}=t\,dt$$
+@s Integrate both sides
+$$\ln|y|=\frac{t^2}{2}+c\ \Longrightarrow\ y=Ce^{t^2/2}$$
+@s Use y(0) = 1
+$$1=Ce^0\ \Longrightarrow\ C=1$$
+@a $y=e^{t^2/2}$
+
+@q Sheet 5 · Q1(b)
+Solve $y'=1-y$, $y(0)=0$.
+@s Separate
+$$\frac{dy}{1-y}=dt$$
+@s Integrate both sides
+$$-\ln|1-y|=t+c\ \Longrightarrow\ 1-y=Ce^{-t}\ \Longrightarrow\ y=1-Ce^{-t}$$
+@s Use y(0) = 0
+$$0=1-C\ \Longrightarrow\ C=1$$
+@a $y=1-e^{-t}$
+
+@q Sheet 5 · Q2(a)
+Solve $y'=(1+x)(1+y)$.
+@s Separate
+$$\frac{dy}{1+y}=(1+x)\,dx$$
+@s Integrate both sides
+$$\ln|1+y|=x+\frac{x^2}{2}+c$$
+@s Solve for y
+$$1+y=Ce^{x+x^2/2}$$
+@a $y=Ce^{x+x^2/2}-1$
+
+@q Sheet 5 · Q2(b)
+Solve $\dfrac{dy}{dt}=e^{-y}t^2$.
+@s Separate
+Multiply both sides by $e^{y}$:
+$$e^{y}\,dy=t^2\,dt$$
+@s Integrate both sides
+$$e^{y}=\frac{t^3}{3}+C$$
+@s Solve for y
+Take $\ln$ of both sides.
+@a $y=\ln\left(\dfrac{t^3}{3}+C\right)$
+
+@q Sheet 5 · Q2(c)
+Solve $y'=1+x^2+y+x^2y$.
+@s Factorise the right side
+$$1+x^2+y(1+x^2)=(1+x^2)(1+y)$$
+Now it is separable.
+@s Separate and integrate
+$$\frac{dy}{1+y}=(1+x^2)\,dx\ \Longrightarrow\ \ln|1+y|=x+\frac{x^3}{3}+c$$
+@a $y=Ce^{x+x^3/3}-1$
+
+@q Sheet 5 · Q2(d)
+Solve $\dfrac{dy}{dx}+2xy=xe^{-x^2}$.
+@s Type
+Linear, with $p=2x$ and $q=xe^{-x^2}$.
+@s Integrating factor
+$$\mu=e^{\int2x\,dx}=e^{x^2}$$
+@s Multiply through
+$$\left(e^{x^2}y\right)'=e^{x^2}\cdot xe^{-x^2}=x$$
+@s Integrate
+$$e^{x^2}y=\frac{x^2}{2}+C$$
+@a $y=\left(\dfrac{x^2}{2}+C\right)e^{-x^2}$
+
+@q Sheet 5 · Q2(e)
+Solve $y'+\dfrac{2y}{x}=\dfrac{1}{x^2}$.
+@s Type
+Linear, with $p=\tfrac2x$ and $q=\tfrac1{x^2}$.
+@s Integrating factor
+$$\mu=e^{\int\frac2x\,dx}=e^{2\ln x}=x^2$$
+@s Multiply through
+$$\left(x^2y\right)'=x^2\cdot\frac{1}{x^2}=1$$
+@s Integrate
+$$x^2y=x+C$$
+@a $y=\dfrac{x+C}{x^2}=\dfrac1x+\dfrac{C}{x^2}$
+
+@q Sheet 5 · Q2(f)
+Solve $y'+xy=xy^{-1}$.
+@s Type
+Bernoulli with $n=-1$. Substitute $u=y^{1-n}=y^2$.
+@s Multiply the equation by y
+$$yy'+xy^2=x$$
+@s Substitute u = y²
+$u'=2yy'$, so $yy'=\tfrac12u'$:
+$$\tfrac12u'+xu=x\ \Longrightarrow\ u'+2xu=2x$$
+@s Solve this linear equation
+$\mu=e^{x^2}$:
+$$\left(e^{x^2}u\right)'=2xe^{x^2}\ \Longrightarrow\ e^{x^2}u=e^{x^2}+C\ \Longrightarrow\ u=1+Ce^{-x^2}$$
+@s Go back to y
+$u=y^2$.
+@a $y^2=1+Ce^{-x^2}$, i.e. $y=\pm\sqrt{1+Ce^{-x^2}}$
+
+
+@@topic homogeneous | Second order homogeneous equations | Sheet 5 · Q3, Q5(a)
+@method
+For $ay''+by'+cy=0$: replace $y''\to r^2$, $y'\to r$, $y\to1$ and solve the **characteristic equation** $ar^2+br+c=0$.
+
+**Two different real roots** $r_1,r_2$:
+$$y=C_1e^{r_1x}+C_2e^{r_2x}$$
+
+**One repeated root** $r$:
+$$y=(C_1+C_2x)e^{rx}$$
+
+**Complex roots** $\alpha\pm\beta i$:
+$$y=e^{\alpha x}\left(C_1\cos\beta x+C_2\sin\beta x\right)$$
+
+@q Sheet 5 · Q3(a)
+Find the general solution of $y''+3y'+2y=0$.
+@s Characteristic equation
+$$r^2+3r+2=0\ \Longrightarrow\ (r+1)(r+2)=0\ \Longrightarrow\ r=-1,\ -2$$
+@s Type
+Two different real roots.
+@a $y=C_1e^{-x}+C_2e^{-2x}$
+
+@q Sheet 5 · Q3(b)
+Find the general solution of $y''-9y'=0$.
+@s Characteristic equation
+$$r^2-9r=0\ \Longrightarrow\ r(r-9)=0\ \Longrightarrow\ r=0,\ 9$$
+@s Type
+Two different real roots. $e^{0x}=1$.
+@a $y=C_1+C_2e^{9x}$
+
+@q Sheet 5 · Q3(c)
+Find the general solution of $y''+10y'+25y=0$.
+@s Characteristic equation
+$$r^2+10r+25=0\ \Longrightarrow\ (r+5)^2=0\ \Longrightarrow\ r=-5\ \text{(twice)}$$
+@s Type
+Repeated root: needs the extra $x$.
+@a $y=(C_1+C_2x)e^{-5x}$
+
+@q Sheet 5 · Q3(d)
+Find the general solution of $y''+2y'+2y=0$.
+@s Characteristic equation
+$$r^2+2r+2=0\ \Longrightarrow\ r=\frac{-2\pm\sqrt{4-8}}{2}=-1\pm i$$
+@s Type
+Complex roots with $\alpha=-1$, $\beta=1$.
+@a $y=e^{-x}\left(C_1\cos x+C_2\sin x\right)$
+
+@q Sheet 5 · Q5(a)
+Solve $y''-16y=0$, $y(0)=1$, $y'(0)=20$.
+@s Characteristic equation
+$$r^2-16=0\ \Longrightarrow\ r=\pm4$$
+$$y=C_1e^{4x}+C_2e^{-4x}$$
+@s Differentiate
+$$y'=4C_1e^{4x}-4C_2e^{-4x}$$
+@s Use the conditions
+$$y(0)=C_1+C_2=1$$
+$$y'(0)=4C_1-4C_2=20\ \Longrightarrow\ C_1-C_2=5$$
+@s Solve
+Add: $2C_1=6$, so $C_1=3$, $C_2=-2$.
+@a $y=3e^{4x}-2e^{-4x}$
+
+
+@@topic undetermined | Undetermined coefficients | Sheet 5 · Q4, Q5(b), Q5(c)
+@method
+$$y=y_h+y_p$$
+
+1. $y_h$: solve the equation with right side $=0$.
+2. $y_p$: **guess** something shaped like the right side, with unknown coefficients:
+
+Polynomial of degree $n$ → full polynomial of degree $n$.
+
+$e^{kx}$ → $Ae^{kx}$.
+
+(polynomial)$\,e^{kx}$ → (full polynomial)$\,e^{kx}$.
+
+$\sin kx$ or $\cos kx$ → $A\cos kx+B\sin kx$.
+
+3. **Clash rule:** if your guess is already part of $y_h$, multiply the guess by $x$ (by $x^2$ for a double root).
+4. Plug the guess in, match coefficients.
+5. Initial conditions go in **last**, into the full $y=y_h+y_p$.
+
+@q Sheet 5 · Q4(a)
+Find the general solution of $y''-y=3x^2$.
+@s Homogeneous part
+$r^2-1=0\Rightarrow r=\pm1$.
+$$y_h=C_1e^{x}+C_2e^{-x}$$
+@s Guess
+Right side is degree 2: $y_p=ax^2+bx+c$. Then $y_p''=2a$.
+@s Plug in
+$$2a-(ax^2+bx+c)=3x^2$$
+@s Match coefficients
+$x^2$: $-a=3\Rightarrow a=-3$.
+
+$x$: $-b=0\Rightarrow b=0$.
+
+Constant: $2a-c=0\Rightarrow c=-6$.
+@a $y=C_1e^{x}+C_2e^{-x}-3x^2-6$
+
+@q Sheet 5 · Q4(b)
+Find the general solution of $y''+4y'-5y=x^2$.
+@s Homogeneous part
+$r^2+4r-5=(r+5)(r-1)=0$.
+$$y_h=C_1e^{x}+C_2e^{-5x}$$
+@s Guess
+$y_p=ax^2+bx+c$, so $y_p'=2ax+b$, $y_p''=2a$.
+@s Plug in
+$$2a+4(2ax+b)-5(ax^2+bx+c)=x^2$$
+@s Match coefficients
+$x^2$: $-5a=1\Rightarrow a=-\tfrac15$.
+
+$x$: $8a-5b=0\Rightarrow b=-\tfrac{8}{25}$.
+
+Constant: $2a+4b-5c=0\Rightarrow c=\tfrac15\left(-\tfrac25-\tfrac{32}{25}\right)=-\tfrac{42}{125}$.
+@a $y=C_1e^{x}+C_2e^{-5x}-\dfrac{x^2}{5}-\dfrac{8x}{25}-\dfrac{42}{125}$
+
+@q Sheet 5 · Q4(c)
+Find the general solution of $y''-y'-2y=e^x+x$.
+@s Homogeneous part
+$r^2-r-2=(r-2)(r+1)=0$.
+$$y_h=C_1e^{2x}+C_2e^{-x}$$
+@s Guess
+Two pieces on the right: $y_p=Ae^x+ax+b$. No clash ($e^x$ is not in $y_h$).
+@s Plug in the $e^x$ piece
+$$Ae^x-Ae^x-2Ae^x=e^x\ \Longrightarrow\ A=-\tfrac12$$
+@s Plug in the polynomial piece
+$$0-a-2(ax+b)=x$$
+$x$: $-2a=1\Rightarrow a=-\tfrac12$. Constant: $-a-2b=0\Rightarrow b=\tfrac14$.
+@a $y=C_1e^{2x}+C_2e^{-x}-\dfrac{e^x}{2}-\dfrac x2+\dfrac14$
+
+@q Sheet 5 · Q4(d)
+Find the general solution of $y''+6y'+9y=16te^{t}$.
+@s Homogeneous part
+$r^2+6r+9=(r+3)^2=0$, repeated root $-3$.
+$$y_h=(C_1+C_2t)e^{-3t}$$
+@s Guess
+$y_p=(At+B)e^t$. No clash.
+@s Derivatives
+$$y_p'=(At+A+B)e^t\qquad y_p''=(At+2A+B)e^t$$
+@s Plug in and cancel $e^t$
+$$(At+2A+B)+6(At+A+B)+9(At+B)=16t$$
+$$16At+(8A+16B)=16t$$
+@s Match coefficients
+$A=1$. $8+16B=0\Rightarrow B=-\tfrac12$.
+@a $y=(C_1+C_2t)e^{-3t}+\left(t-\tfrac12\right)e^{t}$
+
+@q Sheet 5 · Q4(e)
+Find the general solution of $y''-2y'+y=x^3+x^2$.
+@s Homogeneous part
+$(r-1)^2=0$, repeated root $1$.
+$$y_h=(C_1+C_2x)e^{x}$$
+@s Guess
+$y_p=ax^3+bx^2+cx+d$.
+$$y_p'=3ax^2+2bx+c\qquad y_p''=6ax+2b$$
+@s Plug in and collect
+$$ax^3+(b-6a)x^2+(c-4b+6a)x+(d-2c+2b)=x^3+x^2$$
+@s Match coefficients
+$x^3$: $a=1$.
+
+$x^2$: $b-6=1\Rightarrow b=7$.
+
+$x$: $c-28+6=0\Rightarrow c=22$.
+
+Constant: $d-44+14=0\Rightarrow d=30$.
+@a $y=(C_1+C_2x)e^{x}+x^3+7x^2+22x+30$
+
+@q Sheet 5 · Q4(f)
+Find the general solution of $y''-4y'+4y=(3x^2+2)e^{x}$.
+@s Homogeneous part
+$(r-2)^2=0$, repeated root $2$.
+$$y_h=(C_1+C_2x)e^{2x}$$
+@s Guess
+$y_p=u\,e^x$ with $u=ax^2+bx+c$. No clash.
+@s Derivatives
+$$y_p'=(u'+u)e^x\qquad y_p''=(u''+2u'+u)e^x$$
+@s Plug in and cancel $e^x$
+$$(u''+2u'+u)-4(u'+u)+4u=u''-2u'+u=3x^2+2$$
+@s Put in u
+$$2a-2(2ax+b)+ax^2+bx+c=3x^2+2$$
+@s Match coefficients
+$x^2$: $a=3$.
+
+$x$: $-4a+b=0\Rightarrow b=12$.
+
+Constant: $2a-2b+c=2\Rightarrow c=2-6+24=20$.
+@a $y=(C_1+C_2x)e^{2x}+(3x^2+12x+20)e^{x}$
+
+@q Sheet 5 · Q5(b)
+Solve $y''-y'-2y=3e^{2x}$, $y(0)=0$, $y'(0)=-2$.
+@s Homogeneous part
+$(r-2)(r+1)=0$.
+$$y_h=C_1e^{2x}+C_2e^{-x}$$
+@s Guess (clash!)
+$e^{2x}$ is already in $y_h$. Multiply by $x$: $y_p=Axe^{2x}$.
+@s Derivatives
+$$y_p'=A(1+2x)e^{2x}\qquad y_p''=A(4+4x)e^{2x}$$
+@s Plug in and cancel $e^{2x}$
+$$A(4+4x)-A(1+2x)-2Ax=3\ \Longrightarrow\ 3A=3\ \Longrightarrow\ A=1$$
+@s General solution
+$$y=C_1e^{2x}+C_2e^{-x}+xe^{2x}$$
+$$y'=2C_1e^{2x}-C_2e^{-x}+(1+2x)e^{2x}$$
+@s Use the conditions
+$$y(0)=C_1+C_2=0$$
+$$y'(0)=2C_1-C_2+1=-2$$
+$C_2=-C_1$, so $3C_1=-3$: $C_1=-1$, $C_2=1$.
+@a $y=-e^{2x}+e^{-x}+xe^{2x}=(x-1)e^{2x}+e^{-x}$
+
+@q Sheet 5 · Q5(c)
+Solve $y''-4y'+3y=4e^{3x}$, $y(0)=-1$, $y'(0)=3$.
+@s Homogeneous part
+$(r-1)(r-3)=0$.
+$$y_h=C_1e^{x}+C_2e^{3x}$$
+@s Guess (clash!)
+$e^{3x}$ is already in $y_h$: $y_p=Axe^{3x}$.
+@s Derivatives
+$$y_p'=A(1+3x)e^{3x}\qquad y_p''=A(6+9x)e^{3x}$$
+@s Plug in and cancel $e^{3x}$
+$$A(6+9x)-4A(1+3x)+3Ax=4\ \Longrightarrow\ 2A=4\ \Longrightarrow\ A=2$$
+@s General solution
+$$y=C_1e^{x}+C_2e^{3x}+2xe^{3x}$$
+$$y'=C_1e^{x}+3C_2e^{3x}+(2+6x)e^{3x}$$
+@s Use the conditions
+$$y(0)=C_1+C_2=-1$$
+$$y'(0)=C_1+3C_2+2=3$$
+Subtract: $2C_2+2=4\Rightarrow C_2=1$, $C_1=-2$.
+@a $y=-2e^{x}+e^{3x}+2xe^{3x}=(2x+1)e^{3x}-2e^{x}$
+
+
+@@topic variation | Variation of parameters | Sheet 5 · Q6
+@method
+For $y''+py'+qy=g(x)$ (make the coefficient of $y''$ equal to **1** first).
+
+1. Get $y_1,y_2$ from the homogeneous equation.
+2. Wronskian: $W=y_1y_2'-y_1'y_2$.
+3. Compute
+$$u_1=-\int\frac{y_2\,g}{W}\,dx\qquad u_2=\int\frac{y_1\,g}{W}\,dx$$
+4. $y_p=u_1y_1+u_2y_2$.
+5. $y=C_1y_1+C_2y_2+y_p$.
+
+Integration by parts you will need: $\int xe^{kx}dx=\left(\dfrac xk-\dfrac1{k^2}\right)e^{kx}$.
+
+@q Sheet 5 · Q6(a)
+Use variation of parameters to solve $y''-9y'+20y=3$.
+@s Homogeneous part
+$r^2-9r+20=(r-4)(r-5)=0$.
+$$y_1=e^{4x}\qquad y_2=e^{5x}$$
+@s Wronskian
+$$W=e^{4x}\cdot5e^{5x}-4e^{4x}\cdot e^{5x}=e^{9x}$$
+@s u₁
+$g=3$.
+$$u_1=-\int\frac{e^{5x}\cdot3}{e^{9x}}dx=-\int3e^{-4x}dx=\tfrac34e^{-4x}$$
+@s u₂
+$$u_2=\int\frac{e^{4x}\cdot3}{e^{9x}}dx=\int3e^{-5x}dx=-\tfrac35e^{-5x}$$
+@s Particular solution
+$$y_p=\tfrac34e^{-4x}e^{4x}-\tfrac35e^{-5x}e^{5x}=\tfrac34-\tfrac35=\tfrac{3}{20}$$
+@a $y=C_1e^{4x}+C_2e^{5x}+\dfrac{3}{20}$
+
+@q Sheet 5 · Q6(b)
+Use variation of parameters to solve $y''-5y'+6y=5x+1$.
+@s Homogeneous part
+$(r-2)(r-3)=0$.
+$$y_1=e^{2x}\qquad y_2=e^{3x}$$
+@s Wronskian
+$$W=e^{2x}\cdot3e^{3x}-2e^{2x}\cdot e^{3x}=e^{5x}$$
+@s u₁
+$$u_1=-\int(5x+1)e^{-2x}dx$$
+By parts: $\int(5x+1)e^{-2x}dx=-\tfrac12(5x+1)e^{-2x}-\tfrac54e^{-2x}$. So
+$$u_1=\left[\tfrac12(5x+1)+\tfrac54\right]e^{-2x}$$
+@s u₂
+$$u_2=\int(5x+1)e^{-3x}dx=-\left[\tfrac13(5x+1)+\tfrac59\right]e^{-3x}$$
+@s Particular solution
+The exponentials cancel:
+$$y_p=\tfrac12(5x+1)+\tfrac54-\tfrac13(5x+1)-\tfrac59=\tfrac16(5x+1)+\tfrac{25}{36}$$
+$$y_p=\frac{5x}{6}+\frac{31}{36}$$
+@a $y=C_1e^{2x}+C_2e^{3x}+\dfrac{5x}{6}+\dfrac{31}{36}$
+
+@q Sheet 5 · Q6(c)
+Use variation of parameters to solve $2y''+y'-y=4x$.
+@s Make the leading coefficient 1
+Divide by 2:
+$$y''+\tfrac12y'-\tfrac12y=2x\qquad\text{so }g=2x$$
+@s Homogeneous part
+$2r^2+r-1=(2r-1)(r+1)=0\Rightarrow r=\tfrac12,\ -1$.
+$$y_1=e^{x/2}\qquad y_2=e^{-x}$$
+@s Wronskian
+$$W=e^{x/2}(-e^{-x})-\tfrac12e^{x/2}e^{-x}=-\tfrac32e^{-x/2}$$
+@s u₁
+$$u_1=-\int\frac{e^{-x}\cdot2x}{-\frac32e^{-x/2}}dx=\tfrac43\int xe^{-x/2}dx=\tfrac43(-2x-4)e^{-x/2}=-\tfrac83(x+2)e^{-x/2}$$
+@s u₂
+$$u_2=\int\frac{e^{x/2}\cdot2x}{-\frac32e^{-x/2}}dx=-\tfrac43\int xe^{x}dx=-\tfrac43(x-1)e^{x}$$
+@s Particular solution
+$$y_p=-\tfrac83(x+2)-\tfrac43(x-1)=-4x-4$$
+@a $y=C_1e^{x/2}+C_2e^{-x}-4x-4$
+
+
+@@topic higher | Higher order equations | Sheet 5 · Q7, Q8
+@method
+Same ideas as second order, just more roots.
+
+**Characteristic equation:** $y^{(n)}\to r^n$. For a cubic, test $r=\pm1,\pm2,\dots$ (factors of the constant), then divide out.
+
+**Building $y_h$:**
+
+Real root $r$ → $e^{rx}$. Repeated $k$ times → $e^{rx},\ xe^{rx},\dots,x^{k-1}e^{rx}$.
+
+Complex pair $\pm\beta i$ → $\cos\beta x,\ \sin\beta x$. Repeated → also $x\cos\beta x,\ x\sin\beta x$.
+
+**$y_p$:** undetermined coefficients. **Clash rule:** if the guess matches a root of multiplicity $m$, multiply the guess by $x^m$.
+
+**Initial conditions:** $n$ conditions → $n$ equations for the $n$ constants.
+
+@q Sheet 5 · Q7(a)
+Solve $y^{(4)}-16y=30\sin t$ with $y(0)=0$, $y'(0)=2$, $y''(\pi)=0$, $y^{(3)}(\pi)=-18$.
+@s Characteristic equation
+$$r^4-16=(r^2-4)(r^2+4)=0\ \Longrightarrow\ r=\pm2,\ \pm2i$$
+$$y_h=C_1e^{2t}+C_2e^{-2t}+C_3\cos2t+C_4\sin2t$$
+@s Particular solution
+Only even derivatives appear, so $y_p=A\sin t$ is enough. $y_p^{(4)}=A\sin t$.
+$$A\sin t-16A\sin t=30\sin t\ \Longrightarrow\ A=-2$$
+@s General solution
+$$y=C_1e^{2t}+C_2e^{-2t}+C_3\cos2t+C_4\sin2t-2\sin t$$
+@s The four conditions
+$y(0)=0$: $\ C_1+C_2+C_3=0$.
+
+$y'(0)=2$: $\ 2C_1-2C_2+2C_4-2=2$.
+
+$y''(\pi)=0$: $\ 4C_1e^{2\pi}+4C_2e^{-2\pi}-4C_3=0$.
+
+$y'''(\pi)=-18$: $\ 8C_1e^{2\pi}-8C_2e^{-2\pi}-8C_4-2=-18$.
+@s Solve
+From the 1st: $C_3=-C_1-C_2$. From the 2nd: $C_4=2-C_1+C_2$.
+
+Into the 3rd: $C_1(e^{2\pi}+1)+C_2(e^{-2\pi}+1)=0$.
+
+Into the 4th: $C_1(e^{2\pi}+1)-C_2(e^{-2\pi}+1)=0$.
+
+Add and subtract: $C_1=0$ and $C_2=0$. Then $C_3=0$, $C_4=2$.
+@a $y=2\sin2t-2\sin t$
+
+@q Sheet 5 · Q7(b)
+Find the general solution of $y^{(4)}-16y=30\sin2t$.
+@s Homogeneous part (same as Q7a)
+$$y_h=C_1e^{2t}+C_2e^{-2t}+C_3\cos2t+C_4\sin2t$$
+@s Guess (clash!)
+$\sin2t$ is already in $y_h$ (root $2i$, once). Multiply by $t$:
+$$y_p=t\,(A\cos2t+B\sin2t)$$
+@s Shortcut for the derivative
+Write $y_p=t\,g$ with $g=A\cos2t+B\sin2t$. Then $g^{(4)}=16g$ and
+$$y_p^{(4)}=t\,g^{(4)}+4g'''=16tg+4g'''$$
+So $y_p^{(4)}-16y_p=4g'''$.
+@s Compute 4g'''
+$$g'''=8A\sin2t-8B\cos2t$$
+$$4g'''=32A\sin2t-32B\cos2t=30\sin2t$$
+@s Match coefficients
+$A=\tfrac{30}{32}=\tfrac{15}{16}$, $B=0$.
+@a $y=C_1e^{2t}+C_2e^{-2t}+C_3\cos2t+C_4\sin2t+\dfrac{15}{16}\,t\cos2t$
+
+@q Sheet 5 · Q7(c)
+Solve $y^{(3)}+y''+y'+y=t$ with $y(0)=y'(0)=y''(0)=0$.
+@s Characteristic equation
+$$r^3+r^2+r+1=r^2(r+1)+(r+1)=(r+1)(r^2+1)=0\ \Longrightarrow\ r=-1,\ \pm i$$
+$$y_h=C_1e^{-t}+C_2\cos t+C_3\sin t$$
+@s Particular solution
+$y_p=at+b$: $\ 0+0+a+at+b=t\Rightarrow a=1,\ b=-1$.
+@s General solution
+$$y=C_1e^{-t}+C_2\cos t+C_3\sin t+t-1$$
+@s The three conditions
+$y(0)=0$: $\ C_1+C_2-1=0$.
+
+$y'(0)=0$: $\ -C_1+C_3+1=0$.
+
+$y''(0)=0$: $\ C_1-C_2=0$.
+@s Solve
+$C_1=C_2=\tfrac12$, then $C_3=C_1-1=-\tfrac12$.
+@a $y=\tfrac12e^{-t}+\tfrac12\cos t-\tfrac12\sin t+t-1$
+
+@q Sheet 5 · Q8(a)
+Solve $y'''+4y''-y'-4y=0$.
+@s Characteristic equation
+$$r^3+4r^2-r-4=r^2(r+4)-(r+4)=(r+4)(r^2-1)=0$$
+$$r=-4,\ 1,\ -1$$
+@a $y=C_1e^{-4x}+C_2e^{x}+C_3e^{-x}$
+
+@q Sheet 5 · Q8(b)
+Solve $y'''+4y''-3y'-18y=0$.
+@s Find one root
+Try $r=2$: $8+16-6-18=0$. So $(r-2)$ is a factor.
+@s Divide it out
+$$r^3+4r^2-3r-18=(r-2)(r^2+6r+9)=(r-2)(r+3)^2$$
+@s Roots
+$r=2$, and $r=-3$ twice.
+@a $y=C_1e^{2x}+(C_2+C_3x)e^{-3x}$
+
+@q Sheet 5 · Q8(c)
+Solve $y'''+6y''+12y'+8y=0$.
+@s Characteristic equation
+$$r^3+6r^2+12r+8=(r+2)^3=0$$
+$r=-2$ three times.
+@a $y=(C_1+C_2x+C_3x^2)e^{-2x}$
+
+@q Sheet 5 · Q8(d)
+Solve $y'''+4y''-7y'-10y=0$, $y(0)=-3$, $y'(0)=12$, $y''(0)=-36$.
+@s Characteristic equation
+Try $r=-1$: $-1+4+7-10=0$.
+$$r^3+4r^2-7r-10=(r+1)(r^2+3r-10)=(r+1)(r-2)(r+5)$$
+$$y=C_1e^{2x}+C_2e^{-x}+C_3e^{-5x}$$
+@s The three conditions
+$y(0)$: $\ C_1+C_2+C_3=-3$.
+
+$y'(0)$: $\ 2C_1-C_2-5C_3=12$.
+
+$y''(0)$: $\ 4C_1+C_2+25C_3=-36$.
+@s Solve
+Add 1st and 2nd: $3C_1-4C_3=9$.
+
+Add 2nd and 3rd: $6C_1+20C_3=-24$.
+
+Double the first of these and subtract: $28C_3=-42\Rightarrow C_3=-\tfrac32$. Then $C_1=1$, $C_2=-\tfrac52$.
+@a $y=e^{2x}-\tfrac52e^{-x}-\tfrac32e^{-5x}$
+
+@q Sheet 5 · Q8(e)
+Solve $y'''+4y''-7y'-10y=100x^2-64e^{3x}$, $y(0)=-20$, $y'(0)=-\tfrac{29}{5}$, $y''(0)=\tfrac{19}{5}$.
+@s Homogeneous part (from Q8d)
+$$y_h=C_1e^{2x}+C_2e^{-x}+C_3e^{-5x}$$
+@s Guess
+$y_p=ax^2+bx+c+De^{3x}$. No clash.
+@s Polynomial piece
+$y'''=0$, $y''=2a$, $y'=2ax+b$:
+$$8a-7(2ax+b)-10(ax^2+bx+c)=100x^2$$
+$x^2$: $-10a=100\Rightarrow a=-10$.
+
+$x$: $-14a-10b=0\Rightarrow b=14$.
+
+Constant: $8a-7b-10c=0\Rightarrow c=-\tfrac{89}{5}$.
+@s Exponential piece
+$$(27+36-21-10)De^{3x}=-64e^{3x}\ \Longrightarrow\ 32D=-64\ \Longrightarrow\ D=-2$$
+@s General solution
+$$y=C_1e^{2x}+C_2e^{-x}+C_3e^{-5x}-10x^2+14x-\tfrac{89}{5}-2e^{3x}$$
+@s The three conditions
+$y(0)=-20$: $\ C_1+C_2+C_3=-\tfrac15$.
+
+$y'(0)=-\tfrac{29}{5}$: $\ 2C_1-C_2-5C_3+14-6=-\tfrac{29}{5}\Rightarrow2C_1-C_2-5C_3=-\tfrac{69}{5}$.
+
+$y''(0)=\tfrac{19}{5}$: $\ 4C_1+C_2+25C_3-20-18=\tfrac{19}{5}\Rightarrow4C_1+C_2+25C_3=\tfrac{209}{5}$.
+@s Solve
+Add 1st and 2nd: $3C_1-4C_3=-14$.
+
+Add 2nd and 3rd: $6C_1+20C_3=28$.
+
+So $28C_3=56\Rightarrow C_3=2$, $C_1=-2$, $C_2=-\tfrac15$.
+@a $y=-2e^{2x}-\tfrac15e^{-x}+2e^{-5x}-10x^2+14x-\tfrac{89}{5}-2e^{3x}$
+
+@q Sheet 5 · Q8(f)
+Solve $y'''-5y''-y'+5y=10x-63e^{-2x}+29\sin(2x)$.
+@s Characteristic equation
+$$r^3-5r^2-r+5=r^2(r-5)-(r-5)=(r-5)(r^2-1)=0$$
+$$y_h=C_1e^{5x}+C_2e^{x}+C_3e^{-x}$$
+@s Guess
+$y_p=ax+b+De^{-2x}+E\sin2x+F\cos2x$. No clash.
+@s Polynomial piece
+$$-a+5(ax+b)=10x\ \Longrightarrow\ a=2,\ b=\tfrac25$$
+@s Exponential piece
+$$(-8-20+2+5)D=-63\ \Longrightarrow\ -21D=-63\ \Longrightarrow\ D=3$$
+@s Trig piece
+Put $E\sin2x+F\cos2x$ into the left side and collect:
+
+$\sin2x$: $\ 25E+10F=29$.
+
+$\cos2x$: $\ -10E+25F=0\Rightarrow E=\tfrac52F$.
+
+So $\tfrac{125}{2}F+10F=29\Rightarrow F=\tfrac25$, $E=1$.
+@a $y=C_1e^{5x}+C_2e^{x}+C_3e^{-x}+2x+\tfrac25+3e^{-2x}+\sin2x+\tfrac25\cos2x$
+
+@q Sheet 5 · Q8(g)
+Solve $y^{(4)}+8y''+16y=0$, $y(0)=-1$, $y'(0)=5$, $y''(0)=-8$, $y'''(0)=-28$.
+@s Characteristic equation
+$$r^4+8r^2+16=(r^2+4)^2=0\ \Longrightarrow\ r=\pm2i\ \text{(each twice)}$$
+$$y=(C_1+C_2x)\cos2x+(C_3+C_4x)\sin2x$$
+@s Derivatives at 0
+Differentiating and setting $x=0$:
+$$y(0)=C_1\qquad y'(0)=C_2+2C_3$$
+$$y''(0)=-4C_1+4C_4\qquad y'''(0)=-12C_2-8C_3$$
+@s The four conditions
+$C_1=-1$.
+
+$-4C_1+4C_4=-8\Rightarrow C_4=-3$.
+
+$C_2+2C_3=5$ and $-12C_2-8C_3=-28$.
+@s Solve the last pair
+$4\times$ first: $4C_2+8C_3=20$. Add to the second: $-8C_2=-8\Rightarrow C_2=1$, $C_3=2$.
+@a $y=(x-1)\cos2x+(2-3x)\sin2x$
+
+@q Sheet 5 · Q8(h)
+Solve $y^{(4)}+8y''+16y=64x\sin(2x)$.
+@s Homogeneous part (from Q8g)
+$$y_h=(C_1+C_2x)\cos2x+(C_3+C_4x)\sin2x$$
+@s Guess (double clash!)
+Normal guess: $(ax+b)\cos2x+(cx+d)\sin2x$. But $\pm2i$ is a **double** root, so multiply by $x^2$:
+$$y_p=x^2\left[(ax+b)\cos2x+(cx+d)\sin2x\right]$$
+@s Shortcut for the algebra
+$64x\sin2x$ is the imaginary part of $64xe^{2ix}$. Try $Y=u(x)e^{2ix}$. Putting this into $(D^2+4)^2$ shifts $D\to D+2i$:
+$$(D^2+4)^2\left[ue^{2ix}\right]=e^{2ix}\left(D^2+4iD\right)^2u=e^{2ix}\left(u''''+8iu'''-16u''\right)$$
+@s Solve for u
+Take $u=\alpha x^3+\beta x^2$: $u''=6\alpha x+2\beta$, $u'''=6\alpha$, $u''''=0$.
+$$48i\alpha-96\alpha x-32\beta=64x$$
+$x$: $\alpha=-\tfrac23$. Constant: $\beta=\tfrac{48i\alpha}{32}=-i$.
+@s Take the imaginary part
+$$Y=\left(-\tfrac23x^3-ix^2\right)(\cos2x+i\sin2x)$$
+$$y_p=\text{Im}\,Y=-\tfrac23x^3\sin2x-x^2\cos2x$$
+@a $y=(C_1+C_2x)\cos2x+(C_3+C_4x)\sin2x-x^2\cos2x-\tfrac23x^3\sin2x$
+
+@q Sheet 5 · Q8(i)
+Solve $y^{(4)}+2y'''-2y'-y=24xe^{-x}+24e^{x}-8\sin x$, $y(0)=-2$, $y'(0)=0$, $y''(0)=6$, $y'''(0)=10$.
+@s Characteristic equation
+$r=1$ works: $1+2-2-1=0$. $r=-1$ works: $1-2+2-1=0$.
+$$r^4+2r^3-2r-1=(r-1)(r+1)^3$$
+$$y_h=(C_1+C_2x+C_3x^2)e^{-x}+C_4e^{x}$$
+@s Guess (clashes!)
+$xe^{-x}$: root $-1$ is triple → $x^3(ax+b)e^{-x}$.
+
+$e^{x}$: root $1$ is single → $cxe^{x}$.
+
+$\sin x$: no clash → $E\sin x+F\cos x$.
+@s The $e^{-x}$ piece
+Put $y=u\,e^{-x}$; this shifts $D\to D-1$, and $(r-1)(r+1)^3$ becomes $(D-2)D^3$:
+$$u''''-2u'''=24x$$
+With $u=ax^4+bx^3$: $u'''=24ax+6b$, $u''''=24a$.
+$$24a-48ax-12b=24x\ \Longrightarrow\ a=-\tfrac12,\ b=-1$$
+@s The $e^{x}$ piece
+For a single root the coefficient is $\dfrac{24}{p'(1)}$ where $p'(r)=4r^3+6r^2-2$, so $p'(1)=8$ and $c=3$.
+@s The sin piece
+With $y=E\sin x+F\cos x$: $y^{(4)}-y=0$, and $2y'''-2y'=-4E\cos x+4F\sin x$.
+$$4F\sin x-4E\cos x=-8\sin x\ \Longrightarrow\ F=-2,\ E=0$$
+@s General solution
+$$y=(C_1+C_2x+C_3x^2)e^{-x}+C_4e^{x}-\left(\tfrac12x^4+x^3\right)e^{-x}+3xe^{x}-2\cos x$$
+@s The four conditions
+At $x=0$, $y_p$ and its derivatives are $-2,\ 3,\ 8,\ 3$. So:
+
+$C_1+C_4-2=-2$
+
+$-C_1+C_2+C_4+3=0$
+
+$C_1-2C_2+2C_3+C_4+8=6$
+
+$-C_1+3C_2-6C_3+C_4+3=10$
+@s Solve
+1st: $C_4=-C_1$. 2nd: $C_2=2C_1-3$. 3rd: $2C_3=2C_2-2\Rightarrow C_3=C_2-1$.
+
+4th: $-2C_1+3C_2-6(C_2-1)=7\Rightarrow-2C_1-3C_2=1\Rightarrow-8C_1+9=1$.
+
+$C_1=1,\ C_2=-1,\ C_3=-2,\ C_4=-1$.
+@a $y=\left(1-x-2x^2-x^3-\tfrac12x^4\right)e^{-x}+(3x-1)e^{x}-2\cos x$
+
+@q Sheet 5 · Q8(j)
+Solve $y^{(4)}+18y''+81y=64x\cos x+108x\cos(3x)$.
+@s Characteristic equation
+$$r^4+18r^2+81=(r^2+9)^2=0\ \Longrightarrow\ r=\pm3i\ \text{(each twice)}$$
+$$y_h=(C_1+C_2x)\cos3x+(C_3+C_4x)\sin3x$$
+@s Guess
+$64x\cos x$: no clash → $(ax+b)\cos x+(cx+d)\sin x$.
+
+$108x\cos3x$: double clash → $x^2\left[(ex+f)\cos3x+(gx+h)\sin3x\right]$.
+@s First piece, using real parts
+$64x\cos x=\text{Re}\,(64xe^{ix})$. Try $Y=ue^{ix}$; shifting $D\to D+i$ turns $(D^2+9)^2$ into $(D^2+2iD+8)^2$. For $u=\alpha x+\beta$ only two terms survive:
+$$64u+32iu'=64x\ \Longrightarrow\ \alpha=1,\ \beta=-\tfrac i2$$
+$$y_{p1}=\text{Re}\left[\left(x-\tfrac i2\right)(\cos x+i\sin x)\right]=x\cos x+\tfrac12\sin x$$
+@s Second piece, same idea
+$Y=ue^{3ix}$; shifting $D\to D+3i$ turns $(D^2+9)^2$ into $(D^2+6iD)^2$:
+$$u''''+12iu'''-36u''=108x$$
+With $u=\alpha x^3+\beta x^2$: $72i\alpha-216\alpha x-72\beta=108x\Rightarrow\alpha=-\tfrac12,\ \beta=-\tfrac i2$.
+$$y_{p2}=\text{Re}\left[\left(-\tfrac12x^3-\tfrac i2x^2\right)(\cos3x+i\sin3x)\right]=-\tfrac12x^3\cos3x+\tfrac12x^2\sin3x$$
+@a $y=(C_1+C_2x)\cos3x+(C_3+C_4x)\sin3x+x\cos x+\tfrac12\sin x-\tfrac12x^3\cos3x+\tfrac12x^2\sin3x$

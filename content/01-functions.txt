@@ -1,0 +1,433 @@
+@@part Functions, limits and continuity
+
+@@topic domains | Domains of functions | Sheet 1 · Q1
+@method
+**Only two things can break a function here:**
+
+1. Dividing by zero → the bottom must be $\neq 0$.
+2. Square root of a negative → the inside must be $\ge 0$. ($\ln$ needs the inside $> 0$.)
+
+Write the condition, then describe the picture: a point removed, a line removed, a half-plane, a disk.
+
+@q Sheet 1 · Q1(a)
+Describe the domain of $f(x,y)=\dfrac{1}{x^2+2y^2}$.
+@s Find what can go wrong
+There is a fraction, so the bottom cannot be zero:
+$$x^2+2y^2\neq 0$$
+@s Solve the condition
+$x^2\ge 0$ and $2y^2\ge 0$, so the sum is zero only when both are zero, i.e. at $(0,0)$.
+@s Describe it
+Everything except the origin: the **punctured plane**.
+{{fig:punctured}}
+@a $\text{dom}(f)=\mathbb{R}^2\setminus\{(0,0)\}$
+
+@q Sheet 1 · Q1(b)
+Describe the domain of $f(x,y)=\dfrac{1}{(x+1)(y+1)}$.
+@s Find what can go wrong
+The bottom cannot be zero:
+$$(x+1)(y+1)\neq 0$$
+@s Solve the condition
+A product is zero when either factor is zero. So we need **both** $x\neq -1$ **and** $y\neq -1$.
+@s Describe it
+The plane with the vertical line $x=-1$ and the horizontal line $y=-1$ removed.
+{{fig:twolines}}
+@a $\text{dom}(f)=\{(x,y)\in\mathbb{R}^2 \mid x\neq -1 \text{ and } y\neq -1\}$
+
+@q Sheet 1 · Q1(c)
+Describe the domain of $f(x,y)=\sin\dfrac{x}{y}$.
+@s Find what can go wrong
+$\sin$ accepts any number. The only problem is the fraction $x/y$, so $y\neq 0$.
+@s Describe it
+$y=0$ is the $x$-axis. Remove it.
+{{fig:noxaxis}}
+@a $\text{dom}(f)=\{(x,y)\mid y\neq 0\}=\mathbb{R}^2\setminus\text{the }x\text{-axis}$
+
+@q Sheet 1 · Q1(d)
+Describe the domain of $f(x,y)=y-x$.
+@s Find what can go wrong
+No fraction, no root, no log. Nothing can go wrong.
+@a $\text{dom}(f)=\mathbb{R}^2$
+
+@q Sheet 1 · Q1(e)
+Describe the domain of $f(x,y)=\sqrt{y-x}$.
+@s Find what can go wrong
+The inside of the square root must not be negative:
+$$y-x\ge 0 \quad\Longleftrightarrow\quad y\ge x$$
+@s Describe it
+$y=x$ is a line. $y\ge x$ is the half-plane on and above that line (the line is included).
+{{fig:halfplane}}
+@a $\text{dom}(f)=\{(x,y)\mid y\ge x\}$
+
+@q Sheet 1 · Q1(f)
+Describe the domain of $f(x,y)=4x^2+9y^2$.
+@s Find what can go wrong
+It is a polynomial. Nothing can go wrong.
+@a $\text{dom}(f)=\mathbb{R}^2$
+
+@q Sheet 1 · Q1(g)
+Describe the domain of $f(x,y)=x^2-y^2$.
+@s Find what can go wrong
+It is a polynomial. Nothing can go wrong.
+@a $\text{dom}(f)=\mathbb{R}^2$
+
+@q Sheet 1 · Q1(h)
+Describe the domain of $f(x,y)=xy$.
+@s Find what can go wrong
+It is a polynomial. Nothing can go wrong.
+@a $\text{dom}(f)=\mathbb{R}^2$
+
+@q Sheet 1 · Q1(i)
+Describe the domain of $f(x,y)=\dfrac{y}{x^2}$.
+@s Find what can go wrong
+The bottom cannot be zero: $x^2\neq 0$, so $x\neq 0$.
+@s Describe it
+$x=0$ is the $y$-axis. Remove it.
+{{fig:noyaxis}}
+@a $\text{dom}(f)=\{(x,y)\mid x\neq 0\}=\mathbb{R}^2\setminus\text{the }y\text{-axis}$
+
+@q Sheet 1 · Q1(j)
+Describe the domain of $f(x,y)=\dfrac{1}{\sqrt{16-x^2-y^2}}$.
+@s Find what can go wrong
+Two conditions at once:
+
+Square root: $16-x^2-y^2\ge 0$.
+
+Bottom of a fraction: $16-x^2-y^2\neq 0$.
+@s Combine them
+Together: strictly greater than zero.
+$$16-x^2-y^2>0 \quad\Longleftrightarrow\quad x^2+y^2<16$$
+@s Describe it
+Inside the circle of radius 4 centred at the origin, **not** including the circle itself: an **open disk**.
+{{fig:opendisk}}
+@a $\text{dom}(f)=\{(x,y)\mid x^2+y^2<16\}$
+
+@q Sheet 1 · Q1(k)
+Describe the domain of $f(x,y)=\sqrt{9-x^2-y^2}$.
+@s Find what can go wrong
+Only a square root this time (no fraction):
+$$9-x^2-y^2\ge 0\quad\Longleftrightarrow\quad x^2+y^2\le 9$$
+@s Describe it
+Inside the circle of radius 3, **including** the circle: a **closed disk**.
+{{fig:closeddisk}}
+@a $\text{dom}(f)=\{(x,y)\mid x^2+y^2\le 9\}$
+
+@q Sheet 1 · Q1(l)
+Describe the domain of $f(x,y)=\ln(x^2+y^2)$.
+@s Find what can go wrong
+$\ln$ only takes positive numbers:
+$$x^2+y^2>0$$
+@s Solve the condition
+$x^2+y^2$ is never negative, and is zero only at $(0,0)$. So we just remove the origin.
+{{fig:punctured}}
+@a $\text{dom}(f)=\mathbb{R}^2\setminus\{(0,0)\}$ (punctured plane)
+
+@q Sheet 1 · Q1(m)
+Describe the domain of $f(x,y)=e^{-(x^2+y^2)}$.
+@s Find what can go wrong
+Rewrite it as a fraction:
+$$e^{-(x^2+y^2)}=\frac{1}{e^{x^2+y^2}}$$
+The bottom would need to be zero for a problem, but $e^{\text{anything}}$ is never zero.
+@a $\text{dom}(f)=\mathbb{R}^2$
+
+
+@@topic levelcurves | Level curves through a point | Sheet 1 · Q2
+@method
+A level curve is $f(x,y)=z_0$ for a constant $z_0$.
+
+**Recipe:**
+
+1. Plug the point $P$ into $f$ to get the number $z_0=f(P)$.
+2. Write $f(x,y)=z_0$.
+3. Tidy up.
+
+@q Sheet 1 · Q2(a)
+Find the level curve of $f(x,y)=16-x^2-y^2$ through $P=(2\sqrt2,\sqrt2)$.
+@s Plug in the point
+$$z_0=f(2\sqrt2,\sqrt2)=16-(2\sqrt2)^2-(\sqrt2)^2=16-8-2=6$$
+@s Set f equal to that number
+$$16-x^2-y^2=6$$
+@s Tidy up
+$$x^2+y^2=10$$
+A circle, centre $(0,0)$, radius $\sqrt{10}$.
+@a $x^2+y^2=10$
+
+@q Sheet 1 · Q2(b)
+Find the level curve of $f(x,y)=\sqrt{x^2-1}$ through $P=(1,0)$.
+@s Plug in the point
+$$z_0=f(1,0)=\sqrt{1-1}=0$$
+@s Set f equal to that number
+$$\sqrt{x^2-1}=0\ \Longrightarrow\ x^2=1\ \Longrightarrow\ x=1\ \text{or}\ x=-1$$
+@s Describe it
+Two vertical lines. A level curve can be made of separate pieces.
+@a $x^2-1=0$, i.e. the lines $x=1$ and $x=-1$
+
+@q Sheet 1 · Q2(c)
+Find the level curve of $f(x,y)=\displaystyle\int_x^y\frac{dt}{1+t^2}$ through $P=(-\sqrt2,\sqrt2)$.
+@s Do the integral first
+$\displaystyle\int\frac{dt}{1+t^2}=\tan^{-1}t$, so
+$$f(x,y)=\tan^{-1}(y)-\tan^{-1}(x)$$
+@s Plug in the point
+$\tan^{-1}$ is odd, so $\tan^{-1}(-\sqrt2)=-\tan^{-1}(\sqrt2)$.
+$$z_0=\tan^{-1}(\sqrt2)-\tan^{-1}(-\sqrt2)=2\tan^{-1}(\sqrt2)$$
+@s Set f equal to that number
+$$\tan^{-1}(y)-\tan^{-1}(x)=2\tan^{-1}(\sqrt2)$$
+@a $\tan^{-1}(y)-\tan^{-1}(x)=2\tan^{-1}(\sqrt2)$
+
+@q Sheet 1 · Q2(d)
+Find the level curve of $f(x,y)=\displaystyle\sum_{n=0}^{\infty}\left(\frac{x}{y}\right)^n$ through $P=(1,2)$.
+@s Sum the series first
+Geometric series: $\displaystyle\sum_{n=0}^\infty r^n=\frac{1}{1-r}$ when $|r|<1$. Here $r=x/y$:
+$$f(x,y)=\frac{1}{1-\frac{x}{y}}=\frac{y}{y-x}$$
+@s Plug in the point
+At $(1,2)$: $r=\tfrac12$, which is fine ($|r|<1$).
+$$z_0=\frac{2}{2-1}=2$$
+@s Set f equal to that number
+$$\frac{y}{y-x}=2\ \Longrightarrow\ y=2y-2x\ \Longrightarrow\ y=2x$$
+@a $y=2x$
+
+
+@@topic nolimit | Showing a limit does not exist | Sheet 1 · Q3
+@method
+**Two-path test:** walk into the point along two different paths. If you get two different numbers, the limit does not exist.
+
+Paths to try, in order:
+
+1. $x$-axis: put $y=0$.
+2. $y$-axis: put $x=0$.
+3. A line $y=mx$ (try $y=x$, $y=2x$, $y=-x$).
+
+@q Sheet 1 · Q3(a)
+Show $f(x,y)=-\dfrac{x}{\sqrt{x^2+y^2}}$ has no limit as $(x,y)\to(0,0)$.
+@s Path 1: along the positive x-axis (y = 0, x > 0)
+$$f(x,0)=-\frac{x}{\sqrt{x^2}}=-\frac{x}{|x|}=-\frac{x}{x}=-1$$
+So $f\to -1$.
+@s Path 2: along the y-axis (x = 0)
+$$f(0,y)=-\frac{0}{\sqrt{y^2}}=0$$
+So $f\to 0$.
+@s Conclusion
+$-1\neq 0$. Two paths, two different answers.
+@a The limit does not exist.
+
+@q Sheet 1 · Q3(b)
+Show $f(x,y)=\dfrac{x^4}{x^4+y^2}$ has no limit as $(x,y)\to(0,0)$.
+@s Path 1: along the x-axis (y = 0)
+$$f(x,0)=\frac{x^4}{x^4}=1$$
+So $f\to 1$.
+@s Path 2: along the y-axis (x = 0)
+$$f(0,y)=\frac{0}{y^2}=0$$
+So $f\to 0$.
+@s Conclusion
+$1\neq 0$.
+@a The limit does not exist.
+
+@q Sheet 1 · Q3(c)
+Show $f(x,y)=\dfrac{x-y}{x+y}$ has no limit as $(x,y)\to(0,0)$.
+@s Path 1: along the line y = x
+$$f(x,x)=\frac{x-x}{x+x}=\frac{0}{2x}=0$$
+So $f\to 0$.
+@s Path 2: along the x-axis (y = 0)
+$$f(x,0)=\frac{x}{x}=1$$
+So $f\to 1$.
+@s Conclusion
+$0\neq 1$.
+@a The limit does not exist.
+
+@q Sheet 1 · Q3(d)
+Show $f(x,y)=\dfrac{xy}{|xy|}$ has no limit as $(x,y)\to(0,0)$.
+@s Why not the axes?
+On the axes $xy=0$, so $f$ is not even defined there. Use lines $y=mx$ instead.
+@s Path 1: along y = 2x
+$$f(x,2x)=\frac{2x^2}{|2x^2|}=\frac{2x^2}{2x^2}=1$$
+@s Path 2: along y = −2x
+$$f(x,-2x)=\frac{-2x^2}{|-2x^2|}=\frac{-2x^2}{2x^2}=-1$$
+@s Conclusion
+$1\neq -1$.
+@a The limit does not exist.
+
+
+@@topic continuity | Where is a function continuous? | Sheet 1 · Q4, Q5
+@method
+**Continuous = continuous everywhere it is defined**, for polynomials, fractions of polynomials, roots, $\sin$, $\ln$, $e^x$ and combinations of them.
+
+So: find the domain, exactly like the Domains topic. That is the answer.
+
+In 3D: $x^2+y^2=1$ is a **cylinder** (z is free), not a circle.
+
+@q Sheet 1 · Q4(a)
+At what points $(x,y)$ is $f(x,y)=\sin(x+y)$ continuous?
+@s Inner function
+$x+y$ is a polynomial: continuous everywhere.
+@s Outer function
+$\sin$ is continuous for every input.
+@s Combine
+A continuous function of a continuous function is continuous.
+@a All of $\mathbb{R}^2$
+
+@q Sheet 1 · Q4(b)
+At what points $(x,y)$ is $f(x,y)=\ln(x^2+y^2)$ continuous?
+@s Inner function
+$x^2+y^2$ is continuous everywhere, and is $\ge 0$.
+@s Outer function
+$\ln$ needs a positive input, so $x^2+y^2>0$, i.e. $(x,y)\neq(0,0)$.
+@a $\{(x,y)\mid (x,y)\neq(0,0)\}$, the plane punctured at the origin
+
+@q Sheet 1 · Q4(c)
+At what points $(x,y)$ is $f(x,y)=\dfrac{x+y}{x-y}$ continuous?
+@s Type of function
+Polynomial over polynomial (a rational function): continuous wherever the bottom is not zero.
+@s Condition
+$$x-y\neq 0\ \Longleftrightarrow\ x\neq y$$
+@a $\{(x,y)\mid x\neq y\}$, the plane without the line $y=x$
+
+@q Sheet 1 · Q4(d)
+At what points $(x,y)$ is $f(x,y)=\dfrac{x^2+y^2}{x^2-3x+2}$ continuous?
+@s Type of function
+Rational function: continuous wherever the bottom is not zero.
+@s Factorise the bottom
+$$x^2-3x+2=(x-1)(x-2)$$
+So we need $x\neq 1$ and $x\neq 2$.
+@a $\{(x,y)\mid x\neq 1 \text{ and } x\neq 2\}$, the plane without the lines $x=1$ and $x=2$
+
+@q Sheet 1 · Q5(a)
+At what points $(x,y,z)$ is $f(x,y,z)=x^2+y^2-2z^2$ continuous?
+@s Type of function
+A polynomial. Continuous everywhere.
+@a All of $\mathbb{R}^3$
+
+@q Sheet 1 · Q5(b)
+At what points $(x,y,z)$ is $f(x,y,z)=\sqrt{x^2+y^2-1}$ continuous?
+@s Condition
+Square root: inside $\ge 0$.
+$$x^2+y^2-1\ge 0\ \Longleftrightarrow\ x^2+y^2\ge 1$$
+@s Describe it
+In 3D, $x^2+y^2=1$ is an infinitely tall cylinder around the $z$-axis. We keep the cylinder and everything outside it.
+@a $\{(x,y,z)\mid x^2+y^2\ge 1\}$, all of space except the inside of the cylinder $x^2+y^2=1$
+
+@q Sheet 1 · Q5(c)
+At what points $(x,y,z)$ is $f(x,y,z)=\dfrac{1}{x^2+z^2-1}$ continuous?
+@s Condition
+Bottom not zero:
+$$x^2+z^2\neq 1$$
+@s Describe it
+$x^2+z^2=1$ is a cylinder around the $y$-axis. Remove just its surface.
+@a $\{(x,y,z)\mid x^2+z^2\neq 1\}$
+
+@q Sheet 1 · Q5(d)
+At what points $(x,y,z)$ is $f(x,y,z)=\dfrac{1}{|y|+|z|}$ continuous?
+@s Condition
+Bottom not zero: $|y|+|z|\neq 0$.
+@s Solve it
+$|y|\ge 0$ and $|z|\ge 0$, so the sum is zero only when $y=0$ **and** $z=0$.
+@s Describe it
+Points with $y=0,z=0$ are the $x$-axis. Remove it.
+@a $\{(x,y,z)\mid (y,z)\neq(0,0)\}$, all of space without the $x$-axis
+
+
+@@topic limits | Computing limits and continuous extensions | Sheet 1 · Q6, Q7
+@method
+**Step 1: just plug the point in.** If you get a real number, that is the limit.
+
+**Step 2: if you get $\frac00$,** factorise top and bottom, cancel the common factor, then plug in.
+
+Useful factorising: $a^2-b^2=(a-b)(a+b)$, grouping, and $x-y=(\sqrt x-\sqrt y)(\sqrt x+\sqrt y)$.
+
+**Continuous extension:** find the limit $L$ at the bad point, then define $g=f$ everywhere else and $g=L$ at that point.
+
+@q Sheet 1 · Q6(a)
+Find $\displaystyle\lim_{(x,y)\to(0,0)}\frac{3x^2-y^2+5}{x^2+y^2+2}$.
+@s Plug in
+Bottom at $(0,0)$ is $2\neq 0$, so plugging in is allowed.
+$$\frac{0-0+5}{0+0+2}=\frac52$$
+@a $\dfrac52$
+
+@q Sheet 1 · Q6(b)
+Find $\displaystyle\lim_{(x,y)\to(3,4)}\sqrt{x^2+y^2-1}$.
+@s Plug in
+Inside the root: $9+16-1=24>0$, so plugging in is allowed.
+$$\sqrt{24}=2\sqrt6$$
+@a $2\sqrt6$
+
+@q Sheet 1 · Q6(c)
+Find $\displaystyle\lim_{(x,y)\to(1,0)}\frac{x\sin y}{x^2+1}$.
+@s Plug in
+Bottom is $1+1=2\neq 0$.
+$$\frac{1\cdot\sin 0}{2}=\frac02=0$$
+@a $0$
+
+@q Sheet 1 · Q6(d)
+Find $\displaystyle\lim_{(x,y)\to(1,1)}\frac{x^2-2xy+y^2}{x-y}$.
+@s Plug in
+$\dfrac{1-2+1}{1-1}=\dfrac00$. Need to factorise.
+@s Factorise and cancel
+$$\frac{x^2-2xy+y^2}{x-y}=\frac{(x-y)^2}{x-y}=x-y$$
+@s Plug in now
+$$1-1=0$$
+@a $0$
+
+@q Sheet 1 · Q6(e)
+Find $\displaystyle\lim_{(x,y)\to(1,1)}\frac{xy-y-2x+2}{x-1}$.
+@s Plug in
+$\dfrac{1-1-2+2}{0}=\dfrac00$. Need to factorise.
+@s Factorise by grouping
+$$xy-y-2x+2=y(x-1)-2(x-1)=(y-2)(x-1)$$
+@s Cancel
+$$\frac{(y-2)(x-1)}{x-1}=y-2$$
+@s Plug in now
+$$1-2=-1$$
+@a $-1$
+
+@q Sheet 1 · Q6(f)
+Find $\displaystyle\lim_{(x,y)\to(2,-4)}\frac{y+4}{x^2y-xy+4x^2-4x}$.
+@s Plug in
+Top: $-4+4=0$. Bottom: $-16+8+16-8=0$. So $\frac00$.
+@s Factorise the bottom by grouping
+$$x^2y-xy+4x^2-4x=xy(x-1)+4x(x-1)=x(x-1)(y+4)$$
+@s Cancel
+$$\frac{y+4}{x(x-1)(y+4)}=\frac{1}{x(x-1)}$$
+@s Plug in now
+$$\frac{1}{2(2-1)}=\frac12$$
+@a $\dfrac12$
+
+@q Sheet 1 · Q6(g)
+Find $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x-y+2\sqrt x-2\sqrt y}{\sqrt x-\sqrt y}$.
+@s Plug in
+$\frac00$. Need to factorise.
+@s Key trick
+Difference of squares with roots:
+$$x-y=(\sqrt x-\sqrt y)(\sqrt x+\sqrt y)$$
+@s Factorise the top
+$$x-y+2\sqrt x-2\sqrt y=(\sqrt x-\sqrt y)(\sqrt x+\sqrt y)+2(\sqrt x-\sqrt y)$$
+$$=(\sqrt x-\sqrt y)(\sqrt x+\sqrt y+2)$$
+@s Cancel
+$$\frac{(\sqrt x-\sqrt y)(\sqrt x+\sqrt y+2)}{\sqrt x-\sqrt y}=\sqrt x+\sqrt y+2$$
+@s Plug in now
+$$0+0+2=2$$
+@a $2$
+
+@q Sheet 1 · Q7(a)
+Find the continuous extension $g$ of $f(x,y)=\dfrac{x^3-2x^2-xy^2+2y^2}{x^3-2x^2+xy^2-2y^2+x-2}$ at $(2,1)$.
+@s Check the point
+At $(2,1)$: top $=8-8-2+2=0$, bottom $=8-8+2-2+2-2=0$. So $f(2,1)$ is not defined.
+@s Factorise the top
+$$x^2(x-2)-y^2(x-2)=(x-2)(x^2-y^2)$$
+@s Factorise the bottom
+$$x^2(x-2)+y^2(x-2)+(x-2)=(x-2)(x^2+y^2+1)$$
+@s Cancel and take the limit
+$$\lim_{(x,y)\to(2,1)}\frac{x^2-y^2}{x^2+y^2+1}=\frac{4-1}{4+1+1}=\frac12$$
+@s Define g
+$g=f$ away from $(2,1)$, and $g(2,1)=\tfrac12$. In one formula: $g(x,y)=\dfrac{x^2-y^2}{x^2+y^2+1}$.
+@a $g(x,y)=f(x,y)$ for $(x,y)\neq(2,1)$, and $g(2,1)=\dfrac12$
+
+@q Sheet 1 · Q7(b)
+Find the continuous extension $g$ of $f(x,y)=\dfrac{x^3-x^2-xy^2+y^2}{x^3-x^2+xy^2-y^2+2x-2}$ at $(1,1)$.
+@s Check the point
+At $(1,1)$ top and bottom are both $0$. So $f(1,1)$ is not defined.
+@s Factorise the top
+$$x^2(x-1)-y^2(x-1)=(x-1)(x^2-y^2)$$
+@s Factorise the bottom
+$$x^2(x-1)+y^2(x-1)+2(x-1)=(x-1)(x^2+y^2+2)$$
+@s Cancel and take the limit
+$$\lim_{(x,y)\to(1,1)}\frac{x^2-y^2}{x^2+y^2+2}=\frac{1-1}{1+1+2}=0$$
+@s Define g
+$g=f$ away from $(1,1)$, and $g(1,1)=0$. In one formula: $g(x,y)=\dfrac{x^2-y^2}{x^2+y^2+2}$.
+@a $g(x,y)=f(x,y)$ for $(x,y)\neq(1,1)$, and $g(1,1)=0$
