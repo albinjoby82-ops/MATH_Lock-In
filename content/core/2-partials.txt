@@ -1,0 +1,287 @@
+@@part 2 · Partial derivatives
+
+@@topic c-partials | Partial derivatives | Sheet 2 · Q1, Q2
+@learn
+**A partial derivative is a normal derivative where you pretend the other letters are just numbers.**
+
+$f_x$ (also written $\dfrac{\partial f}{\partial x}$): differentiate with respect to $x$. Treat $y$ as if it were a constant, like $5$.
+
+$f_y$: differentiate with respect to $y$. Treat $x$ as a constant.
+
+**What it means:** $f_x$ is the slope of the surface if you walk only in the $x$ direction.
+
+**Example:** $f=x^2y^3$.
+$$f_x=2x\cdot y^3\qquad\qquad f_y=x^2\cdot 3y^2$$
+In $f_x$, the $y^3$ just rides along, like the $5$ in $5x^2\to10x$.
+
+You still need the normal rules:
+$$(uv)'=u'v+uv'\qquad\left(\frac uv\right)'=\frac{u'v-uv'}{v^2}$$
+Chain rule: $\big(g(\text{inside})\big)'=g'(\text{inside})\times(\text{inside})'$.
+@check Find $f_y$ for $f=5x^3+2y$.
+@checka $f_y=2$. The $5x^3$ has no $y$ in it, so it counts as a constant and becomes $0$.
+
+@q Sheet 2 · Q1(a)
+Find $f_x$ and $f_y$ for $f(x,y)=x^2-xy+2y^2-3x+y$.
+@s $f_x$: treat $y$ as a number
+Go term by term:
+
+$x^2\to2x$
+
+$-xy\to-y$ (like $-5x\to-5$)
+
+$2y^2\to0$ (no $x$, so it is a constant)
+
+$-3x\to-3$
+
+$y\to0$
+$$f_x=2x-y-3$$
+@s $f_y$: treat $x$ as a number
+$x^2\to0$, $\ -xy\to-x$, $\ 2y^2\to4y$, $\ -3x\to0$, $\ y\to1$
+$$f_y=-x+4y+1$$
+@a $f_x=2x-y-3,\qquad f_y=-x+4y+1$
+
+@q Sheet 2 · Q1(b)
+Find $f_x$ and $f_y$ for $f(x,y)=x\cos 3y+\sin xy$.
+@s $f_x$, first term
+In $x\cos3y$, the $\cos3y$ is just a number (no $x$ in it). Like $7x\to7$.
+
+So it gives $\cos3y$.
+@s $f_x$, second term
+$\sin(xy)$ needs the chain rule. Outside: $\sin\to\cos$. Inside: $xy$, which in $x$ differentiates to $y$.
+$$\cos(xy)\cdot y$$
+@s $f_x$ together
+$$f_x=\cos3y+y\cos xy$$
+@s $f_y$
+First term: $x$ is a number. $\cos3y\to-3\sin3y$ (inside $3y$ gives $3$). So $-3x\sin3y$.
+
+Second term: $\cos(xy)\times$ (inside $xy$ in $y$ gives $x$).
+$$f_y=-3x\sin3y+x\cos xy$$
+@a $f_x=\cos3y+y\cos xy,\qquad f_y=-3x\sin3y+x\cos xy$
+
+@q Sheet 2 · Q1(c)
+Find $f_x$ and $f_y$ for $f(x,y)=\dfrac{x+y}{x-y}$.
+@s It's a fraction: quotient rule
+$$\left(\frac uv\right)'=\frac{u'v-uv'}{v^2}\qquad u=x+y,\quad v=x-y$$
+@s $f_x$
+Differentiate $u$ and $v$ in $x$: $u'=1$, $v'=1$.
+$$f_x=\frac{1\cdot(x-y)-(x+y)\cdot1}{(x-y)^2}=\frac{x-y-x-y}{(x-y)^2}=\frac{-2y}{(x-y)^2}$$
+@s $f_y$
+Differentiate $u$ and $v$ in $y$: $u'=1$, $v'=-1$.
+$$f_y=\frac{1\cdot(x-y)-(x+y)(-1)}{(x-y)^2}=\frac{x-y+x+y}{(x-y)^2}=\frac{2x}{(x-y)^2}$$
+@a $f_x=-\dfrac{2y}{(x-y)^2},\qquad f_y=\dfrac{2x}{(x-y)^2}$
+
+@q Sheet 2 · Q1(e)
+Find $f_x$ and $f_y$ for $f(x,y)=x\ln(x^2+y^3)$.
+@s $f_x$: it's $x$ times something with $x$ in it, so product rule
+$u=x$, $\ v=\ln(x^2+y^3)$.
+
+$u'=1$. For $v'$, use $(\ln \text{inside})'=\dfrac{(\text{inside})'}{\text{inside}}$, so $v'=\dfrac{2x}{x^2+y^3}$.
+@s Put it together
+$$f_x=u'v+uv'=\ln(x^2+y^3)+x\cdot\frac{2x}{x^2+y^3}=\ln(x^2+y^3)+\frac{2x^2}{x^2+y^3}$$
+@s $f_y$: now the $x$ in front is just a number
+Only the $\ln$ changes. Inside $x^2+y^3$ in $y$ gives $3y^2$.
+$$f_y=x\cdot\frac{3y^2}{x^2+y^3}=\frac{3xy^2}{x^2+y^3}$$
+@a $f_x=\ln(x^2+y^3)+\dfrac{2x^2}{x^2+y^3},\qquad f_y=\dfrac{3xy^2}{x^2+y^3}$
+
+@q Sheet 2 · Q2(c)
+Find $f_x$, $f_y$, $f_z$ for $f(x,y,z)=\cos(xy)+\sin(2yz)$.
+@s Three letters, same idea
+For each one, the other two letters are numbers.
+@s $f_x$
+Only $\cos(xy)$ has an $x$. $\cos\to-\sin$, inside $xy$ gives $y$.
+$$f_x=-y\sin(xy)$$
+@s $f_y$
+Both terms have $y$.
+
+$\cos(xy)\to-\sin(xy)\cdot x$
+
+$\sin(2yz)\to\cos(2yz)\cdot2z$
+$$f_y=-x\sin(xy)+2z\cos(2yz)$$
+@s $f_z$
+Only $\sin(2yz)$ has a $z$. Inside $2yz$ gives $2y$.
+$$f_z=2y\cos(2yz)$$
+@a $f_x=-y\sin(xy),\quad f_y=-x\sin(xy)+2z\cos(2yz),\quad f_z=2y\cos(2yz)$
+
+
+@@topic c-chain | Chain rule | Sheet 2 · Q3, Q6
+@learn
+**When to use it:** $w$ depends on $x,y,z$. But $x,y,z$ themselves depend on something else, like $t$.
+
+**Idea:** a change in $t$ reaches $w$ along every branch. Add up all the branches.
+{{fig:tree}}
+Each branch = (how $w$ changes with $x$) × (how $x$ changes with $t$):
+$$\frac{dw}{dt}=w_x\,\frac{dx}{dt}+w_y\,\frac{dy}{dt}+w_z\,\frac{dz}{dt}$$
+
+If $x$ and $y$ depend on **two** things $r$ and $s$, do it once for each:
+$$w_r=w_x\,x_r+w_y\,y_r\qquad\qquad w_s=w_x\,x_s+w_y\,y_s$$
+@check $w=x^2$ and $x=3t$. Find $\dfrac{dw}{dt}$ with the chain rule.
+@checka $w_x\cdot\dfrac{dx}{dt}=2x\cdot3=6x=18t$.
+
+@q Sheet 2 · Q3
+$w=xy^2e^{2z}$ with $x=3t^2+1$, $y=6t$, $z=t^3-1$. Find $w'(t)$ in terms of $t$.
+@s Write the chain rule
+Three middle letters, so three branches:
+$$w'(t)=w_x\,x'(t)+w_y\,y'(t)+w_z\,z'(t)$$
+@s The partials of $w$
+$$w_x=y^2e^{2z}\qquad w_y=2xy\,e^{2z}\qquad w_z=2xy^2e^{2z}$$
+(For $w_z$: $e^{2z}\to2e^{2z}$.)
+@s The $t$-derivatives
+$$x'=6t\qquad y'=6\qquad z'=3t^2$$
+@s Multiply along each branch and add
+$$w'=y^2e^{2z}\cdot6t\ +\ 2xye^{2z}\cdot6\ +\ 2xy^2e^{2z}\cdot3t^2$$
+@s Swap $x,y,z$ for their formulas in $t$
+Use $y=6t$ (so $y^2=36t^2$), $x=3t^2+1$, $e^{2z}=e^{2(t^3-1)}$.
+
+Branch 1: $36t^2\cdot6t=216t^3$
+
+Branch 2: $12(3t^2+1)(6t)=72t(3t^2+1)$
+
+Branch 3: $6t^2(3t^2+1)\cdot36t^2=216t^4(3t^2+1)$
+@a $w'(t)=\left[216t^3+72t(3t^2+1)+216t^4(3t^2+1)\right]e^{2(t^3-1)}$
+
+@q Sheet 2 · Q6
+$x=r^2-s^2$, $y=2rs$. Find $w_r$, $w_s$ in terms of $w_x,w_y,r,s$. Hence show $w_x=\dfrac{rw_r-sw_s}{2(r^2+s^2)}$ and $w_r^2+w_s^2=4(r^2+s^2)(w_x^2+w_y^2)$.
+@s Chain rule with two variables underneath
+$$w_r=w_x\,x_r+w_y\,y_r\qquad w_s=w_x\,x_s+w_y\,y_s$$
+So we need four small derivatives.
+@s The four small derivatives
+From $x=r^2-s^2$: $\ x_r=2r$, $\ x_s=-2s$.
+
+From $y=2rs$: $\ y_r=2s$, $\ y_s=2r$.
+@s Put them in
+$$w_r=2r\,w_x+2s\,w_y$$
+$$w_s=-2s\,w_x+2r\,w_y$$
+That is the first part done.
+@s Get $w_x$ on its own
+We want the $w_y$ terms to cancel. Multiply the first line by $r$ and the second by $s$, then subtract:
+$$rw_r-sw_s=2r^2w_x+2rs\,w_y+2s^2w_x-2rs\,w_y=2(r^2+s^2)w_x$$
+Divide:
+$$w_x=\frac{rw_r-sw_s}{2(r^2+s^2)}$$
+@s Square and add
+$$w_r^2=4r^2w_x^2+8rs\,w_xw_y+4s^2w_y^2$$
+$$w_s^2=4s^2w_x^2-8rs\,w_xw_y+4r^2w_y^2$$
+Adding, the middle terms cancel:
+$$w_r^2+w_s^2=4(r^2+s^2)w_x^2+4(r^2+s^2)w_y^2=4(r^2+s^2)(w_x^2+w_y^2)$$
+@a $w_r=2r\,w_x+2s\,w_y,\quad w_s=-2s\,w_x+2r\,w_y$; both identities follow as shown.
+
+
+@@topic c-implicit | Implicit differentiation | Sheet 2 · Q7, Q8
+@learn
+Sometimes $z$ is not written as "$z=\dots$". It is hidden inside an equation like $z^2+xz=y$. You can still find $z_x$ and $z_y$.
+
+**Recipe for $z_x$:**
+
+1. Differentiate every term with respect to $x$. ($y$ is a constant.)
+2. Every time you differentiate something with $z$ in it, multiply by $z_x$ (chain rule). Example: $z^2\to2z\,z_x$.
+3. Collect the $z_x$ terms on one side and solve for $z_x$.
+
+Same for $z_y$, with $x$ as the constant.
+
+**Watch out:** a term like $xz$ needs the product rule: $xz\to z+x\,z_x$.
+@check Differentiate $z^3$ with respect to $x$.
+@checka $3z^2\,z_x$.
+
+@q Sheet 2 · Q7
+$z^2-x^2-2y^2+xz=3$ defines $z$ as a function of $x$ and $y$. Find $z_x$ and $z_y$ at $(-1,1,3)$. Find the points where $z_x=z_y=0$.
+@s Differentiate everything in $x$
+$z^2\to2z\,z_x$
+
+$-x^2\to-2x$
+
+$-2y^2\to0$ (constant)
+
+$xz\to z+x\,z_x$ (product rule)
+
+$3\to0$
+$$2z\,z_x-2x+z+x\,z_x=0$$
+@s Solve for $z_x$
+Keep the $z_x$ terms on the left, move the rest across:
+$$z_x(2z+x)=2x-z\quad\Longrightarrow\quad z_x=\frac{2x-z}{x+2z}$$
+@s Same thing in $y$
+$z^2\to2z\,z_y$, $\ -2y^2\to-4y$, $\ xz\to x\,z_y$ ($x$ is a constant now).
+$$2z\,z_y-4y+x\,z_y=0\quad\Longrightarrow\quad z_y=\frac{4y}{x+2z}$$
+@s Plug in $(-1,1,3)$
+$$z_x=\frac{-2-3}{-1+6}=\frac{-5}{5}=-1\qquad z_y=\frac{4}{5}$$
+@s Where are both zero?
+A fraction is zero when its top is zero:
+
+$2x-z=0\Rightarrow z=2x$
+
+$4y=0\Rightarrow y=0$
+@s Put that back into the original equation
+$$(2x)^2-x^2-0+x(2x)=3\quad\Longrightarrow\quad 5x^2=3\quad\Longrightarrow\quad x=\pm\sqrt{0.6}$$
+Then $z=2x$.
+@a $z_x=-1,\ z_y=\tfrac45$. Both are zero at $(\sqrt{0.6},0,2\sqrt{0.6})$ and $(-\sqrt{0.6},0,-2\sqrt{0.6})$.
+
+@q Sheet 2 · Q8
+$z^3-xy+yz+y^3-2=0$. Find $z_x$ and $z_y$, their values at $(1,1,1)$, and where $z_x=z_y=0$.
+@s Differentiate in $x$
+$z^3\to3z^2z_x$, $\ -xy\to-y$, $\ yz\to y\,z_x$, $\ y^3\to0$.
+$$3z^2z_x-y+y\,z_x=0\quad\Longrightarrow\quad z_x=\frac{y}{3z^2+y}$$
+@s Differentiate in $y$
+$z^3\to3z^2z_y$, $\ -xy\to-x$, $\ yz\to z+y\,z_y$ (product rule), $\ y^3\to3y^2$.
+$$3z^2z_y-x+z+y\,z_y+3y^2=0\quad\Longrightarrow\quad z_y=\frac{x-z-3y^2}{3z^2+y}$$
+@s Plug in $(1,1,1)$
+$$z_x=\frac{1}{3+1}=\frac14\qquad z_y=\frac{1-1-3}{4}=-\frac34$$
+@s Where are both zero?
+Tops zero: $y=0$, and $x-z-3y^2=0$ which gives $x=z$.
+@s Back into the original equation
+With $y=0$ the equation is $z^3-2=0$, so $z=2^{1/3}$. And $x=z$.
+@a $z_x=\tfrac14,\ z_y=-\tfrac34$ at $(1,1,1)$. Both zero at $(2^{1/3},0,2^{1/3})$.
+
+
+@@topic c-approx | Linear approximation and % error | Sheet 2 · Q9 to Q11
+@learn
+**Linear approximation.** Zoom in close enough and any surface looks flat. So near a point $(a,b)$ that you know:
+$$f(a+\Delta x,\ b+\Delta y)\approx f(a,b)+f_x(a,b)\,\Delta x+f_y(a,b)\,\Delta y$$
+In words: start value + (slope in $x$ × step in $x$) + (slope in $y$ × step in $y$).
+
+Use it to estimate awkward numbers. Pick a nearby point where $f$ is easy.
+
+**Percentage error shortcut.** For a formula that is only products and powers, $Q=k\,a^m b^n$:
+$$\%\,Q\approx m\,(\%\,a)+n\,(\%\,b)$$
+The power becomes the multiplier. Dividing by something is a negative power ($\frac1{b^2}=b^{-2}$).
+
+Too big / increased → $+$. Too small / decreased → $-$.
+@check $Q=k\,a^2/b$. $a$ is 1% too big, $b$ is exact. Error in $Q$?
+@checka $Q=k\,a^2b^{-1}$, so $\%Q\approx2(1)+(-1)(0)=2\%$.
+
+@q Sheet 2 · Q9
+$\eta=\dfrac{kx}{z^4}$. Estimate the percentage error in $\eta$ if $x$ is overestimated by 0.5% and $z$ is underestimated by 1%.
+@s Write as powers
+$$\eta=k\,x^{1}z^{-4}$$
+@s Use the shortcut
+Powers become multipliers:
+$$\%\eta\approx1\cdot(\%x)+(-4)\cdot(\%z)$$
+@s Signs
+Overestimated → $\%x=+0.5$. Underestimated → $\%z=-1$.
+@s Calculate
+$$\%\eta\approx0.5+(-4)(-1)=0.5+4=4.5$$
+@a About $4.5\%$ (too big).
+
+@q Sheet 2 · Q10
+$D=\dfrac{kHL}{V^{1/2}}$. Find the approximate percentage error in $D$ if $H$ and $V$ both increase by 1% and $L$ decreases by 2%.
+@s Write as powers
+$$D=k\,H^{1}L^{1}V^{-1/2}$$
+@s Use the shortcut
+$$\%D\approx1(\%H)+1(\%L)-\tfrac12(\%V)$$
+@s Put the numbers in
+$\%H=+1$, $\%L=-2$, $\%V=+1$:
+$$\%D\approx1-2-\tfrac12=-1.5$$
+@a About $-1.5\%$ ($D$ goes down by 1.5%).
+
+@q Sheet 2 · Q11
+Let $f(x,y)=(x^2+y^3)^{1/2}$. Use linear approximation to estimate $\left((1.02)^2+(2.01)^3\right)^{1/2}$ to two decimal places.
+@s Pick an easy nearby point
+$(1.02,\ 2.01)$ is close to $(1,2)$, and there
+$$f(1,2)=\sqrt{1+8}=3$$
+@s Partial derivatives
+Chain rule on the square root, $(\sqrt u)'=\dfrac{u'}{2\sqrt u}$:
+$$f_x=\frac{2x}{2\sqrt{x^2+y^3}}=\frac{x}{\sqrt{x^2+y^3}}\qquad f_y=\frac{3y^2}{2\sqrt{x^2+y^3}}$$
+@s Slopes at $(1,2)$
+$$f_x=\frac13\qquad f_y=\frac{12}{2\cdot3}=2$$
+@s Steps
+$\Delta x=1.02-1=0.02$, $\quad\Delta y=2.01-2=0.01$
+@s Linear approximation
+$$f\approx3+\tfrac13(0.02)+2(0.01)=3+0.0067+0.02=3.0267$$
+@a $\approx3.03$

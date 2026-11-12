@@ -1,0 +1,188 @@
+@@part 4 · Maximum and minimum
+
+@@topic c-critical | Critical points and the D test | Sheet 4 · Q1, Q8, Q13
+@learn
+**Critical points** are where the surface is flat: the slope is zero in both directions.
+$$f_x=0\quad\text{and}\quad f_y=0$$
+Solve these two equations together.
+
+A flat spot can be one of three shapes:
+{{fig:critical}}
+**Second derivatives** tell you which. Differentiate twice:
+
+$f_{xx}$ = twice in $x$. $\ f_{yy}$ = twice in $y$. $\ f_{xy}$ = once in $x$, then once in $y$.
+
+**The $D$ test** at each critical point:
+$$D=f_{xx}\,f_{yy}-\left(f_{xy}\right)^2$$
+
+$D>0$ and $f_{xx}>0$ → **minimum**
+
+$D>0$ and $f_{xx}<0$ → **maximum**
+
+$D<0$ → **saddle**
+
+$D=0$ → the test can't decide
+@check At a critical point $f_{xx}=2,\ f_{yy}=-3,\ f_{xy}=0$. Which type?
+@checka $D=2(-3)-0^2=-6<0$, so a saddle.
+
+@q Sheet 4 · Q1(a)
+Warm-up: find $f_{xx}$, $f_{yy}$, $f_{xy}$ for $f(x,y)=x^2y^3$.
+@s First derivatives
+$$f_x=2xy^3\qquad f_y=3x^2y^2$$
+@s Second derivatives
+$f_{xx}$: take $f_x=2xy^3$ and differentiate in $x$ again → $2y^3$.
+
+$f_{yy}$: take $f_y=3x^2y^2$ and differentiate in $y$ again → $6x^2y$.
+
+$f_{xy}$: take $f_x=2xy^3$ and differentiate in $y$ → $6xy^2$.
+@a $f_{xx}=2y^3,\quad f_{yy}=6x^2y,\quad f_{xy}=6xy^2$
+
+@q Sheet 4 · Q8(a)
+Find and classify the critical points of $f(x,y)=x^2-y^2$.
+@s Find the flat spots
+$$f_x=2x=0\Rightarrow x=0\qquad f_y=-2y=0\Rightarrow y=0$$
+Only one: $(0,0)$.
+@s Second derivatives
+$$f_{xx}=2\qquad f_{yy}=-2\qquad f_{xy}=0$$
+@s D test
+$$D=(2)(-2)-0^2=-4<0$$
+Negative → saddle. (Makes sense: $x^2$ goes up, $-y^2$ goes down.)
+@a $(0,0)$ is a saddle point.
+
+@q Sheet 4 · Q8(b)
+Find and classify the critical points of $f(x,y)=x^2+2y^2-4x+4y$.
+@s Find the flat spots
+$$f_x=2x-4=0\Rightarrow x=2$$
+$$f_y=4y+4=0\Rightarrow y=-1$$
+One point: $(2,-1)$.
+@s Second derivatives
+$$f_{xx}=2\qquad f_{yy}=4\qquad f_{xy}=0$$
+@s D test
+$$D=2\cdot4-0=8>0,\qquad f_{xx}=2>0$$
+Both positive → minimum.
+@a $(2,-1)$ is a local minimum.
+
+@q Sheet 4 · Q8(c)
+Find and classify the critical points of $f(x,y)=y(x-1)+\dfrac8x$.
+@s Find the flat spots
+Expand first: $f=xy-y+8x^{-1}$.
+$$f_y=x-1=0\Rightarrow x=1$$
+$$f_x=y-\frac{8}{x^2}=0\Rightarrow y=\frac{8}{1}=8$$
+One point: $(1,8)$.
+@s Second derivatives
+$$f_{xx}=\frac{16}{x^3}\qquad f_{yy}=0\qquad f_{xy}=1$$
+At $(1,8)$: $f_{xx}=16$.
+@s D test
+$$D=16\cdot0-1^2=-1<0$$
+@a $(1,8)$ is a saddle point.
+
+@q Sheet 4 · Q13
+Find the critical points of $f(x,y)=4xy-x^2-y^2-x^2y^2$ and classify them.
+@s Set both slopes to zero
+$$f_x=4y-2x-2xy^2=0$$
+$$f_y=4x-2y-2x^2y=0$$
+@s Trick: subtract the two equations
+$$(4y-2x-2xy^2)-(4x-2y-2x^2y)=6y-6x-2xy^2+2x^2y=0$$
+Factor out $(y-x)$:
+$$6(y-x)-2xy(y-x)=(y-x)(6-2xy)=0$$
+So either $y=x$ or $xy=3$.
+@s Case $y=x$
+Put into $f_x=0$:
+$$4x-2x-2x^3=0\ \Rightarrow\ 2x(1-x^2)=0\ \Rightarrow\ x=0,\ 1,\ -1$$
+Points: $(0,0)$, $(1,1)$, $(-1,-1)$.
+@s Case $xy=3$
+Then $f_x=4y-2x-2(xy)y=4y-2x-6y=-2x-2y=0$, so $y=-x$.
+
+But then $xy=-x^2=3$, which has no real answer. So nothing new.
+@s Second derivatives
+$$f_{xx}=-2-2y^2\qquad f_{yy}=-2-2x^2\qquad f_{xy}=4-4xy$$
+@s Test each point
+$(0,0)$: $f_{xx}=-2,\ f_{yy}=-2,\ f_{xy}=4$. $\ D=4-16=-12<0$ → saddle.
+
+$(1,1)$: $f_{xx}=-4,\ f_{yy}=-4,\ f_{xy}=0$. $\ D=16>0$, $f_{xx}<0$ → maximum.
+
+$(-1,-1)$: same numbers → maximum.
+@a $(1,1)$ and $(-1,-1)$ are local maxima. $(0,0)$ is a saddle point.
+
+
+@@topic c-lagrange | Lagrange multipliers | Sheet 4 · Q16, Q17, Q19
+@learn
+**The problem:** find the biggest or smallest value of $f$, but you are only allowed to be on a certain curve $g=c$ (the **constraint**).
+
+**The idea:** at the best point, the level curve of $f$ just touches the constraint. Where two curves just touch, their gradients point the same way.
+{{fig:lagrange}}
+So solve:
+$$\nabla f=\lambda\,\nabla g\qquad\text{and}\qquad g=c$$
+$\lambda$ ("lambda") is a helper unknown. Usually you get rid of it.
+
+**Recipe:**
+
+1. Write out $f_x=\lambda g_x$, $\ f_y=\lambda g_y$ (and $f_z=\lambda g_z$ in 3D), plus the constraint.
+2. Solve. Before dividing by something, check what happens if it is zero.
+3. Put every point you found into $f$. Biggest = max, smallest = min.
+
+**Two constraints** $g=c_1$ and $h=c_2$: use $\nabla f=\lambda\nabla g+\mu\nabla h$ ($\mu$ = "mu", a second helper).
+@check For $g=x^2+y^2$, what is $\nabla g$?
+@checka $\langle2x,\ 2y\rangle$.
+
+@q Sheet 4 · Q16
+Find the maximum and minimum of $f(x,y)=xy^6$ subject to $x^2+y^4=4$.
+@s Gradients
+$$\nabla f=\langle y^6,\ 6xy^5\rangle\qquad\nabla g=\langle2x,\ 4y^3\rangle$$
+@s Lagrange equations
+$$y^6=2\lambda x\qquad 6xy^5=4\lambda y^3$$
+@s Case $y=0$
+Then $f=x\cdot0=0$. Keep $0$ as a candidate.
+@s Case $y\neq0$
+Divide the second equation by $y^3$: $6xy^2=4\lambda$, so $\lambda=\tfrac32xy^2$.
+
+Put into the first:
+$$y^6=2\cdot\tfrac32xy^2\cdot x=3x^2y^2\ \Rightarrow\ y^4=3x^2$$
+@s Use the constraint
+$$x^2+y^4=x^2+3x^2=4x^2=4\ \Rightarrow\ x=\pm1,\quad y^4=3$$
+@s Values of $f$
+$y^6=y^4\cdot y^2=3\cdot\sqrt3=3\sqrt3$.
+
+$x=1$: $f=3\sqrt3$. $\quad x=-1$: $f=-3\sqrt3$.
+
+Compare with $0$ from before: biggest is $3\sqrt3$, smallest is $-3\sqrt3$.
+@a Maximum $3\sqrt3$, minimum $-3\sqrt3$.
+
+@q Sheet 4 · Q17
+Find the maximum and minimum of $f(x,y,z)=x^2yz$ subject to $x^2+y^2+z^2=2$.
+@s Lagrange equations
+$\nabla f=\langle2xyz,\ x^2z,\ x^2y\rangle$, $\ \nabla g=\langle2x,\ 2y,\ 2z\rangle$:
+$$2xyz=2\lambda x\qquad x^2z=2\lambda y\qquad x^2y=2\lambda z$$
+@s Zero cases
+If any of $x,y,z$ is $0$, then $f=0$. Keep $0$ as a candidate, and now assume none are zero.
+@s Solve
+First equation, divide by $2x$: $\lambda=yz$.
+
+Second: $x^2z=2yz\cdot y$. Divide by $z$: $x^2=2y^2$.
+
+Third: $x^2y=2yz\cdot z$. Divide by $y$: $x^2=2z^2$.
+@s Use the constraint
+So $y^2=z^2=\tfrac{x^2}{2}$:
+$$x^2+\tfrac{x^2}{2}+\tfrac{x^2}{2}=2x^2=2\ \Rightarrow\ x^2=1,\quad y^2=z^2=\tfrac12$$
+@s Values of $f$
+$f=x^2\,yz=1\cdot yz$. With $y,z=\pm\tfrac1{\sqrt2}$, $yz$ is either $\tfrac12$ or $-\tfrac12$.
+@a Maximum $\tfrac12$, minimum $-\tfrac12$.
+
+@q Sheet 4 · Q19
+Find the minimum of $x^2+y^2+z^2$ subject to $x+y+z=1$ and $x-y+2z=1$.
+@s Two constraints, two helpers
+$\nabla f=\langle2x,2y,2z\rangle$, $\ \nabla g=\langle1,1,1\rangle$, $\ \nabla h=\langle1,-1,2\rangle$.
+$$2x=\lambda+\mu\qquad2y=\lambda-\mu\qquad2z=\lambda+2\mu$$
+@s Put into the first constraint
+Add the three: $2(x+y+z)=3\lambda+2\mu$. Since $x+y+z=1$:
+$$3\lambda+2\mu=2$$
+@s Put into the second constraint
+$2(x-y+2z)=(\lambda+\mu)-(\lambda-\mu)+2(\lambda+2\mu)=2\lambda+6\mu$. Since $x-y+2z=1$:
+$$\lambda+3\mu=1$$
+@s Solve for $\lambda$ and $\mu$
+From the second: $\lambda=1-3\mu$. Into the first: $3-9\mu+2\mu=2$, so $\mu=\tfrac17$, $\lambda=\tfrac47$.
+@s Find the point
+$$x=\tfrac{\lambda+\mu}{2}=\tfrac5{14}\qquad y=\tfrac{\lambda-\mu}{2}=\tfrac3{14}\qquad z=\tfrac{\lambda+2\mu}{2}=\tfrac6{14}$$
+@s Value
+$$\frac{25+9+36}{196}=\frac{70}{196}=\frac5{14}$$
+@a Minimum value $\dfrac5{14}$.

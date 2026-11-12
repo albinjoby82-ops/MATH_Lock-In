@@ -1,0 +1,266 @@
+@@part 5 · Differential equations
+
+@@topic c-separable | Separable equations | Sheet 5 · Q1, Q2
+@learn
+**A differential equation** has a derivative $y'$ in it. Solving it means finding the function $y$.
+
+$y'$ just means $\dfrac{dy}{dx}$ (or $\dfrac{dy}{dt}$).
+
+**Separable** = you can get all the $y$ stuff on one side and all the $x$ stuff on the other:
+$$\frac{dy}{dx}=g(x)\,h(y)\quad\Longrightarrow\quad\int\frac{1}{h(y)}\,dy=\int g(x)\,dx$$
+Then integrate both sides, add **one** constant $C$, and get $y$ on its own.
+
+Very common step:
+$$\ln|y|=\text{stuff}+c\quad\Longrightarrow\quad y=Ce^{\text{stuff}}$$
+
+**Initial condition** like $y(0)=1$: plug it in at the end to find $C$.
+@check Is $y'=x\,y^2$ separable?
+@checka Yes: $\dfrac{dy}{y^2}=x\,dx$.
+
+@q Sheet 5 · Q1(a)
+Solve $y'=ty$ with $y(0)=1$.
+@s Separate
+$y$ to the left, $t$ to the right:
+$$\frac{dy}{y}=t\,dt$$
+@s Integrate both sides
+$$\ln|y|=\frac{t^2}{2}+c$$
+@s Get $y$ on its own
+Raise $e$ to both sides:
+$$y=Ce^{t^2/2}$$
+@s Use $y(0)=1$
+Put $t=0$: $\ 1=Ce^0=C$.
+@a $y=e^{t^2/2}$
+
+@q Sheet 5 · Q1(b)
+Solve $y'=1-y$ with $y(0)=0$.
+@s Separate
+$$\frac{dy}{1-y}=dt$$
+@s Integrate both sides
+$\int\frac{dy}{1-y}=-\ln|1-y|$ (the minus comes from the $-y$ inside).
+$$-\ln|1-y|=t+c$$
+@s Get $y$ on its own
+$$\ln|1-y|=-t-c\ \Rightarrow\ 1-y=Ce^{-t}\ \Rightarrow\ y=1-Ce^{-t}$$
+@s Use $y(0)=0$
+$0=1-C$, so $C=1$.
+@a $y=1-e^{-t}$
+
+@q Sheet 5 · Q2(a)
+Solve $y'=(1+x)(1+y)$.
+@s Separate
+$$\frac{dy}{1+y}=(1+x)\,dx$$
+@s Integrate both sides
+$$\ln|1+y|=x+\frac{x^2}{2}+c$$
+@s Get $y$ on its own
+$$1+y=Ce^{x+x^2/2}$$
+@a $y=Ce^{x+x^2/2}-1$
+
+
+@@topic c-linear | Linear first order (integrating factor) | Sheet 5 · Q2
+@learn
+**Linear first order** equations look like:
+$$y'+p(x)\,y=q(x)$$
+Get it into exactly this shape first ($y'$ with nothing in front of it).
+
+They are usually **not** separable, so we use a trick.
+
+**Integrating factor:**
+$$\mu=e^{\int p\,dx}$$
+Multiply the whole equation by $\mu$. The left side then becomes a single derivative:
+$$(\mu\,y)'=\mu\,q$$
+Integrate both sides, then divide by $\mu$.
+
+Handy fact: $e^{\ln A}=A$, so for example $e^{2\ln x}=x^2$.
+@check What is $\mu$ for $y'+3y=x$?
+@checka $p=3$, so $\mu=e^{\int3\,dx}=e^{3x}$.
+
+@q Sheet 5 · Q2(d)
+Solve $\dfrac{dy}{dx}+2xy=xe^{-x^2}$.
+@s Match the shape
+$y'+p\,y=q$ with $p=2x$ and $q=xe^{-x^2}$.
+@s Integrating factor
+$$\mu=e^{\int2x\,dx}=e^{x^2}$$
+@s Multiply through
+The left side becomes $(e^{x^2}y)'$. The right side: $e^{x^2}\cdot xe^{-x^2}=x$.
+$$\left(e^{x^2}y\right)'=x$$
+@s Integrate
+$$e^{x^2}y=\frac{x^2}{2}+C$$
+@s Divide by $\mu$
+$$y=\left(\frac{x^2}{2}+C\right)e^{-x^2}$$
+@a $y=\left(\dfrac{x^2}{2}+C\right)e^{-x^2}$
+
+@q Sheet 5 · Q2(e)
+Solve $y'+\dfrac{2y}{x}=\dfrac1{x^2}$.
+@s Match the shape
+$p=\dfrac2x$, $\ q=\dfrac1{x^2}$.
+@s Integrating factor
+$$\mu=e^{\int\frac2x\,dx}=e^{2\ln x}=x^2$$
+@s Multiply through
+$$\left(x^2y\right)'=x^2\cdot\frac1{x^2}=1$$
+@s Integrate
+$$x^2y=x+C$$
+@s Divide by $x^2$
+$$y=\frac{x+C}{x^2}$$
+@a $y=\dfrac1x+\dfrac{C}{x^2}$
+
+
+@@topic c-homog | Second order: right side = 0 | Sheet 5 · Q3, Q5
+@learn
+**The type:**
+$$a\,y''+b\,y'+c\,y=0\qquad(a,b,c\text{ are numbers})$$
+
+**Trick:** guess $y=e^{rx}$. Then $y'=re^{rx}$ and $y''=r^2e^{rx}$. Put them in and cancel $e^{rx}$. You get the **characteristic equation**:
+$$a\,r^2+b\,r+c=0$$
+In practice: swap $y''\to r^2$, $\ y'\to r$, $\ y\to1$. Solve the quadratic.
+
+**Three cases:**
+
+Two different roots $r_1,r_2$:
+$$y=C_1e^{r_1x}+C_2e^{r_2x}$$
+Same root twice:
+$$y=(C_1+C_2x)\,e^{rx}$$
+Complex roots $\alpha\pm\beta i$:
+$$y=e^{\alpha x}\left(C_1\cos\beta x+C_2\sin\beta x\right)$$
+
+Two constants, because it is second order. Two initial conditions will find them.
+@check Characteristic equation of $y''-4y'+3y=0$, and its roots?
+@checka $r^2-4r+3=0$, so $(r-1)(r-3)=0$, $r=1,\ 3$.
+
+@q Sheet 5 · Q3(a)
+Find the general solution of $y''+3y'+2y=0$.
+@s Characteristic equation
+$$r^2+3r+2=0$$
+@s Solve
+$$(r+1)(r+2)=0\ \Rightarrow\ r=-1,\ -2$$
+@s Which case?
+Two different real roots.
+@a $y=C_1e^{-x}+C_2e^{-2x}$
+
+@q Sheet 5 · Q3(c)
+Find the general solution of $y''+10y'+25y=0$.
+@s Characteristic equation
+$$r^2+10r+25=0$$
+@s Solve
+$$(r+5)^2=0\ \Rightarrow\ r=-5\ \text{(twice)}$$
+@s Which case?
+Repeated root, so the second part gets an extra $x$.
+@a $y=(C_1+C_2x)\,e^{-5x}$
+
+@q Sheet 5 · Q3(d)
+Find the general solution of $y''+2y'+2y=0$.
+@s Characteristic equation
+$$r^2+2r+2=0$$
+@s Solve with the quadratic formula
+$$r=\frac{-2\pm\sqrt{4-8}}{2}=\frac{-2\pm\sqrt{-4}}{2}=\frac{-2\pm2i}{2}=-1\pm i$$
+@s Which case?
+Complex: $\alpha=-1$ (real part), $\beta=1$ (the number with $i$).
+@a $y=e^{-x}\left(C_1\cos x+C_2\sin x\right)$
+
+@q Sheet 5 · Q5(a)
+Solve $y''-16y=0$ with $y(0)=1$, $y'(0)=20$.
+@s Characteristic equation
+$$r^2-16=0\ \Rightarrow\ r=4,\ -4$$
+$$y=C_1e^{4x}+C_2e^{-4x}$$
+@s We also need $y'$
+$$y'=4C_1e^{4x}-4C_2e^{-4x}$$
+@s Use the conditions at $x=0$
+$e^0=1$, so:
+$$y(0)=C_1+C_2=1$$
+$$y'(0)=4C_1-4C_2=20\ \Rightarrow\ C_1-C_2=5$$
+@s Solve
+Add the two: $2C_1=6$, so $C_1=3$. Then $C_2=1-3=-2$.
+@a $y=3e^{4x}-2e^{-4x}$
+
+
+@@topic c-undet | Second order: right side ≠ 0 | Sheet 5 · Q4, Q5
+@learn
+Now the right side is **not** zero:
+$$a\,y''+b\,y'+c\,y=g(x)$$
+
+**The answer has two parts:**
+$$y=y_h+y_p$$
+$y_h$ = the solution with right side $0$ (the last topic).
+
+$y_p$ = any one solution that produces $g(x)$. Find it by **guessing its shape**:
+
+$g$ is a polynomial like $3x^2$ → guess $Ax^2+Bx+C$ (all powers up to the top one)
+
+$g=e^{kx}$ → guess $Ae^{kx}$
+
+$g=\sin kx$ or $\cos kx$ → guess $A\cos kx+B\sin kx$
+
+$g$ is a sum → guess the sum of the guesses
+
+Put the guess into the equation and match coefficients to find $A,B,\dots$
+
+**Clash rule:** if your guess already appears in $y_h$, multiply it by $x$.
+
+**Initial conditions go in at the very end**, using the full $y=y_h+y_p$.
+@check $y''-y=e^{x}$ has $y_h=C_1e^x+C_2e^{-x}$. What should you guess for $y_p$?
+@checka $Ae^x$ is already in $y_h$ (clash), so guess $Axe^{x}$.
+
+@q Sheet 5 · Q4(a)
+Find the general solution of $y''-y=3x^2$.
+@s Step 1: $y_h$
+$r^2-1=0\Rightarrow r=\pm1$.
+$$y_h=C_1e^{x}+C_2e^{-x}$$
+@s Step 2: guess $y_p$
+Right side is a degree 2 polynomial, so:
+$$y_p=Ax^2+Bx+C\qquad y_p'=2Ax+B\qquad y_p''=2A$$
+@s Put it in
+$$2A-(Ax^2+Bx+C)=3x^2$$
+@s Match coefficients
+$x^2$: $\ -A=3\Rightarrow A=-3$
+
+$x$: $\ -B=0\Rightarrow B=0$
+
+number: $\ 2A-C=0\Rightarrow C=2A=-6$
+$$y_p=-3x^2-6$$
+@s Add them
+$$y=y_h+y_p$$
+@a $y=C_1e^{x}+C_2e^{-x}-3x^2-6$
+
+@q Sheet 5 · Q4(c)
+Find the general solution of $y''-y'-2y=e^x+x$.
+@s Step 1: $y_h$
+$r^2-r-2=(r-2)(r+1)=0\Rightarrow r=2,\ -1$.
+$$y_h=C_1e^{2x}+C_2e^{-x}$$
+@s Step 2: guess $y_p$
+Right side is $e^x$ plus a degree 1 polynomial:
+$$y_p=De^x+Ax+B$$
+No clash: $e^x$ is not in $y_h$.
+@s The $e^x$ part
+$De^x$ differentiates to itself, so put in $y=y'=y''=De^x$:
+$$De^x-De^x-2De^x=-2De^x=e^x\ \Rightarrow\ D=-\tfrac12$$
+@s The polynomial part
+$y=Ax+B$, $\ y'=A$, $\ y''=0$:
+$$0-A-2(Ax+B)=x$$
+$x$: $\ -2A=1\Rightarrow A=-\tfrac12$
+
+number: $\ -A-2B=0\Rightarrow B=-\tfrac A2=\tfrac14$
+@s Add everything
+$$y=y_h-\tfrac12e^x-\tfrac12x+\tfrac14$$
+@a $y=C_1e^{2x}+C_2e^{-x}-\dfrac{e^x}{2}-\dfrac x2+\dfrac14$
+
+@q Sheet 5 · Q5(b)
+Solve $y''-y'-2y=3e^{2x}$ with $y(0)=0$, $y'(0)=-2$.
+@s Step 1: $y_h$
+Same left side as the last question:
+$$y_h=C_1e^{2x}+C_2e^{-x}$$
+@s Step 2: guess $y_p$ (clash!)
+Normal guess would be $Ae^{2x}$, but $e^{2x}$ is already in $y_h$. Multiply by $x$:
+$$y_p=Axe^{2x}$$
+@s Derivatives (product rule)
+$$y_p'=A(1+2x)e^{2x}\qquad y_p''=A(4+4x)e^{2x}$$
+@s Put it in and cancel $e^{2x}$
+$$A(4+4x)-A(1+2x)-2Ax=3$$
+The $x$ terms cancel: $4A-A=3A=3$, so $A=1$.
+@s Full solution
+$$y=C_1e^{2x}+C_2e^{-x}+xe^{2x}$$
+$$y'=2C_1e^{2x}-C_2e^{-x}+(1+2x)e^{2x}$$
+@s Use the conditions
+$y(0)=0$: $\ C_1+C_2=0$
+
+$y'(0)=-2$: $\ 2C_1-C_2+1=-2$
+
+From the first, $C_2=-C_1$. Then $3C_1+1=-2$, so $C_1=-1$, $C_2=1$.
+@a $y=-e^{2x}+e^{-x}+xe^{2x}$

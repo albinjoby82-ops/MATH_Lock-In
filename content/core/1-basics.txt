@@ -1,0 +1,127 @@
+@@part 1 · Functions of two variables
+
+@@topic c-domains | Domains | Sheet 1 · Q1
+@learn
+**What is $f(x,y)$?** A machine: put in two numbers $x$ and $y$, get one number out.
+
+Example: $f(x,y)=x^2+y$ gives $f(2,1)=4+1=5$.
+
+You can picture it as a **surface**: the height $z=f(x,y)$ above each point $(x,y)$ on the floor.
+
+**The domain** = all the points $(x,y)$ you are allowed to put in.
+
+Only two things are not allowed:
+
+1. Dividing by zero → the bottom must be $\neq 0$.
+2. Square root of a negative → the inside must be $\ge 0$. (And $\ln$ needs the inside $>0$.)
+
+**Recipe:** write the condition, then say what shape it is on the $xy$-plane.
+@check Is $(0,0)$ in the domain of $f(x,y)=\dfrac{1}{x+y}$?
+@checka No. The bottom is $0+0=0$, and you cannot divide by zero.
+
+@q Sheet 1 · Q1(a)
+Describe the domain of $f(x,y)=\dfrac{1}{x^2+2y^2}$.
+@s What could break?
+It is a fraction, so the bottom cannot be zero:
+$$x^2+2y^2\neq 0$$
+@s When is the bottom zero?
+A square is never negative. So $x^2+2y^2$ is a sum of two things that are $\ge0$.
+
+The only way to get $0$ is if both are $0$: $x=0$ and $y=0$.
+@s Describe it
+So only the origin is banned. Everything else is fine. This is called the **punctured plane**.
+{{fig:punctured}}
+@a $\text{dom}(f)=\mathbb{R}^2\setminus\{(0,0)\}$, the whole plane except the origin.
+
+@q Sheet 1 · Q1(e)
+Describe the domain of $f(x,y)=\sqrt{y-x}$.
+@s What could break?
+A square root. The inside must not be negative:
+$$y-x\ge 0$$
+@s Rearrange
+$$y\ge x$$
+@s Describe it
+$y=x$ is the diagonal line. $y\ge x$ means "on the line, or above it".
+{{fig:halfplane}}
+@a $\text{dom}(f)=\{(x,y)\mid y\ge x\}$, the half-plane on and above the line $y=x$.
+
+@q Sheet 1 · Q1(j)
+Describe the domain of $f(x,y)=\dfrac{1}{\sqrt{16-x^2-y^2}}$.
+@s What could break?
+Two things this time.
+
+Square root: inside $\ge 0$.
+
+Fraction: bottom $\neq 0$.
+@s Combine them
+"$\ge 0$" and "$\neq 0$" together means "$>0$":
+$$16-x^2-y^2>0\quad\Longleftrightarrow\quad x^2+y^2<16$$
+@s Describe it
+$x^2+y^2=16$ is a circle, centre $(0,0)$, radius $4$ (because $4^2=16$).
+
+$<16$ means strictly **inside** the circle. The circle itself is not included. This is an **open disk**.
+{{fig:opendisk}}
+@a $\text{dom}(f)=\{(x,y)\mid x^2+y^2<16\}$, the inside of the circle of radius 4 (not the edge).
+
+
+@@topic c-limits | Limits | Sheet 1 · Q3, Q6
+@learn
+**A limit** asks: as $(x,y)$ gets closer and closer to a point, what number does $f$ get close to?
+
+**Case 1: easy.** Plug the point in. If you get a normal number, that is the answer.
+
+**Case 2: you get $\frac00$.** That is not an answer. It means "simplify first". Factorise the top and the bottom, cancel the matching bracket, then plug in.
+
+**Case 3: show the limit does NOT exist.** In 2D you can walk towards a point along lots of different paths. If two paths give different numbers, there is no limit.
+
+Easy paths to try:
+
+Along the $x$-axis → put $y=0$.
+
+Along the $y$-axis → put $x=0$.
+
+Along a line $y=mx$ (e.g. $y=x$).
+@check Along the $x$-axis, what does $\dfrac{xy}{x^2+y^2}$ equal?
+@checka Put $y=0$: $\dfrac{0}{x^2}=0$.
+
+@q Sheet 1 · Q6(a)
+Find $\displaystyle\lim_{(x,y)\to(0,0)}\frac{3x^2-y^2+5}{x^2+y^2+2}$.
+@s Try plugging in
+Check the bottom first: $0+0+2=2$. Not zero, so we can just plug in.
+@s Plug in
+$$\frac{3(0)^2-0^2+5}{0^2+0^2+2}=\frac52$$
+@a $\dfrac52$
+
+@q Sheet 1 · Q6(e)
+Find $\displaystyle\lim_{(x,y)\to(1,1)}\frac{xy-y-2x+2}{x-1}$.
+@s Try plugging in
+Top: $1-1-2+2=0$. Bottom: $1-1=0$.
+
+We get $\frac00$, so we must simplify first.
+@s Factorise the top by grouping
+Pair up terms that share something:
+$$xy-y-2x+2=y(x-1)-2(x-1)$$
+Both pieces contain $(x-1)$. Pull it out:
+$$=(x-1)(y-2)$$
+@s Cancel the matching bracket
+$$\frac{(x-1)(y-2)}{x-1}=y-2$$
+This is allowed: while we are walking towards the point, $x\neq1$, so we are not dividing by zero.
+@s Now plug in
+$$1-2=-1$$
+@a $-1$
+
+@q Sheet 1 · Q3(b)
+Show that $f(x,y)=\dfrac{x^4}{x^4+y^2}$ has no limit as $(x,y)\to(0,0)$.
+@s Plan
+Find two paths into $(0,0)$ that give different answers.
+@s Path 1: along the x-axis
+On the $x$-axis, $y=0$:
+$$f(x,0)=\frac{x^4}{x^4+0}=1$$
+So on this path, $f$ is always $1$.
+@s Path 2: along the y-axis
+On the $y$-axis, $x=0$:
+$$f(0,y)=\frac{0}{0+y^2}=0$$
+So on this path, $f$ is always $0$.
+@s Compare
+$1\neq0$. Two paths, two different answers, so there is no single limit.
+@a The limit does not exist (it is $1$ along the $x$-axis and $0$ along the $y$-axis).
