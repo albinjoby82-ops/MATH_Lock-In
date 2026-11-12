@@ -276,7 +276,7 @@ $|H_2|=(-4)(-2)-0=8$
 
 $|H_3|=-4\big[(-2)(-8)-(-1)(-1)\big]=-4(16-1)=-60$
 @s Read the signs
-$-,\ +,\ -$ → maximum.
+$-,\ +,\ -$ → $H$ is negative definite → maximum.
 @a $P=(1,-1,1)$; minors $-4,\ 8,\ -60$; $P$ is a local maximum.
 
 

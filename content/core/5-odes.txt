@@ -108,7 +108,7 @@ $$y=\frac{x+C}{x^2}$$
 **The type:**
 $$a\,y''+b\,y'+c\,y=0\qquad(a,b,c\text{ are numbers})$$
 
-**Trick:** guess $y=e^{rx}$. Then $y'=re^{rx}$ and $y''=r^2e^{rx}$. Put them in and cancel $e^{rx}$. You get the **characteristic equation**:
+**Trick:** guess $y=e^{rx}$. Then $y'=re^{rx}$ and $y''=r^2e^{rx}$. Put them in and cancel $e^{rx}$. You get the **auxiliary equation** (some books call it the characteristic equation):
 $$a\,r^2+b\,r+c=0$$
 In practice: swap $y''\to r^2$, $\ y'\to r$, $\ y\to1$. Solve the quadratic.
 
@@ -122,12 +122,12 @@ Complex roots $\alpha\pm\beta i$:
 $$y=e^{\alpha x}\left(C_1\cos\beta x+C_2\sin\beta x\right)$$
 
 Two constants, because it is second order. Two initial conditions will find them.
-@check Characteristic equation of $y''-4y'+3y=0$, and its roots?
+@check Auxiliary equation of $y''-4y'+3y=0$, and its roots?
 @checka $r^2-4r+3=0$, so $(r-1)(r-3)=0$, $r=1,\ 3$.
 
 @q Sheet 5 · Q3(a)
 Find the general solution of $y''+3y'+2y=0$.
-@s Characteristic equation
+@s Auxiliary equation
 $$r^2+3r+2=0$$
 @s Solve
 $$(r+1)(r+2)=0\ \Rightarrow\ r=-1,\ -2$$
@@ -137,7 +137,7 @@ Two different real roots.
 
 @q Sheet 5 · Q3(c)
 Find the general solution of $y''+10y'+25y=0$.
-@s Characteristic equation
+@s Auxiliary equation
 $$r^2+10r+25=0$$
 @s Solve
 $$(r+5)^2=0\ \Rightarrow\ r=-5\ \text{(twice)}$$
@@ -147,7 +147,7 @@ Repeated root, so the second part gets an extra $x$.
 
 @q Sheet 5 · Q3(d)
 Find the general solution of $y''+2y'+2y=0$.
-@s Characteristic equation
+@s Auxiliary equation
 $$r^2+2r+2=0$$
 @s Solve with the quadratic formula
 $$r=\frac{-2\pm\sqrt{4-8}}{2}=\frac{-2\pm\sqrt{-4}}{2}=\frac{-2\pm2i}{2}=-1\pm i$$
@@ -157,7 +157,7 @@ Complex: $\alpha=-1$ (real part), $\beta=1$ (the number with $i$).
 
 @q Sheet 5 · Q5(a)
 Solve $y''-16y=0$ with $y(0)=1$, $y'(0)=20$.
-@s Characteristic equation
+@s Auxiliary equation
 $$r^2-16=0\ \Rightarrow\ r=4,\ -4$$
 $$y=C_1e^{4x}+C_2e^{-4x}$$
 @s We also need $y'$
@@ -188,11 +188,11 @@ $g=e^{kx}$ → guess $Ae^{kx}$
 
 $g=\sin kx$ or $\cos kx$ → guess $A\cos kx+B\sin kx$
 
-$g$ is a sum → guess the sum of the guesses
+$g$ is a sum → guess the sum of the guesses (**sum rule**)
 
 Put the guess into the equation and match coefficients to find $A,B,\dots$
 
-**Clash rule:** if your guess already appears in $y_h$, multiply it by $x$. ($\cos t$ and $\cos2t$ are different, so they don't clash.)
+**Modification rule (clash):** if your guess already appears in $y_h$, multiply it by $x$ (by $x^2$ if that still clashes). ($\cos t$ and $\cos2t$ are different, so they don't clash.)
 
 **Initial conditions go in at the very end**, using the full $y=y_h+y_p$.
 @check $y''-y=e^{x}$ has $y_h=C_1e^x+C_2e^{-x}$. What should you guess for $y_p$?

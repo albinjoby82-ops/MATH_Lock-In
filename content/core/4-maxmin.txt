@@ -22,6 +22,8 @@ $D>0$ and $f_{xx}<0$ → **maximum**
 $D<0$ → **saddle**
 
 $D=0$ → the test can't decide
+
+**In the notes:** $D$ is written $\det H$, the determinant of the **Hessian** $H=\begin{pmatrix}f_{xx}&f_{xy}\\f_{xy}&f_{yy}\end{pmatrix}$. Use that wording in the exam.
 @check At a critical point $f_{xx}=2,\ f_{yy}=-3,\ f_{xy}=0$. Which type?
 @checka $D=2(-3)-0^2=-6<0$, so a saddle.
 
@@ -122,11 +124,15 @@ $$|H_1|=f_{xx}\qquad |H_2|=\begin{vmatrix}f_{xx}&f_{xy}\\f_{xy}&f_{yy}\end{vmatr
 
 **Step 4, read the signs:**
 
-$+,\ +,\ +$ → **minimum**
+$+,\ +,\ +$ → $H$ is **positive definite** → **minimum**
 
-$-,\ +,\ -$ → **maximum**
+$-,\ +,\ -$ → $H$ is **negative definite** → **maximum**
 
-any other pattern (with $|H_3|\neq0$) → **saddle**
+any other pattern, all nonzero → $H$ is **indefinite** → **saddle**
+
+a minor is $0$ → test is inconclusive
+
+Write the middle word ("negative definite") in the exam. The lecturer's own solutions do.
 
 (This is the same as the 2-variable $D$ test: $D$ is just $|H_2|$.)
 @check The minors are $-4,\ 8,\ -60$. What type of point?
@@ -154,7 +160,7 @@ $|H_2|=2\cdot2-0=4$
 
 $|H_3|$, along the top row: $2(4-0)-0+(-1)(0-(-2))=8-2=6$
 @s Read the signs
-$+,\ +,\ +$ → minimum.
+$+,\ +,\ +$ → $H$ is positive definite → minimum.
 
 Value: $f(1,-2,1)=1+4+1-1-1-8-1=-5$.
 @a Local minimum at $(1,-2,1)$, value $-5$.
@@ -180,7 +186,7 @@ $|H_2|=2\cdot2-1\cdot1=3$
 
 $|H_3|=2(4-1)-1(2-0)+0=4$
 
-All positive → minimum.
+All positive → $H$ is positive definite → minimum.
 @s Value
 $$w=25+64+49-40-56-10-32-42=-42$$
 @a Minimum value $-42$ at $(-5,8,-7)$.
