@@ -106,3 +106,10 @@ data = {'core': parse('core'), 'full': parse('full')}
 open(os.path.join(here, 'data.js'), 'w', encoding='utf-8').write('window.DATA=' + json.dumps(data, ensure_ascii=False) + ';\n')
 for k, v in data.items():
     print(k, 'topics', sum(len(p['topics']) for p in v), 'questions', sum(len(t['qs']) for p in v for t in p['topics']))
+
+# cache-bust: stamp index.html's data.js reference with a hash of the data
+import hashlib
+ver = hashlib.md5(open(os.path.join(here, 'data.js'), 'rb').read()).hexdigest()[:8]
+ip = os.path.join(here, 'index.html'); h = open(ip, encoding='utf-8').read()
+h = re.sub(r'<script src="data\.js(\?v=\w+)?"></script>', f'<script src="data.js?v={ver}"></script>', h)
+open(ip, 'w', encoding='utf-8').write(h)
