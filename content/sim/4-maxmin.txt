@@ -1,0 +1,176 @@
+@sim c-critical-0
+Find $f_{xx}$, $f_{yy}$, $f_{xy}$ for $f(x,y)=x^3y^2$.
+@s First derivatives
+$$f_x=3x^2y^2\qquad f_y=2x^3y$$
+@s Second derivatives
+$f_{xx}$: differentiate $f_x=3x^2y^2$ in $x$ again → $6xy^2$.
+
+$f_{yy}$: differentiate $f_y=2x^3y$ in $y$ again → $2x^3$.
+
+$f_{xy}$: differentiate $f_x=3x^2y^2$ in $y$ → $6x^2y$.
+@a $f_{xx}=6xy^2,\quad f_{yy}=2x^3,\quad f_{xy}=6x^2y$
+
+@sim c-critical-1
+Find and classify the critical points of $f(x,y)=xy$.
+@s Find the flat spots
+$$f_x=y=0\qquad f_y=x=0$$
+Only one: $(0,0)$.
+@s Second derivatives
+$$f_{xx}=0\qquad f_{yy}=0\qquad f_{xy}=1$$
+@s D test
+$$D=(0)(0)-1^2=-1<0$$
+Negative → saddle.
+@a $(0,0)$ is a saddle point.
+
+@sim c-critical-2
+Find and classify the critical points of $f(x,y)=-x^2-2y^2+6x+4y$.
+@s Find the flat spots
+$$f_x=-2x+6=0\Rightarrow x=3$$
+$$f_y=-4y+4=0\Rightarrow y=1$$
+One point: $(3,1)$.
+@s Second derivatives
+$$f_{xx}=-2\qquad f_{yy}=-4\qquad f_{xy}=0$$
+@s D test
+$$D=(-2)(-4)-0=8>0,\qquad f_{xx}=-2<0$$
+$D$ positive, $f_{xx}$ negative → maximum.
+@a $(3,1)$ is a local maximum.
+
+@sim c-critical-3
+Find and classify the critical points of $f(x,y)=y(x+2)+\dfrac4x$.
+@s Find the flat spots
+Expand first: $f=xy+2y+4x^{-1}$.
+$$f_y=x+2=0\Rightarrow x=-2$$
+$$f_x=y-\frac{4}{x^2}=0\Rightarrow y=\frac{4}{4}=1$$
+One point: $(-2,1)$.
+@s Second derivatives
+$$f_{xx}=\frac{8}{x^3}\qquad f_{yy}=0\qquad f_{xy}=1$$
+At $(-2,1)$: $f_{xx}=\dfrac{8}{-8}=-1$.
+@s D test
+$$D=(-1)\cdot0-1^2=-1<0$$
+@a $(-2,1)$ is a saddle point.
+
+@sim c-critical-4
+Find the critical points of $f(x,y)=x^3+y^3-3xy$ and classify them.
+@s Set both slopes to zero
+$$f_x=3x^2-3y=0\ \Rightarrow\ y=x^2$$
+$$f_y=3y^2-3x=0\ \Rightarrow\ x=y^2$$
+@s Substitute one into the other
+Put $y=x^2$ into $x=y^2$:
+$$x=x^4\ \Rightarrow\ x(x^3-1)=0\ \Rightarrow\ x=0\ \text{or}\ x=1$$
+Then $y=x^2$ gives the points $(0,0)$ and $(1,1)$.
+@s Second derivatives
+$$f_{xx}=6x\qquad f_{yy}=6y\qquad f_{xy}=-3$$
+@s Test each point
+$(0,0)$: $D=0\cdot0-9=-9<0$ → saddle.
+
+$(1,1)$: $D=6\cdot6-9=27>0$, $f_{xx}=6>0$ → minimum.
+@a $(0,0)$ is a saddle point. $(1,1)$ is a local minimum.
+
+@sim c-critical3-0
+Show $f=x^2+y^2+z^2-xy-3x+2z$ has a single critical point at $(2,1,-1)$, and decide if it is a local max or min.
+@s First derivatives
+$$f_x=2x-y-3\qquad f_y=2y-x\qquad f_z=2z+2$$
+@s Set them to zero
+$f_z=0$ gives $z=-1$ straight away.
+
+$f_y=0$ gives $x=2y$.
+
+Put that into $f_x=0$: $\ 4y-y-3=0\Rightarrow y=1$, so $x=2$.
+
+Only one answer: $(2,1,-1)$.
+@s Hessian
+$$H=\begin{pmatrix}2&-1&0\\-1&2&0\\0&0&2\end{pmatrix}$$
+@s Leading principal minors
+$|H_1|=2$
+
+$|H_2|=2\cdot2-(-1)(-1)=3$
+
+$|H_3|$: the last row is $0,0,2$, so $|H_3|=2\times|H_2|=6$
+@s Read the signs
+$+,\ +,\ +$ → $H$ is positive definite → minimum.
+
+Value: $f(2,1,-1)=4+1+1-2-6-2=-4$.
+@a Local minimum at $(2,1,-1)$, value $-4$.
+
+@sim c-critical3-1
+Show that $w=-x^2-y^2-z^2+xy+yz+2x+2z$ has a maximum value of $4$ at $(2,2,2)$.
+@s First derivatives
+$$w_x=-2x+y+2\qquad w_y=-2y+x+z\qquad w_z=-2z+y+2$$
+@s Check $(2,2,2)$ makes them all zero
+$w_x=-4+2+2=0$
+
+$w_y=-4+2+2=0$
+
+$w_z=-4+2+2=0$
+
+So it is a critical point.
+@s Hessian
+$$H=\begin{pmatrix}-2&1&0\\1&-2&1\\0&1&-2\end{pmatrix}$$
+@s Leading principal minors
+$|H_1|=-2$
+
+$|H_2|=(-2)(-2)-1\cdot1=3$
+
+$|H_3|=-2(4-1)-1(-2-0)+0=-6+2=-4$
+
+Pattern $-,\ +,\ -$ → $H$ is negative definite → maximum.
+@s Value
+$$w=-4-4-4+4+4+4+4=4$$
+@a Maximum value $4$ at $(2,2,2)$.
+
+@sim c-lagrange-0
+Find the maximum and minimum of $f(x,y)=xy^2$ subject to $x^2+y^2=3$.
+@s Gradients
+$$\nabla f=\langle y^2,\ 2xy\rangle\qquad\nabla g=\langle2x,\ 2y\rangle$$
+@s Lagrange equations
+$$y^2=2\lambda x\qquad 2xy=2\lambda y$$
+@s Case $y=0$
+Then $f=x\cdot0=0$. Keep $0$ as a candidate.
+@s Case $y\neq0$
+Divide the second equation by $2y$: $\lambda=x$.
+
+Put into the first:
+$$y^2=2x^2$$
+@s Use the constraint
+$$x^2+2x^2=3x^2=3\ \Rightarrow\ x=\pm1,\quad y^2=2$$
+@s Values of $f$
+$x=1$: $f=1\cdot2=2$. $\quad x=-1$: $f=-2$.
+
+Compare with $0$: biggest is $2$, smallest is $-2$.
+@a Maximum $2$, minimum $-2$.
+
+@sim c-lagrange-1
+Find the maximum and minimum of $f(x,y,z)=xyz$ subject to $x^2+y^2+z^2=3$.
+@s Lagrange equations
+$\nabla f=\langle yz,\ xz,\ xy\rangle$, $\ \nabla g=\langle2x,\ 2y,\ 2z\rangle$:
+$$yz=2\lambda x\qquad xz=2\lambda y\qquad xy=2\lambda z$$
+@s Zero cases
+If any of $x,y,z$ is $0$, then $f=0$. Keep $0$ as a candidate, and now assume none are zero.
+@s Solve
+Multiply the first by $x$, the second by $y$, the third by $z$. Every left side becomes $xyz$:
+$$xyz=2\lambda x^2=2\lambda y^2=2\lambda z^2$$
+$\lambda\neq0$ (otherwise $xyz=0$), so $x^2=y^2=z^2$.
+@s Use the constraint
+$$3x^2=3\ \Rightarrow\ x^2=y^2=z^2=1$$
+@s Values of $f$
+Each of $x,y,z$ is $\pm1$, so $xyz$ is $1$ or $-1$.
+@a Maximum $1$, minimum $-1$.
+
+@sim c-lagrange-2
+Find the minimum of $x^2+y^2+z^2$ subject to $x+y+z=3$ and $x+y-z=0$.
+@s Two constraints, two helpers
+$\nabla f=\langle2x,2y,2z\rangle$, $\ \nabla g=\langle1,1,1\rangle$, $\ \nabla h=\langle1,1,-1\rangle$.
+$$2x=\lambda+\mu\qquad2y=\lambda+\mu\qquad2z=\lambda-\mu$$
+@s Put into the first constraint
+Add the three: $2(x+y+z)=3\lambda+\mu$. Since $x+y+z=3$:
+$$3\lambda+\mu=6$$
+@s Put into the second constraint
+$2(x+y-z)=(\lambda+\mu)+(\lambda+\mu)-(\lambda-\mu)=\lambda+3\mu$. Since $x+y-z=0$:
+$$\lambda+3\mu=0$$
+@s Solve for $\lambda$ and $\mu$
+From the second: $\lambda=-3\mu$. Into the first: $-9\mu+\mu=6$, so $\mu=-\tfrac34$, $\lambda=\tfrac94$.
+@s Find the point
+$$x=y=\tfrac{\lambda+\mu}{2}=\tfrac34\qquad z=\tfrac{\lambda-\mu}{2}=\tfrac32$$
+@s Value
+$$\tfrac9{16}+\tfrac9{16}+\tfrac94=\tfrac{54}{16}=\tfrac{27}8$$
+@a Minimum value $\dfrac{27}{8}$.

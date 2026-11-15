@@ -1,0 +1,86 @@
+@sim c-gradient-0
+Find the gradient of $f(x,y)=\ln(2x+y^2)$ at $(1,2)$.
+@s Partial derivatives
+Use $(\ln\text{inside})'=\dfrac{(\text{inside})'}{\text{inside}}$:
+$$f_x=\frac{2}{2x+y^2}\qquad f_y=\frac{2y}{2x+y^2}$$
+@s Plug in $(1,2)$
+The bottom is $2+4=6$.
+$$f_x=\frac26=\frac13\qquad f_y=\frac46=\frac23$$
+@a $\nabla f(1,2)=\left\langle\tfrac13,\ \tfrac23\right\rangle$
+
+@sim c-gradient-1
+Find the directional derivative of $f(x,y)=x^2-3xy$ at $P_0=(2,1)$ in the direction of $\mathbf v=\langle3,-4\rangle$.
+@s Make the direction a unit vector
+Length of $\mathbf v$: $\sqrt{9+16}=5$.
+$$\mathbf u=\left\langle\tfrac35,\ -\tfrac45\right\rangle$$
+@s Gradient
+$$f_x=2x-3y\qquad f_y=-3x$$
+At $(2,1)$:
+$$\nabla f=\langle4-3,\ -6\rangle=\langle1,\ -6\rangle$$
+@s Dot product
+$$D_{\mathbf u}f=1\cdot\tfrac35+(-6)\cdot\left(-\tfrac45\right)=\tfrac35+\tfrac{24}5=\tfrac{27}5$$
+@a $\dfrac{27}{5}$
+
+@sim c-gradient-2
+Find the directional derivative of $f(x,y,z)=x^2+yz$ at $P_0=(1,2,3)$ in the direction of $\mathbf v=\langle2,-1,2\rangle$.
+@s Unit vector
+Length: $\sqrt{4+1+4}=\sqrt9=3$.
+$$\mathbf u=\left\langle\tfrac23,\ -\tfrac13,\ \tfrac23\right\rangle$$
+@s Gradient
+$$\nabla f=\langle2x,\ z,\ y\rangle$$
+At $(1,2,3)$:
+$$\nabla f=\langle2,\ 3,\ 2\rangle$$
+@s Dot product
+$$D_{\mathbf u}f=2\cdot\tfrac23+3\cdot\left(-\tfrac13\right)+2\cdot\tfrac23=\tfrac43-1+\tfrac43=\tfrac53$$
+@a $\dfrac53$
+
+@sim c-gradient-3
+For $f(x,y)=x^3+y^2$ at $P_0=(1,2)$, find the directions in which $f$ increases and decreases fastest, and the rates in those directions.
+@s Gradient
+$$\nabla f=\langle3x^2,\ 2y\rangle$$
+At $(1,2)$:
+$$\nabla f=\langle3,\ 4\rangle$$
+@s Fastest increase = direction of the gradient
+Length: $\sqrt{9+16}=5$. Unit vector:
+$$\mathbf u=\left\langle\tfrac35,\ \tfrac45\right\rangle$$
+@s Fastest decrease = exactly the opposite way
+$$-\mathbf u=\left\langle-\tfrac35,\ -\tfrac45\right\rangle$$
+@s The rates
+Fastest up rate = length of gradient $=5$. Fastest down $=-5$.
+@a Increase fastest along $\left\langle\tfrac35,\tfrac45\right\rangle$ (rate $5$); decrease fastest along $\left\langle-\tfrac35,-\tfrac45\right\rangle$ (rate $-5$).
+
+@sim c-tangent-0
+Find the tangent line to $x^2+y^2=25$ at $(3,4)$.
+@s Name $F$
+$F=x^2+y^2$, and the curve is $F=25$.
+@s Gradient at the point
+$$\nabla F=\langle2x,\ 2y\rangle=\langle6,\ 8\rangle$$
+@s Line formula
+$$6(x-3)+8(y-4)=0$$
+@s Tidy up
+$6x+8y=18+32=50$. Divide by $2$.
+@a $3x+4y=25$
+
+@sim c-tangent-1
+Find the tangent plane to $x^2-y^2+z^2=6$ at $(1,2,3)$.
+@s Name $F$
+$F=x^2-y^2+z^2$.
+@s Gradient at the point
+$$\nabla F=\langle2x,\ -2y,\ 2z\rangle=\langle2,\ -4,\ 6\rangle$$
+@s Plane formula
+$$2(x-1)-4(y-2)+6(z-3)=0$$
+@s Tidy up
+$2x-4y+6z=2-8+18=12$. Divide by $2$.
+@a $x-2y+3z=6$
+
+@sim c-tangent-2
+Find the tangent plane to $\cos(\pi y)+xy^2+e^{yz}+xz=4$ at $(2,0,1)$.
+@s Partial derivatives
+$$F_x=y^2+z$$
+$$F_y=-\pi\sin(\pi y)+2xy+z\,e^{yz}\qquad F_z=y\,e^{yz}+x$$
+@s Plug in $(2,0,1)$
+$\sin0=0$ and $e^0=1$:
+$$F_x=0+1=1\qquad F_y=0+0+1=1\qquad F_z=0+2=2$$
+@s Plane formula
+$$1(x-2)+1(y-0)+2(z-1)=0$$
+@a $x+y+2z=4$

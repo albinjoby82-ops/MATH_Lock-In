@@ -1,0 +1,273 @@
+@sim x-q1-0
+Let $f(x,y)=\dfrac{\ln(y)}{\sqrt{9-x^2-y^2}}$. Determine the domain of $f$ in set notation.
+@s Spot everything that could break
+$\ln(y)$ → needs $y>0$.
+
+Square root → inside $\ge0$.
+
+Fraction → bottom $\neq0$.
+@s Combine the root and the fraction
+Strictly positive inside:
+$$9-x^2-y^2>0\ \Longleftrightarrow\ x^2+y^2<9$$
+@s Put both conditions together
+Both must be true at the same time ("and").
+@a $\text{dom}(f)=\{(x,y)\in\mathbb{R}^2\mid y>0\ \text{and}\ x^2+y^2<9\}$
+
+@sim x-q1-1
+Sketch the domain $\{(x,y)\mid y>0\ \text{and}\ x^2+y^2<9\}$.
+@s Draw each condition
+$x^2+y^2<9$: inside the circle, centre $(0,0)$, radius $3$. Not the edge, so **dashed** circle.
+
+$y>0$: above the $x$-axis. Not the axis itself, so **dashed** along the axis too.
+@s Shade where both are true
+The top half of the disk.
+{{fig:halfdiskup}}
+@a The open half-disk: centre $(0,0)$, radius $3$, above the $x$-axis, with no edges included.
+
+@sim x-q1-2
+For $f(x,y)=\dfrac{\ln(y)}{\sqrt{9-x^2-y^2}}$, determine $\displaystyle\lim_{(x,y)\to(0,e)}f(x,y)$.
+@s Is the point allowed?
+$y=e>0$ ✓ and $0^2+e^2\approx7.39<9$ ✓. So $(0,e)$ is in the domain.
+@s So just plug in
+$f$ is continuous where it is defined, so the limit is just the value. Remember $\ln e=1$:
+$$\frac{\ln e}{\sqrt{9-0-e^2}}=\frac{1}{\sqrt{9-e^2}}$$
+@a $\dfrac{1}{\sqrt{9-e^2}}$ (leave it exact).
+
+@sim x-q2-0
+Find $f_x$ and $f_y$ for $f(x,y)=\sqrt{\cos(x^3y^2)}$.
+@s See the layers
+$$\sqrt{\ \cdot\ }\quad\to\quad\cos(\ \cdot\ )\quad\to\quad x^3y^2$$
+Differentiate each layer and multiply.
+@s Layer by layer
+Root: $(\sqrt u)'=\dfrac{1}{2\sqrt u}$.
+
+$\cos$: $\cos\to-\sin$.
+
+Inside, in $x$: $x^3y^2\to3x^2y^2$.
+@s Multiply for $f_x$
+$$f_x=\frac{1}{2\sqrt{\cos(x^3y^2)}}\cdot\left(-\sin(x^3y^2)\right)\cdot3x^2y^2=-\frac{3x^2y^2\sin(x^3y^2)}{2\sqrt{\cos(x^3y^2)}}$$
+@s Same for $f_y$
+Only the inside changes: in $y$, $x^3y^2\to2x^3y$.
+$$f_y=\frac{1}{2\sqrt{\cos(x^3y^2)}}\cdot\left(-\sin(x^3y^2)\right)\cdot2x^3y=-\frac{x^3y\sin(x^3y^2)}{\sqrt{\cos(x^3y^2)}}$$
+@a $f_x=-\dfrac{3x^2y^2\sin(x^3y^2)}{2\sqrt{\cos(x^3y^2)}},\qquad f_y=-\dfrac{x^3y\sin(x^3y^2)}{\sqrt{\cos(x^3y^2)}}$
+
+@sim x-q2-1
+Use the chain rule to find $w'(1)$ if $w=\cos(xyz)$ and $x=1+t$, $y=2t$, $z=t^2-2$.
+@s Chain rule
+$$w'(t)=w_x\,x'+w_y\,y'+w_z\,z'$$
+@s The pieces
+$$w_x=-yz\sin(xyz)\qquad w_y=-xz\sin(xyz)\qquad w_z=-xy\sin(xyz)$$
+$$x'=1\qquad y'=2\qquad z'=2t$$
+@s Find everything at $t=1$
+$x=2,\ y=2,\ z=-1$, so $xyz=-4$.
+
+$yz=-2,\quad xz=-2,\quad xy=4$
+
+$x'=1,\quad y'=2,\quad z'=2$
+@s Multiply and add
+$$w'(1)=-\sin(-4)\,\big[(-2)(1)+(-2)(2)+(4)(2)\big]=-\sin(-4)\cdot2$$
+$\sin(-4)=-\sin4$, so this is $2\sin4$.
+@a $w'(1)=2\sin4$
+
+@sim x-q2-2
+$x=r^2-s^2$, $y=\sin(rs)$. Find $w_x$ if $r=2$, $s=\tfrac\pi2$, $w_r=12$, $w_s=-3\pi$.
+@s Chain rule, twice
+$$w_r=w_x\,x_r+w_y\,y_r\qquad w_s=w_x\,x_s+w_y\,y_s$$
+@s The four small derivatives
+$x_r=2r,\quad x_s=-2s$
+
+$y_r=s\cos(rs),\quad y_s=r\cos(rs)$
+@s Put in $r=2$, $s=\pi/2$
+$rs=\pi$ and $\cos\pi=-1$:
+
+$x_r=4,\quad x_s=-\pi,\quad y_r=-\tfrac\pi2,\quad y_s=-2$
+@s Two equations
+$$12=4w_x-\tfrac\pi2w_y\qquad\text{(i)}$$
+$$-3\pi=-\pi w_x-2w_y\qquad\text{(ii)}$$
+@s Get rid of $w_y$
+Multiply (i) by $\tfrac4\pi$ so it has $-2w_y$ like (ii):
+$$\tfrac{48}{\pi}=\tfrac{16}{\pi}w_x-2w_y$$
+Subtract (ii):
+$$\tfrac{48}{\pi}+3\pi=\left(\tfrac{16}{\pi}+\pi\right)w_x$$
+@s Spot the shortcut
+The left side is exactly $3\times$ the bracket. So $w_x=3$.
+
+Check in (i): $12=12-\tfrac\pi2w_y$, so $w_y=0$. ✓
+@a $w_x=3$
+
+@sim x-q3-0
+$2xyz+e^{x+y+z}=-11$ defines $z(x,y)$. Find $z_x$ and $z_y$ at $(1,2,-3)$.
+@s Differentiate in $x$ ($y$ is a constant)
+$2xyz$: $2y$ is a number, and $x\cdot z$ needs the product rule → $2y(z+x\,z_x)$.
+
+$e^{x+y+z}$: inside gives $1+z_x$ → $e^{x+y+z}(1+z_x)$.
+$$2y(z+x\,z_x)+e^{x+y+z}(1+z_x)=0$$
+@s Solve for $z_x$
+$$z_x\left(2xy+e^{x+y+z}\right)=-\left(2yz+e^{x+y+z}\right)$$
+$$z_x=-\frac{2yz+e^{x+y+z}}{2xy+e^{x+y+z}}$$
+@s Plug in the point
+$x+y+z=0$, so $e^0=1$. Also $2yz=-12$, $2xy=4$:
+$$z_x=-\frac{-12+1}{4+1}=\frac{11}{5}$$
+@s $z_y$ the same way
+Swap the roles of $x$ and $y$:
+$$z_y=-\frac{2xz+e^{x+y+z}}{2xy+e^{x+y+z}}=-\frac{-6+1}{4+1}=1$$
+@a $z_x=\dfrac{11}{5},\qquad z_y=1$
+
+@sim x-q3-1
+$f_1=2x+y+3z$, $f_2=e^x+e^y$, $f_3=\ln(xyz)$. (i) Find the Jacobian matrix. (ii) Find its determinant at $(1,1,1)$.
+@s Tidy $f_3$ first
+$\ln(xyz)=\ln x+\ln y+\ln z$, so its partials are $\tfrac1x,\ \tfrac1y,\ \tfrac1z$.
+@s Fill the grid
+Row 1 ($f_1$): $2,\ 1,\ 3$
+
+Row 2 ($f_2$): $e^x,\ e^y,\ 0$ (no $z$ in it, so $0$ last)
+
+Row 3 ($f_3$): $\tfrac1x,\ \tfrac1y,\ \tfrac1z$
+$$J=\begin{pmatrix}2&1&3\\e^x&e^y&0\\ \frac1x&\frac1y&\frac1z\end{pmatrix}$$
+@s At $(1,1,1)$
+$$J=\begin{pmatrix}2&1&3\\e&e&0\\1&1&1\end{pmatrix}$$
+@s Expand along the top row
+$$2\,(e\cdot1-0\cdot1)-1\,(e\cdot1-0\cdot1)+3\,(e\cdot1-e\cdot1)$$
+$$=2e-e+0=e$$
+@a $J$ as above; $\det J(1,1,1)=e$
+
+@sim x-q3-2
+$E=\tfrac12mv^2$. Find the approximate percentage change in $E$ if $m$ increases by 3% and $v$ decreases by 2%.
+@s Powers become multipliers
+$\tfrac12$ is a constant. $m$ has power $1$, $v$ has power $2$:
+$$\%E\approx1(\%m)+2(\%v)$$
+@s Put the numbers in
+Increase → $+3$. Decrease → $-2$.
+$$\%E\approx3+2(-2)=3-4=-1$$
+@a About a $1\%$ decrease.
+
+@sim x-q4-0
+$T(x,y,z)=e^{2x^2-y^2-z^2}$. Find $\nabla T$ at $P=(1,1,1)$.
+@s Partials (chain rule on $e$)
+Each one keeps the same $e$ part, times the derivative of the exponent:
+$$\nabla T=e^{2x^2-y^2-z^2}\,\langle4x,\ -2y,\ -2z\rangle$$
+@s At $P$
+Exponent: $2-1-1=0$, so $e^0=1$.
+$$\nabla T=\langle4,\ -2,\ -2\rangle$$
+@a $\nabla T(P)=\langle4,-2,-2\rangle$
+
+@sim x-q4-1
+Find a unit vector $\mathbf u$ pointing from $P=(1,1,1)$ towards $Q=(3,2,-1)$.
+@s Arrow from P to Q
+Subtract $P$ from $Q$:
+$$\mathbf v=\langle3-1,\ 2-1,\ -1-1\rangle=\langle2,\ 1,\ -2\rangle$$
+@s Length
+$$\|\mathbf v\|=\sqrt{4+1+4}=3$$
+@a $\mathbf u=\dfrac13\langle2,1,-2\rangle$
+
+@sim x-q4-2
+With $\nabla T(P)=\langle4,-2,-2\rangle$ and $\mathbf u=\tfrac13\langle2,1,-2\rangle$, find the rate of change of $T$ at $P$ in the direction of $\mathbf u$.
+@s It's the directional derivative
+$$D_{\mathbf u}T=\nabla T\cdot\mathbf u$$
+@s Dot product
+$$\frac13\langle4,-2,-2\rangle\cdot\langle2,1,-2\rangle=\frac{8-2+4}{3}$$
+@a $\dfrac{10}{3}$ (temperature is rising in that direction)
+
+@sim x-q4-3
+With $\nabla T(P)=\langle4,-2,-2\rangle$: (d) In which direction does $T$ increase fastest at $P$? (e) What is that maximum rate?
+@s Fastest increase
+Always the direction of the gradient: $\langle4,-2,-2\rangle$.
+@s Maximum rate
+The length of the gradient:
+$$\|\nabla T\|=\sqrt{16+4+4}=\sqrt{24}=2\sqrt6$$
+@a (d) Direction $\langle4,-2,-2\rangle$. (e) Maximum rate $2\sqrt6$.
+
+@sim x-q5-0
+Find the tangent plane to $\sin(2x+y+z)=0$ at $Q=\left(\pi,\tfrac\pi2,\tfrac\pi2\right)$.
+@s Gradient
+Chain rule. The inside $2x+y+z$ gives $2,1,1$:
+$$\nabla F=\cos(2x+y+z)\,\langle2,\ 1,\ 1\rangle$$
+@s At Q
+$2x+y+z=2\pi+\tfrac\pi2+\tfrac\pi2=3\pi$.
+
+$\cos3\pi$: take away $2\pi$ (one full turn) to get $\cos\pi=-1$.
+$$\nabla F=\langle-2,\ -1,\ -1\rangle$$
+@s Plane formula
+$$-2(x-\pi)-\left(y-\tfrac\pi2\right)-\left(z-\tfrac\pi2\right)=0$$
+@s Tidy
+Multiply by $-1$: $\ 2x+y+z=2\pi+\tfrac\pi2+\tfrac\pi2=3\pi$
+@a $2x+y+z=3\pi$
+
+@sim x-q5-1
+$f=-3x^2-y^2-2z^2-xy+5x-y+8z$. (i) Find the critical point $P$. (ii) Find the leading principal minors of the Hessian. (iii) Max, min or saddle?
+@s First derivatives
+$$f_x=-6x-y+5\qquad f_y=-2y-x-1\qquad f_z=-4z+8$$
+@s Solve
+$f_z=0\Rightarrow z=2$.
+
+$f_y=0\Rightarrow x=-2y-1$.
+
+Put into $f_x=0$: $\ -6(-2y-1)-y+5=11y+11=0\Rightarrow y=-1$, then $x=1$.
+
+$P=(1,-1,2)$.
+@s Hessian
+$$H=\begin{pmatrix}-6&-1&0\\-1&-2&0\\0&0&-4\end{pmatrix}$$
+@s Leading principal minors
+$|H_1|=-6$
+
+$|H_2|=(-6)(-2)-(-1)(-1)=11$
+
+$|H_3|$: the last row is $0,0,-4$, so $|H_3|=-4\times|H_2|=-44$
+@s Read the signs
+$-,\ +,\ -$ → $H$ is negative definite → maximum.
+@a $P=(1,-1,2)$; minors $-6,\ 11,\ -44$; $P$ is a local maximum.
+
+@sim x-q6-0
+Find the max and min of $f=xy^2z+2$ subject to $z=2$ and $x^2+y^2+z^2=16$.
+@s Gradients
+$\nabla f=\langle y^2z,\ 2xyz,\ xy^2\rangle$
+
+$g_1=z$: $\ \nabla g_1=\langle0,0,1\rangle$
+
+$g_2=x^2+y^2+z^2$: $\ \nabla g_2=\langle2x,2y,2z\rangle$
+@s Lagrange equations
+$\nabla f=\lambda\nabla g_1+\mu\nabla g_2$, and put $z=2$ straight in:
+$$2y^2=2\mu x\qquad(1)$$
+$$4xy=2\mu y\qquad(2)$$
+$$xy^2=\lambda+4\mu\qquad(3)$$
+(3) only tells us $\lambda$, which we don't need.
+@s Factor (2)
+$$y(4x-2\mu)=0\ \Rightarrow\ y=0\ \text{ or }\ \mu=2x$$
+@s Case $y=0$
+Constraint: $x^2+0+4=16\Rightarrow x=\pm\sqrt{12}$. Then $f=0+2=2$.
+@s Case $\mu=2x$
+(1) becomes $2y^2=4x^2$, so $y^2=2x^2$. Constraint: $x^2+2x^2+4=16\Rightarrow x^2=4\Rightarrow x=\pm2$, and $y^2=8$.
+
+$f=xy^2z+2=x\cdot8\cdot2+2=16x+2=\pm32+2$.
+@s Compare all values
+$2$, $\ 34$, $\ -30$.
+@a Maximum $34$ (at $(2,\pm2\sqrt2,2)$). Minimum $-30$ (at $(-2,\pm2\sqrt2,2)$).
+
+@sim x-q6-1
+Find the general solution of $y''+y=t^2+\cos2t$.
+@s Step 1: $y_h$
+$$r^2+1=0\Rightarrow r=\pm i$$
+Complex with $\alpha=0$, $\beta=1$:
+$$y_h=C_1\cos t+C_2\sin t$$
+@s Step 2: guess $y_p$
+Right side = degree 2 polynomial + $\cos2t$:
+$$y_p=At^2+Bt+C+D\cos2t+E\sin2t$$
+No clash: $\cos2t$ is not $\cos t$.
+@s Differentiate twice
+$$y_p''=2A-4D\cos2t-4E\sin2t$$
+@s Put it in
+$$y_p''+y_p=At^2+Bt+(2A+C)-3D\cos2t-3E\sin2t$$
+This must equal $t^2+\cos2t$.
+@s Match coefficients
+$t^2$: $A=1$
+
+$t$: $B=0$
+
+number: $2A+C=0\Rightarrow C=-2$
+
+$\cos2t$: $-3D=1\Rightarrow D=-\tfrac13$
+
+$\sin2t$: $-3E=0\Rightarrow E=0$
+@s Add them
+$$y=y_h+y_p$$
+@a $y=C_1\cos t+C_2\sin t+t^2-2-\dfrac13\cos2t$

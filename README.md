@@ -17,8 +17,10 @@ Two modes:
 
 Progress is saved in your browser.
 
+Every exam-path question has a **Similar question** button (or press S): the same method with new numbers and a full worked solution.
+
 ## Editing
 
-Questions live in `content/core/*.txt` (pass path) and `content/full/*.txt` (all homework). After editing, run `python3 build.py` to regenerate `data.js`.
+Questions live in `content/core/*.txt` (pass path) and `content/full/*.txt` (all homework). Similar questions live in `content/sim/*.txt`, keyed by question id (`@sim c-limits-0`). After editing, run `python3 build.py` to regenerate `data.js`.
 
 Sheets 1 to 3 follow the official solutions. Sheets 4 and 5 have no official full solutions yet: those were worked by hand, checked against the sheet's short answers and verified with a computer algebra system.

@@ -1,0 +1,174 @@
+@sim c-separable-0
+Solve $y'=2ty$ with $y(0)=3$.
+@s Separate
+$$\frac{dy}{y}=2t\,dt$$
+@s Integrate both sides
+$$\ln|y|=t^2+c$$
+@s Get $y$ on its own
+$$y=Ce^{t^2}$$
+@s Use $y(0)=3$
+Put $t=0$: $\ 3=Ce^0=C$.
+@a $y=3e^{t^2}$
+
+@sim c-separable-1
+Solve $y'=2-y$ with $y(0)=0$.
+@s Separate
+$$\frac{dy}{2-y}=dt$$
+@s Integrate both sides
+$\int\frac{dy}{2-y}=-\ln|2-y|$ (the minus comes from the $-y$ inside).
+$$-\ln|2-y|=t+c$$
+@s Get $y$ on its own
+$$\ln|2-y|=-t-c\ \Rightarrow\ 2-y=Ce^{-t}\ \Rightarrow\ y=2-Ce^{-t}$$
+@s Use $y(0)=0$
+$0=2-C$, so $C=2$.
+@a $y=2-2e^{-t}$
+
+@sim c-separable-2
+Solve $y'=(1+2x)(3+y)$.
+@s Separate
+$$\frac{dy}{3+y}=(1+2x)\,dx$$
+@s Integrate both sides
+$$\ln|3+y|=x+x^2+c$$
+@s Get $y$ on its own
+$$3+y=Ce^{x+x^2}$$
+@a $y=Ce^{x+x^2}-3$
+
+@sim c-linear-0
+Solve $\dfrac{dy}{dx}+3x^2y=x^2e^{-x^3}$.
+@s Match the shape
+$y'+p\,y=q$ with $p=3x^2$ and $q=x^2e^{-x^3}$.
+@s Integrating factor
+$$\mu=e^{\int3x^2\,dx}=e^{x^3}$$
+@s Multiply through
+The left side becomes $(e^{x^3}y)'$. The right side: $e^{x^3}\cdot x^2e^{-x^3}=x^2$.
+$$\left(e^{x^3}y\right)'=x^2$$
+@s Integrate
+$$e^{x^3}y=\frac{x^3}{3}+C$$
+@s Divide by $\mu$
+$$y=\left(\frac{x^3}{3}+C\right)e^{-x^3}$$
+@a $y=\left(\dfrac{x^3}{3}+C\right)e^{-x^3}$
+
+@sim c-linear-1
+Solve $y'+\dfrac{y}{x}=x$.
+@s Match the shape
+$p=\dfrac1x$, $\ q=x$.
+@s Integrating factor
+$$\mu=e^{\int\frac1x\,dx}=e^{\ln x}=x$$
+@s Multiply through
+$$\left(xy\right)'=x\cdot x=x^2$$
+@s Integrate
+$$xy=\frac{x^3}{3}+C$$
+@s Divide by $x$
+$$y=\frac{x^2}{3}+\frac Cx$$
+@a $y=\dfrac{x^2}{3}+\dfrac{C}{x}$
+
+@sim c-homog-0
+Find the general solution of $y''+5y'+6y=0$.
+@s Auxiliary equation
+$$r^2+5r+6=0$$
+@s Solve
+$$(r+2)(r+3)=0\ \Rightarrow\ r=-2,\ -3$$
+@s Which case?
+Two different real roots.
+@a $y=C_1e^{-2x}+C_2e^{-3x}$
+
+@sim c-homog-1
+Find the general solution of $y''-6y'+9y=0$.
+@s Auxiliary equation
+$$r^2-6r+9=0$$
+@s Solve
+$$(r-3)^2=0\ \Rightarrow\ r=3\ \text{(twice)}$$
+@s Which case?
+Repeated root, so the second part gets an extra $x$.
+@a $y=(C_1+C_2x)\,e^{3x}$
+
+@sim c-homog-2
+Find the general solution of $y''+4y'+13y=0$.
+@s Auxiliary equation
+$$r^2+4r+13=0$$
+@s Solve with the quadratic formula
+$$r=\frac{-4\pm\sqrt{16-52}}{2}=\frac{-4\pm\sqrt{-36}}{2}=\frac{-4\pm6i}{2}=-2\pm3i$$
+@s Which case?
+Complex: $\alpha=-2$ (real part), $\beta=3$ (the number with $i$).
+@a $y=e^{-2x}\left(C_1\cos3x+C_2\sin3x\right)$
+
+@sim c-homog-3
+Solve $y''-9y=0$ with $y(0)=2$, $y'(0)=12$.
+@s Auxiliary equation
+$$r^2-9=0\ \Rightarrow\ r=3,\ -3$$
+$$y=C_1e^{3x}+C_2e^{-3x}$$
+@s We also need $y'$
+$$y'=3C_1e^{3x}-3C_2e^{-3x}$$
+@s Use the conditions at $x=0$
+$$y(0)=C_1+C_2=2$$
+$$y'(0)=3C_1-3C_2=12\ \Rightarrow\ C_1-C_2=4$$
+@s Solve
+Add the two: $2C_1=6$, so $C_1=3$. Then $C_2=2-3=-1$.
+@a $y=3e^{3x}-e^{-3x}$
+
+@sim c-undet-0
+Find the general solution of $y''-4y=8x^2$.
+@s Step 1: $y_h$
+$r^2-4=0\Rightarrow r=\pm2$.
+$$y_h=C_1e^{2x}+C_2e^{-2x}$$
+@s Step 2: guess $y_p$
+Right side is a degree 2 polynomial, so:
+$$y_p=Ax^2+Bx+C\qquad y_p''=2A$$
+@s Put it in
+$$2A-4(Ax^2+Bx+C)=8x^2$$
+@s Match coefficients
+$x^2$: $\ -4A=8\Rightarrow A=-2$
+
+$x$: $\ -4B=0\Rightarrow B=0$
+
+number: $\ 2A-4C=0\Rightarrow C=\tfrac A2=-1$
+$$y_p=-2x^2-1$$
+@s Add them
+$$y=y_h+y_p$$
+@a $y=C_1e^{2x}+C_2e^{-2x}-2x^2-1$
+
+@sim c-undet-1
+Find the general solution of $y''+y'-2y=e^{2x}+2x$.
+@s Step 1: $y_h$
+$r^2+r-2=(r-1)(r+2)=0\Rightarrow r=1,\ -2$.
+$$y_h=C_1e^{x}+C_2e^{-2x}$$
+@s Step 2: guess $y_p$
+Right side is $e^{2x}$ plus a degree 1 polynomial:
+$$y_p=De^{2x}+Ax+B$$
+No clash: $e^{2x}$ is not in $y_h$.
+@s The $e^{2x}$ part
+$y=De^{2x}$, $\ y'=2De^{2x}$, $\ y''=4De^{2x}$:
+$$4D+2D-2D=4D=1\ \Rightarrow\ D=\tfrac14$$
+@s The polynomial part
+$y=Ax+B$, $\ y'=A$, $\ y''=0$:
+$$0+A-2(Ax+B)=2x$$
+$x$: $\ -2A=2\Rightarrow A=-1$
+
+number: $\ A-2B=0\Rightarrow B=\tfrac A2=-\tfrac12$
+@s Add everything
+$$y=y_h+\tfrac14e^{2x}-x-\tfrac12$$
+@a $y=C_1e^{x}+C_2e^{-2x}+\dfrac{e^{2x}}{4}-x-\dfrac12$
+
+@sim c-undet-2
+Solve $y''+y'-2y=3e^{x}$ with $y(0)=0$, $y'(0)=4$.
+@s Step 1: $y_h$
+$r^2+r-2=(r-1)(r+2)=0$:
+$$y_h=C_1e^{x}+C_2e^{-2x}$$
+@s Step 2: guess $y_p$ (clash!)
+Normal guess would be $Ae^{x}$, but $e^{x}$ is already in $y_h$. Multiply by $x$:
+$$y_p=Axe^{x}$$
+@s Derivatives (product rule)
+$$y_p'=A(1+x)e^{x}\qquad y_p''=A(2+x)e^{x}$$
+@s Put it in and cancel $e^{x}$
+$$A(2+x)+A(1+x)-2Ax=3$$
+The $x$ terms cancel: $3A=3$, so $A=1$.
+@s Full solution
+$$y=C_1e^{x}+C_2e^{-2x}+xe^{x}$$
+$$y'=C_1e^{x}-2C_2e^{-2x}+(1+x)e^{x}$$
+@s Use the conditions
+$y(0)=0$: $\ C_1+C_2=0$
+
+$y'(0)=4$: $\ C_1-2C_2+1=4$
+
+From the first, $C_2=-C_1$. Then $3C_1=3$, so $C_1=1$, $C_2=-1$.
+@a $y=e^{x}-e^{-2x}+xe^{x}$

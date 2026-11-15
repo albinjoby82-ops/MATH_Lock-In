@@ -41,6 +41,10 @@ FIGS = {
  'opendisk': svg(AX+'<circle cx="80" cy="80" r="50" class="in"/><circle cx="80" cy="80" r="50" class="out"/><text x="132" y="94" class="lb">4</text>', 'Open disk, radius 4. Dashed circle NOT included.'),
  'closeddisk': svg(AX+'<circle cx="80" cy="80" r="45" class="in"/><circle cx="80" cy="80" r="45" class="edge"/><text x="127" y="94" class="lb">3</text>', 'Closed disk, radius 3. Solid circle included.'),
  'house': svg('<polygon points="40,140 40,75 80,45 120,75 120,140" class="in"/><polyline points="40,140 40,75 80,45 120,75 120,140" class="edge"/><line x1="40" y1="140" x2="120" y2="140" class="out"/><line x1="40" y1="75" x2="120" y2="75" class="out"/><text x="76" y="155" class="lb">w</text><text x="28" y="112" class="lb">h</text><text x="126" y="112" class="lb">h</text><text x="50" y="56" class="lb">s</text><text x="104" y="56" class="lb">s</text>', 'The wire (solid) makes 5 sides: h, s, s, h and the base w.'),
+ 'punct10': svg('<rect x="10" y="10" width="140" height="140" class="in"/>'+AX+'<circle cx="105" cy="80" r="4" class="hole"/><text x="102" y="96" class="lb">1</text>', 'Shaded = domain. Open dot = the point (1, 0) removed.'),
+ 'halfplaneneg': svg('<polygon points="10,10 150,10 150,150" class="in"/>'+AX+'<line x1="10" y1="10" x2="150" y2="150" class="edge"/><text x="92" y="134" class="lb">y = −x</text>', 'Shaded = domain: on and above the line y = −x.'),
+ 'opendisk3': svg(AX+'<circle cx="80" cy="80" r="50" class="in"/><circle cx="80" cy="80" r="50" class="out"/><text x="132" y="94" class="lb">3</text>', 'Open disk, radius 3. Dashed circle NOT included.'),
+ 'halfdiskup': svg('<path d="M30,80 A50,50 0 0,1 130,80 Z" class="in"/>'+AX+'<path d="M30,80 A50,50 0 0,1 130,80" class="out"/><line x1="30" y1="80" x2="130" y2="80" class="out"/><text x="133" y="94" class="lb">3</text><text x="14" y="94" class="lb">−3</text>', 'Shaded = domain: top half of the disk. Dashed edges NOT included.'),
 }
 
 def fmt(text):
@@ -102,7 +106,37 @@ def parse(folder):
                 assert qq['q'] and qq['steps'] and qq['a'], qq['ref']
     return parts
 
+def parse_sim():
+    """content/sim/*.txt: one similar question (new numbers) per exam-path question, keyed by question id"""
+    sims = {}; cur = None; mode = None; buf = []
+    def flush():
+        nonlocal mode, buf
+        text = '\n'.join(buf); buf = []
+        if mode is None: return
+        kind, arg = mode; mode = None
+        if kind == 'q': cur['q'] = fmt(text)
+        elif kind == 's': cur['steps'].append({'t': html.escape(arg, quote=False), 'b': fmt(text)})
+        elif kind == 'a': cur['a'] = fmt(arg + ('\n' + text if text.strip() else ''))
+    for f in sorted(glob.glob(os.path.join(here, 'content', 'sim', '*.txt'))):
+        for line in open(f, encoding='utf-8').read().split('\n'):
+            if line.startswith('@sim '):
+                flush(); cur = {'q': '', 'steps': [], 'a': ''}; sims[line[5:].strip()] = cur; mode = ('q', None)
+            elif line.startswith('@s '): flush(); mode = ('s', line[3:].strip())
+            elif line.startswith('@a '): flush(); mode = ('a', line[3:].strip())
+            else: buf.append(line)
+        flush()
+    return sims
+
 data = {'core': parse('core'), 'full': parse('full')}
+sims = parse_sim(); used = set()
+for p in data['core']:
+    for t in p['topics']:
+        for qq in t['qs']:
+            sm = sims.get(qq['id'])
+            assert sm and sm['q'] and sm['steps'] and sm['a'], 'no similar question for ' + qq['id']
+            qq['sim'] = sm; used.add(qq['id'])
+assert used == set(sims), set(sims) - used
+print('similar questions', len(used))
 open(os.path.join(here, 'data.js'), 'w', encoding='utf-8').write('window.DATA=' + json.dumps(data, ensure_ascii=False) + ';\n')
 for k, v in data.items():
     print(k, 'topics', sum(len(p['topics']) for p in v), 'questions', sum(len(t['qs']) for p in v for t in p['topics']))

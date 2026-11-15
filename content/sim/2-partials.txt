@@ -1,0 +1,218 @@
+@sim c-partials-0
+Find $f_x$ and $f_y$ for $f(x,y)=x^3+2xy-y^2+4x-5y$.
+@s $f_x$: treat $y$ as a number
+$x^3\to3x^2$, $\ 2xy\to2y$, $\ -y^2\to0$, $\ 4x\to4$, $\ -5y\to0$
+$$f_x=3x^2+2y+4$$
+@s $f_y$: treat $x$ as a number
+$x^3\to0$, $\ 2xy\to2x$, $\ -y^2\to-2y$, $\ 4x\to0$, $\ -5y\to-5$
+$$f_y=2x-2y-5$$
+@a $f_x=3x^2+2y+4,\qquad f_y=2x-2y-5$
+
+@sim c-partials-1
+Find $f_x$ and $f_y$ for $f(x,y)=y\sin 2x+\cos xy$.
+@s $f_x$, first term
+In $y\sin2x$, the $y$ is just a number. $\sin2x\to2\cos2x$ (inside $2x$ gives $2$).
+
+So it gives $2y\cos2x$.
+@s $f_x$, second term
+$\cos(xy)$: $\cos\to-\sin$, and the inside $xy$ in $x$ gives $y$.
+$$-y\sin(xy)$$
+@s $f_x$ together
+$$f_x=2y\cos2x-y\sin xy$$
+@s $f_y$
+First term: $\sin2x$ is a number now, and $y\to1$. So $\sin2x$.
+
+Second term: $-\sin(xy)\times$ (inside $xy$ in $y$ gives $x$).
+$$f_y=\sin2x-x\sin xy$$
+@a $f_x=2y\cos2x-y\sin xy,\qquad f_y=\sin2x-x\sin xy$
+
+@sim c-partials-2
+Find $f_x$ and $f_y$ for $f(x,y)=\dfrac{x-y}{x+y}$.
+@s It's a fraction: quotient rule
+$$\left(\frac uv\right)'=\frac{u'v-uv'}{v^2}\qquad u=x-y,\quad v=x+y$$
+@s $f_x$
+In $x$: $u'=1$, $v'=1$.
+$$f_x=\frac{1\cdot(x+y)-(x-y)\cdot1}{(x+y)^2}=\frac{2y}{(x+y)^2}$$
+@s $f_y$
+In $y$: $u'=-1$, $v'=1$.
+$$f_y=\frac{-1\cdot(x+y)-(x-y)\cdot1}{(x+y)^2}=\frac{-2x}{(x+y)^2}$$
+@a $f_x=\dfrac{2y}{(x+y)^2},\qquad f_y=-\dfrac{2x}{(x+y)^2}$
+
+@sim c-partials-3
+Find $f_x$ and $f_y$ for $f(x,y)=y\ln(x^3+y^2)$.
+@s $f_x$: the $y$ in front is just a number
+Only the $\ln$ changes. Use $(\ln \text{inside})'=\dfrac{(\text{inside})'}{\text{inside}}$. Inside $x^3+y^2$ in $x$ gives $3x^2$.
+$$f_x=y\cdot\frac{3x^2}{x^3+y^2}=\frac{3x^2y}{x^3+y^2}$$
+@s $f_y$: $y$ times something with $y$ in it, so product rule
+$u=y$, $\ v=\ln(x^3+y^2)$.
+
+$u'=1$, $\ v'=\dfrac{2y}{x^3+y^2}$.
+@s Put it together
+$$f_y=u'v+uv'=\ln(x^3+y^2)+\frac{2y^2}{x^3+y^2}$$
+@a $f_x=\dfrac{3x^2y}{x^3+y^2},\qquad f_y=\ln(x^3+y^2)+\dfrac{2y^2}{x^3+y^2}$
+
+@sim c-partials-4
+Find $f_x$, $f_y$, $f_z$ for $f(x,y,z)=\sin(xz)+\cos(3yz)$.
+@s $f_x$
+Only $\sin(xz)$ has an $x$. $\sin\to\cos$, inside $xz$ gives $z$.
+$$f_x=z\cos(xz)$$
+@s $f_y$
+Only $\cos(3yz)$ has a $y$. $\cos\to-\sin$, inside $3yz$ gives $3z$.
+$$f_y=-3z\sin(3yz)$$
+@s $f_z$
+Both terms have $z$.
+
+$\sin(xz)\to\cos(xz)\cdot x$
+
+$\cos(3yz)\to-\sin(3yz)\cdot3y$
+$$f_z=x\cos(xz)-3y\sin(3yz)$$
+@a $f_x=z\cos(xz),\quad f_y=-3z\sin(3yz),\quad f_z=x\cos(xz)-3y\sin(3yz)$
+
+@sim c-chain-0
+$w=x^2ye^{z}$ with $x=2t$, $y=t^2+1$, $z=3t$. Find $w'(t)$ in terms of $t$.
+@s Write the chain rule
+$$w'(t)=w_x\,x'(t)+w_y\,y'(t)+w_z\,z'(t)$$
+@s The partials of $w$
+$$w_x=2xy\,e^{z}\qquad w_y=x^2e^{z}\qquad w_z=x^2y\,e^{z}$$
+@s The $t$-derivatives
+$$x'=2\qquad y'=2t\qquad z'=3$$
+@s Multiply along each branch and add
+$$w'=2xye^{z}\cdot2\ +\ x^2e^{z}\cdot2t\ +\ x^2ye^{z}\cdot3$$
+@s Swap $x,y,z$ for their formulas in $t$
+Use $x=2t$ (so $x^2=4t^2$), $y=t^2+1$, $e^{z}=e^{3t}$.
+
+Branch 1: $4(2t)(t^2+1)=8t(t^2+1)$
+
+Branch 2: $4t^2\cdot2t=8t^3$
+
+Branch 3: $3\cdot4t^2(t^2+1)=12t^2(t^2+1)$
+@a $w'(t)=\left[8t(t^2+1)+8t^3+12t^2(t^2+1)\right]e^{3t}$
+
+@sim c-chain-1
+$x=rs$, $y=r^2-s^2$. Find $w_r$, $w_s$ in terms of $w_x,w_y,r,s$. Hence show $w_x=\dfrac{sw_r+rw_s}{r^2+s^2}$ and $w_r^2+w_s^2=(r^2+s^2)(w_x^2+4w_y^2)$.
+@s Chain rule with two variables underneath
+$$w_r=w_x\,x_r+w_y\,y_r\qquad w_s=w_x\,x_s+w_y\,y_s$$
+@s The four small derivatives
+From $x=rs$: $\ x_r=s$, $\ x_s=r$.
+
+From $y=r^2-s^2$: $\ y_r=2r$, $\ y_s=-2s$.
+@s Put them in
+$$w_r=s\,w_x+2r\,w_y$$
+$$w_s=r\,w_x-2s\,w_y$$
+@s Get $w_x$ on its own
+We want the $w_y$ terms to cancel. Multiply the first line by $s$ and the second by $r$, then add:
+$$sw_r+rw_s=s^2w_x+2rs\,w_y+r^2w_x-2rs\,w_y=(r^2+s^2)w_x$$
+Divide:
+$$w_x=\frac{sw_r+rw_s}{r^2+s^2}$$
+@s Square and add
+$$w_r^2=s^2w_x^2+4rs\,w_xw_y+4r^2w_y^2$$
+$$w_s^2=r^2w_x^2-4rs\,w_xw_y+4s^2w_y^2$$
+Adding, the middle terms cancel:
+$$w_r^2+w_s^2=(r^2+s^2)w_x^2+4(r^2+s^2)w_y^2=(r^2+s^2)(w_x^2+4w_y^2)$$
+@a $w_r=s\,w_x+2r\,w_y,\quad w_s=r\,w_x-2s\,w_y$; both identities follow as shown.
+
+@sim c-implicit-0
+$z^2+x^2-3y^2+yz=4$ defines $z$ as a function of $x$ and $y$. Find $z_x$ and $z_y$ at $(1,1,2)$. Find the points where $z_x=z_y=0$.
+@s Differentiate everything in $x$
+$z^2\to2z\,z_x$, $\ x^2\to2x$, $\ -3y^2\to0$, $\ yz\to y\,z_x$ ($y$ is a constant), $\ 4\to0$.
+$$2z\,z_x+2x+y\,z_x=0$$
+@s Solve for $z_x$
+$$z_x(2z+y)=-2x\quad\Longrightarrow\quad z_x=\frac{-2x}{2z+y}$$
+@s Same thing in $y$
+$z^2\to2z\,z_y$, $\ -3y^2\to-6y$, $\ yz\to z+y\,z_y$ (product rule).
+$$2z\,z_y-6y+z+y\,z_y=0\quad\Longrightarrow\quad z_y=\frac{6y-z}{2z+y}$$
+@s Plug in $(1,1,2)$
+Bottom: $4+1=5$.
+$$z_x=\frac{-2}{5}\qquad z_y=\frac{6-2}{5}=\frac45$$
+@s Where are both zero?
+Tops zero: $-2x=0\Rightarrow x=0$, and $6y-z=0\Rightarrow z=6y$.
+@s Put that back into the original equation
+$$(6y)^2+0-3y^2+y(6y)=4\quad\Longrightarrow\quad 39y^2=4\quad\Longrightarrow\quad y=\pm\frac{2}{\sqrt{39}}$$
+Then $z=6y$.
+@a $z_x=-\tfrac25,\ z_y=\tfrac45$. Both are zero at $\left(0,\tfrac{2}{\sqrt{39}},\tfrac{12}{\sqrt{39}}\right)$ and $\left(0,-\tfrac{2}{\sqrt{39}},-\tfrac{12}{\sqrt{39}}\right)$.
+
+@sim c-implicit-1
+$z^3+2xy+xz-x^2-3=0$. Find $z_x$ and $z_y$, their values at $(1,1,1)$, and where $z_x=z_y=0$.
+@s Differentiate in $x$
+$z^3\to3z^2z_x$, $\ 2xy\to2y$, $\ xz\to z+x\,z_x$ (product rule), $\ -x^2\to-2x$.
+$$3z^2z_x+2y+z+x\,z_x-2x=0\quad\Longrightarrow\quad z_x=\frac{2x-2y-z}{3z^2+x}$$
+@s Differentiate in $y$
+$z^3\to3z^2z_y$, $\ 2xy\to2x$, $\ xz\to x\,z_y$, $\ -x^2\to0$.
+$$3z^2z_y+2x+x\,z_y=0\quad\Longrightarrow\quad z_y=\frac{-2x}{3z^2+x}$$
+@s Plug in $(1,1,1)$
+Bottom: $3+1=4$.
+$$z_x=\frac{2-2-1}{4}=-\frac14\qquad z_y=\frac{-2}{4}=-\frac12$$
+@s Where are both zero?
+Tops zero: $-2x=0\Rightarrow x=0$. Then $2x-2y-z=0$ gives $z=-2y$.
+@s Back into the original equation
+With $x=0$ the equation is $z^3-3=0$, so $z=3^{1/3}$. Then $y=-\tfrac z2$.
+@a $z_x=-\tfrac14,\ z_y=-\tfrac12$ at $(1,1,1)$. Both zero at $\left(0,\,-\tfrac{3^{1/3}}{2},\,3^{1/3}\right)$.
+
+@sim c-jacobian-0
+$f_1=x_1+2x_2+3x_3$, $f_2=2x_1+x_2+x_3$, $f_3=3x_1+x_2+2x_3$. Find the Jacobian matrix and its determinant.
+@s Fill the grid
+Each partial is just the number in front.
+$$J=\begin{pmatrix}1&2&3\\2&1&1\\3&1&2\end{pmatrix}$$
+@s Expand along the top row
+$$\det J=1\begin{vmatrix}1&1\\1&2\end{vmatrix}-2\begin{vmatrix}2&1\\3&2\end{vmatrix}+3\begin{vmatrix}2&1\\3&1\end{vmatrix}$$
+@s Work out each 2×2
+$(1)(2)-(1)(1)=1$
+
+$(2)(2)-(1)(3)=1$
+
+$(2)(1)-(1)(3)=-1$
+@s Combine
+$$1(1)-2(1)+3(-1)=1-2-3=-4$$
+@a $\det J=-4$
+
+@sim c-jacobian-1
+$f_1=x_1^2-x_2^2$, $f_2=x_1x_2$. Find the Jacobian matrix. When is its determinant $0$?
+@s Fill the grid
+Row 1: $\dfrac{\partial f_1}{\partial x_1}=2x_1$, $\ \dfrac{\partial f_1}{\partial x_2}=-2x_2$.
+
+Row 2: $\dfrac{\partial f_2}{\partial x_1}=x_2$, $\ \dfrac{\partial f_2}{\partial x_2}=x_1$.
+$$J=\begin{pmatrix}2x_1&-2x_2\\x_2&x_1\end{pmatrix}$$
+@s Determinant
+$$ad-bc=(2x_1)(x_1)-(-2x_2)(x_2)=2x_1^2+2x_2^2$$
+@s Set it to zero
+Two squares added: zero only when both are zero.
+@a $J=\begin{pmatrix}2x_1&-2x_2\\x_2&x_1\end{pmatrix}$; determinant $2x_1^2+2x_2^2$ is $0$ only when $x_1=x_2=0$.
+
+@sim c-approx-0
+$P=\dfrac{ky^2}{w^3}$. Estimate the percentage error in $P$ if $y$ is overestimated by 1% and $w$ is underestimated by 0.5%.
+@s Write as powers
+$$P=k\,y^{2}w^{-3}$$
+@s Use the shortcut
+$$\%P\approx2\cdot(\%y)+(-3)\cdot(\%w)$$
+@s Signs
+Overestimated → $\%y=+1$. Underestimated → $\%w=-0.5$.
+@s Calculate
+$$\%P\approx2(1)+(-3)(-0.5)=2+1.5=3.5$$
+@a About $3.5\%$ (too big).
+
+@sim c-approx-1
+$F=\dfrac{kmv^2}{r}$. Find the approximate percentage change in $F$ if $m$ increases by 2%, $v$ decreases by 1% and $r$ increases by 3%.
+@s Write as powers
+$$F=k\,m^{1}v^{2}r^{-1}$$
+@s Use the shortcut
+$$\%F\approx1(\%m)+2(\%v)-1(\%r)$$
+@s Put the numbers in
+$\%m=+2$, $\%v=-1$, $\%r=+3$:
+$$\%F\approx2-2-3=-3$$
+@a About $-3\%$ ($F$ goes down by 3%).
+
+@sim c-approx-2
+Let $f(x,y)=(x^3+y^2)^{1/2}$. Use linear approximation to estimate $\left((3.04)^3+(2.98)^2\right)^{1/2}$ to two decimal places.
+@s Pick an easy nearby point
+$(3.04,\ 2.98)$ is close to $(3,3)$, and there
+$$f(3,3)=\sqrt{27+9}=\sqrt{36}=6$$
+@s Partial derivatives
+$(\sqrt u)'=\dfrac{u'}{2\sqrt u}$:
+$$f_x=\frac{3x^2}{2\sqrt{x^3+y^2}}\qquad f_y=\frac{2y}{2\sqrt{x^3+y^2}}=\frac{y}{\sqrt{x^3+y^2}}$$
+@s Slopes at $(3,3)$
+$$f_x=\frac{27}{12}=2.25\qquad f_y=\frac36=0.5$$
+@s Steps
+$\Delta x=3.04-3=0.04$, $\quad\Delta y=2.98-3=-0.02$
+@s Linear approximation
+$$f\approx6+2.25(0.04)+0.5(-0.02)=6+0.09-0.01=6.08$$
+@a $\approx6.08$

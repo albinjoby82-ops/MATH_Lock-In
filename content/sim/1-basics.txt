@@ -1,0 +1,77 @@
+@sim c-domains-0
+Describe the domain of $f(x,y)=\dfrac{1}{(x-1)^2+y^2}$.
+@s What could break?
+It is a fraction, so the bottom cannot be zero:
+$$(x-1)^2+y^2\neq 0$$
+@s When is the bottom zero?
+Two squares added together. Each is $\ge0$, so the sum is $0$ only if both are $0$:
+
+$x-1=0$ and $y=0$, so $x=1$, $y=0$.
+@s Describe it
+Only the point $(1,0)$ is banned. Everything else is fine.
+{{fig:punct10}}
+@a $\text{dom}(f)=\mathbb{R}^2\setminus\{(1,0)\}$, the whole plane except the point $(1,0)$.
+
+@sim c-domains-1
+Describe the domain of $f(x,y)=\sqrt{x+y}$.
+@s What could break?
+A square root. The inside must not be negative:
+$$x+y\ge 0$$
+@s Rearrange
+$$y\ge -x$$
+@s Describe it
+$y=-x$ is the diagonal line going down to the right. $y\ge-x$ means "on the line, or above it".
+{{fig:halfplaneneg}}
+@a $\text{dom}(f)=\{(x,y)\mid y\ge -x\}$, the half-plane on and above the line $y=-x$.
+
+@sim c-domains-2
+Describe the domain of $f(x,y)=\dfrac{1}{\sqrt{9-x^2-y^2}}$.
+@s What could break?
+Square root: inside $\ge 0$.
+
+Fraction: bottom $\neq 0$.
+@s Combine them
+Together that means strictly positive:
+$$9-x^2-y^2>0\quad\Longleftrightarrow\quad x^2+y^2<9$$
+@s Describe it
+$x^2+y^2=9$ is a circle, centre $(0,0)$, radius $3$ (because $3^2=9$).
+
+$<9$ means strictly inside. The circle itself is not included: an **open disk**.
+{{fig:opendisk3}}
+@a $\text{dom}(f)=\{(x,y)\mid x^2+y^2<9\}$, the inside of the circle of radius 3 (not the edge).
+
+@sim c-limits-0
+Find $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2+2y^2-6}{x^2+y^2+3}$.
+@s Try plugging in
+Check the bottom first: $0+0+3=3$. Not zero, so we can just plug in.
+@s Plug in
+$$\frac{0+0-6}{0+0+3}=-2$$
+@a $-2$
+
+@sim c-limits-1
+Find $\displaystyle\lim_{(x,y)\to(2,1)}\frac{xy-2y+3x-6}{x-2}$.
+@s Try plugging in
+Top: $2-2+6-6=0$. Bottom: $2-2=0$.
+
+We get $\frac00$, so simplify first.
+@s Factorise the top by grouping
+$$xy-2y+3x-6=y(x-2)+3(x-2)=(x-2)(y+3)$$
+@s Cancel the matching bracket
+$$\frac{(x-2)(y+3)}{x-2}=y+3$$
+@s Now plug in
+$$1+3=4$$
+@a $4$
+
+@sim c-limits-2
+Show that $f(x,y)=\dfrac{x^2-y^2}{x^2+y^2}$ has no limit as $(x,y)\to(0,0)$.
+@s Plan
+Find two paths into $(0,0)$ that give different answers.
+@s Path 1: along the x-axis
+Put $y=0$:
+$$f(x,0)=\frac{x^2}{x^2}=1$$
+@s Path 2: along the y-axis
+Put $x=0$:
+$$f(0,y)=\frac{-y^2}{y^2}=-1$$
+@s Compare
+$1\neq-1$. Two paths, two different answers, so there is no limit.
+@a The limit does not exist (it is $1$ along the $x$-axis and $-1$ along the $y$-axis).
