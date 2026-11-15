@@ -330,6 +330,28 @@ Subtract: $2C_2+2=4\Rightarrow C_2=1$, $C_1=-2$.
 
 
 @@topic variation | Variation of parameters | Sheet 5 · Q6
+@learn
+**What it is:** another way to find $y_p$ for
+$$y''+p\,y'+q\,y=g(x)$$
+Guessing (the undetermined coefficients method) only works when $g$ is a polynomial, $e^{kx}$, $\sin$ or $\cos$. **Variation of parameters works for any $g$.** Use it when the question says so.
+
+First make sure there is nothing in front of $y''$ (divide through if there is).
+
+**Recipe:**
+
+1. Solve with right side $0$ to get the two pieces $y_1$ and $y_2$ (so $y_h=C_1y_1+C_2y_2$).
+2. Work out the **Wronskian** (just a name for this combination):
+$$W=y_1\,y_2'-y_1'\,y_2$$
+3. Two integrals:
+$$u_1=-\int\frac{y_2\,g}{W}\,dx\qquad\qquad u_2=\int\frac{y_1\,g}{W}\,dx$$
+4. Build the particular solution: $y_p=u_1y_1+u_2y_2$.
+5. Answer: $y=C_1y_1+C_2y_2+y_p$.
+
+Learn the two integral formulas by heart. Note the minus sign on $u_1$ only.
+
+Handy integral: $\displaystyle\int xe^{kx}dx=\left(\frac xk-\frac1{k^2}\right)e^{kx}$.
+@check $y_1=e^{x}$, $y_2=e^{2x}$. Find the Wronskian $W$.
+@checka $W=e^x\cdot2e^{2x}-e^x\cdot e^{2x}=e^{3x}$.
 @method
 For $y''+py'+qy=g(x)$ (make the coefficient of $y''$ equal to **1** first).
 
@@ -397,6 +419,28 @@ $$y_p=-\tfrac83(x+2)-\tfrac43(x-1)=-4x-4$$
 
 
 @@topic higher | Higher order equations | Sheet 5 · Q7, Q8
+@learn
+**Same method as second order, with more roots.** $y'''$ is third order, $y^{(4)}$ is fourth order.
+
+**Auxiliary equation:** swap $y^{(n)}\to r^n$. So $y'''\to r^3$, $y^{(4)}\to r^4$.
+
+**Solving a cubic:** try $r=1,-1,2,-2,\dots$ until one gives zero. If $r=a$ works, $(r-a)$ is a factor. Divide it out and solve the quadratic that is left.
+
+**Building $y_h$, one piece per root:**
+
+Real root $r$ → $e^{rx}$
+
+Same root twice → $e^{rx}$ and $xe^{rx}$ (three times → also $x^2e^{rx}$)
+
+Complex pair $\pm\beta i$ → $\cos\beta x$ and $\sin\beta x$ (repeated → also $x\cos\beta x$, $x\sin\beta x$)
+
+Order $n$ means $n$ roots, $n$ pieces and $n$ constants.
+
+**$y_p$:** guess its shape exactly as before. **Modification rule:** if the guess matches a root that appears $m$ times, multiply the guess by $x^m$.
+
+**Initial conditions:** $n$ of them give $n$ equations for the $n$ constants.
+@check Roots are $r=2$ and $r=0$ (twice). Write $y_h$.
+@checka $y_h=C_1e^{2x}+C_2+C_3x$ (because $e^{0x}=1$, and the repeat gives $x\cdot1$).
 @method
 Same ideas as second order, just more roots.
 

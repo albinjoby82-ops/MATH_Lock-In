@@ -23,7 +23,8 @@ nav{border-right:1px solid var(--rule);position:sticky;top:0;height:100vh;overfl
 nav h1{font-size:23px;font-weight:700;margin:0;letter-spacing:.01em}
 nav .sub{color:var(--mute);margin:2px 0 14px}
 .mode{display:flex;border:1px solid var(--rule);margin-bottom:12px}
-.mode button{flex:1;padding:6px 4px;font-size:15px}
+.mode button{flex:1;padding:6px 4px;font-size:14.5px;white-space:nowrap}
+.mode button:first-child{flex:.7}
 .mode button+button{border-left:1px solid var(--rule)}
 .mode button.on{background:var(--acc);color:#fff}
 .prog{display:flex;align-items:center;gap:10px;color:var(--mute);font-size:15px;margin-bottom:18px}
@@ -140,7 +141,7 @@ details.notes .body{padding:2px 0 14px}
     <div id="view"></div>
   </div></main>
 </div>
-<script src="data.js?v=4cc59a2c"></script>
+<script src="data.js?v=1c103648"></script>
 <script>
 (function(){
 var KEY='mathlockin-v1', st={}, mode='core', D, list;
@@ -174,7 +175,7 @@ function nav(){
   n.appendChild(el('h1','','MATH Lock-In'));
   n.appendChild(el('div','sub sc','math20290 · multivariable calculus'));
   var ms=el('div','mode');
-  [['core','Exam path'],['full','All homework']].forEach(function(m){
+  [['core','Exam path'],['off','Off the exam path']].forEach(function(m){
     var b=el('button',mode===m[0]?'on':'',m[1]);
     b.onclick=function(){if(mode===m[0])return;mode=m[0];sim=false;try{localStorage.setItem(KEY+'-mode',mode)}catch(e){}load();restore();shown=0;render();window.scrollTo(0,0)};
     ms.appendChild(b)});
@@ -189,7 +190,8 @@ function nav(){
     b.onclick=function(){go(i)};
     n.appendChild(b);
   });
-  if(mode==='core')n.appendChild(el('div','cut','<i>Matched to the sample exam.</i> Skipped here (not on it): level curves, continuity, the hot plate and wire problems, variation of parameters, 3rd/4th order ODEs. See <b>All homework</b>.'));
+  if(mode==='core')n.appendChild(el('div','cut','<i>Matched to the sample exam.</i> Skipped here (not on it): level curves, continuity, the hot plate and wire problems, variation of parameters, 3rd/4th order ODEs. They are in <b>Off the exam path</b>.'));
+  else n.appendChild(el('div','cut','<i>Only if you have time.</i> Finish the exam path first. Chapter 1 here is the new topics, most likely to come up first. The rest is extra practice on topics you already know.'));
   n.scrollTop=keep;
   var on=n.querySelector('.qlink.on');
   if(on){var r=on.getBoundingClientRect(),nr=n.getBoundingClientRect();if(r.top<nr.top+40||r.bottom>nr.bottom-20)n.scrollTop+=r.top-nr.top-nr.height/3}
@@ -246,7 +248,7 @@ function render(){
   var pv=el('button','pv'+(cur>0?' c'+((list[cur-1].pi-1)%6+1):''),cur>0?'<small>← Previous</small>'+lbl(cur-1):'');pv.disabled=cur===0;pv.onclick=function(){go(cur-1)};pg.appendChild(pv);
   var nx=el('button','nx'+(cur<list.length-1?' c'+((list[cur+1].pi-1)%6+1):''),cur<list.length-1?'<small>Next →</small>'+lbl(cur+1):'');nx.disabled=cur===list.length-1;nx.onclick=function(){go(cur+1)};pg.appendChild(nx);
   v.appendChild(pg);
-  v.appendChild(el('div','keys','Space: next step · A: full solution · S: similar question · ← / →: previous / next problem'));
+  v.appendChild(el('div','keys','Space: next step · A: full solution · '+(o.sim?'S: similar question · ':'')+'← / →: previous / next problem'));
   math(v);
   if(shown>0){var last=v.querySelector('.ans')||v.querySelectorAll('.step')[shown-1];if(last&&last.scrollIntoView)last.scrollIntoView({block:'nearest',behavior:'smooth'})}
 }

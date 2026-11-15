@@ -347,6 +347,23 @@ $$f=1+4+1-1-1-8-1=-5$$
 
 
 @@topic region | Max and min on a region, applied problems | Sheet 4 · Q14, Q15
+@learn
+**The problem:** find the biggest and smallest value of $f$ on a region that has an edge, like a disk $x^2+y^2\le1$.
+
+**Key idea:** the max and min can only be in two kinds of place:
+
+1. A flat spot **inside** the region (critical point), or
+2. Somewhere **on the edge**.
+
+**Recipe:**
+
+1. Solve $f_x=0$, $f_y=0$. Keep the points that are inside. Work out $f$ at each.
+2. On the edge, use the edge's equation to remove one letter. (On $x^2+y^2=1$, replace $y^2$ with $1-x^2$.) Now $f$ has one variable: differentiate, set to zero, and also check the two end values.
+3. Compare every value you found. Biggest = max, smallest = min.
+
+**Word problems** (wire, box, fence): write a formula for the thing to maximise, use the given total to remove one letter, then set the partial derivatives to zero.
+@check On the circle $x^2+y^2=1$, rewrite $f=x^2+3y^2$ using only $x$.
+@checka $y^2=1-x^2$, so $f=x^2+3(1-x^2)=3-2x^2$.
 @method
 **Closed region (e.g. a disk):**
 

@@ -131,6 +131,22 @@ The bottom would need to be zero for a problem, but $e^{\text{anything}}$ is nev
 
 
 @@topic levelcurves | Level curves through a point | Sheet 1 · Q2
+@learn
+**Picture a map of a mountain.** The lines on the map join places at the same height. Those are level curves.
+
+For a function $f(x,y)$, a **level curve** is all the points where $f$ gives the same number $z_0$:
+$$f(x,y)=z_0$$
+Example: $f=x^2+y^2$. The level curve for height $4$ is $x^2+y^2=4$, a circle of radius $2$.
+
+**The question always gives you a point $P$** and asks for the level curve through it.
+
+**Recipe:**
+
+1. Plug $P$ into $f$. That number is $z_0$.
+2. Write $f(x,y)=z_0$.
+3. Tidy up, and say what shape it is (circle, line, parabola).
+@check $f(x,y)=x+y$. Which level curve goes through $(1,2)$?
+@checka $z_0=1+2=3$, so the curve is $x+y=3$ (a straight line).
 @method
 A level curve is $f(x,y)=z_0$ for a constant $z_0$.
 
@@ -246,6 +262,24 @@ $1\neq -1$.
 
 
 @@topic continuity | Where is a function continuous? | Sheet 1 · Q4, Q5
+@learn
+**Continuous** means no holes, jumps or breaks: you could draw the surface without lifting your pen.
+
+**The one fact you need:** polynomials, fractions, roots, $\sin$, $\cos$, $\ln$, $e^x$ and any mix of them are continuous **everywhere they are defined**.
+
+So "where is $f$ continuous?" is really the question "what is the domain of $f$?". You already know how to do that:
+
+Fraction → bottom $\neq0$.
+
+Square root → inside $\ge0$.
+
+$\ln$ → inside $>0$.
+
+**Recipe:** find what could break, write the condition, describe the set.
+
+**With three letters** $(x,y,z)$ the shapes are 3D. Watch out: $x^2+y^2=1$ is a **cylinder** there (because $z$ can be anything), not a circle.
+@check Where is $f(x,y)=\dfrac{1}{x-y}$ continuous?
+@checka Everywhere except where the bottom is zero: all points with $x\neq y$ (the plane without the line $y=x$).
 @method
 **Continuous = continuous everywhere it is defined**, for polynomials, fractions of polynomials, roots, $\sin$, $\ln$, $e^x$ and combinations of them.
 

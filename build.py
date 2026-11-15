@@ -128,6 +128,24 @@ def parse_sim():
     return sims
 
 data = {'core': parse('core'), 'full': parse('full')}
+
+# "Off the exam path": every homework question that is NOT on the exam path.
+# New topics first (most likely to come up first), then extra practice by chapter.
+NEW_TOPICS = ['levelcurves', 'continuity', 'variation', 'directions', 'region', 'higher']
+core_refs = {q['ref'] for p in data['core'] for t in p['topics'] for q in t['qs']}
+full_topics = {t['id']: t for p in data['full'] for t in p['topics']}
+def rest(t):
+    qs = [q for q in t['qs'] if q['ref'] not in core_refs]
+    return dict(t, qs=qs) if qs else None
+off = [{'title': 'New topics (most likely first)', 'topics': [rest(full_topics[i]) for i in NEW_TOPICS]}]
+for p in data['full']:
+    ts = [r for r in (rest(t) for t in p['topics'] if t['id'] not in NEW_TOPICS) if r]
+    if ts: off.append({'title': 'More practice: ' + p['title'], 'topics': ts})
+n_off = sum(len(t['qs']) for p in off for t in p['topics'])
+n_full = sum(len(t['qs']) for p in data['full'] for t in p['topics'])
+n_core_hw = sum(1 for r in core_refs if not r.startswith('Sample exam'))
+assert n_off + n_core_hw == n_full, (n_off, n_core_hw, n_full)
+print('off the exam path', n_off)
 sims = parse_sim(); used = set()
 for p in data['core']:
     for t in p['topics']:
@@ -137,6 +155,7 @@ for p in data['core']:
             qq['sim'] = sm; used.add(qq['id'])
 assert used == set(sims), set(sims) - used
 print('similar questions', len(used))
+data = {'core': data['core'], 'off': off}
 open(os.path.join(here, 'data.js'), 'w', encoding='utf-8').write('window.DATA=' + json.dumps(data, ensure_ascii=False) + ';\n')
 for k, v in data.items():
     print(k, 'topics', sum(len(p['topics']) for p in v), 'questions', sum(len(t['qs']) for p in v for t in p['topics']))
