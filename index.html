@@ -106,6 +106,12 @@ details.notes .body{padding:2px 0 14px}
 .b.warn{border-color:var(--warn);color:var(--warn)}
 .b:disabled{opacity:.35;cursor:default;background:#fff}
 
+.mynotes{margin-top:34px}
+.mynotes label{display:block;font-weight:700;color:var(--c);margin-bottom:6px}
+.mynotes textarea{display:block;width:100%;font:inherit;font-size:18px;line-height:1.5;color:var(--ink);background:#fffdf2;border:1px solid var(--hair);border-left:3px solid var(--c);padding:10px 14px;resize:vertical;min-height:84px}
+.mynotes textarea:focus{outline:none;border-color:var(--c)}
+.qlink .nt{font-size:14px;color:var(--c)}
+.qlink.on .nt{color:#fff}
 .pager{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--c);margin-top:40px;padding-top:10px;font-size:16px}
 .pager button{text-align:left;max-width:48%}
 .pager button.nx{text-align:right;margin-left:auto}
@@ -160,6 +166,8 @@ function load(){
 load();
 try{st=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+var notes={};try{notes=JSON.parse(localStorage.getItem(KEY+'-notes'))||{}}catch(e){}
+function saveNotes(){try{localStorage.setItem(KEY+'-notes',JSON.stringify(notes))}catch(e){}}
 var cur=0, shown=0, sim=false;
 function restore(){cur=0;try{var h=localStorage.getItem(KEY+'-at-'+mode),k=+localStorage.getItem(KEY+'-ati-'+mode);if(list[k]&&list[k].q.id===h){cur=k;return}for(var i=0;i<list.length;i++)if(list[i].q.id===h){cur=i;break}}catch(e){}}
 restore();
@@ -188,7 +196,7 @@ function nav(){
   list.forEach(function(x,i){
     if(x.p!==lastP){lastP=x.p;n.appendChild(el('div','part c'+((x.pi-1)%6+1),'<span class="num">'+x.pi+'</span><span>'+strip(x.p.title)+'</span>'))}
     if(x.t!==lastT){lastT=x.t;n.appendChild(el('div','topic c'+((x.pi-1)%6+1),'<span class="num">'+x.pi+'.'+x.ti+'</span><span>'+x.t.title+'</span>'))}
-    var b=el('button','qlink c'+((x.pi-1)%6+1)+(x.q.ref.indexOf('Sample exam')===0?' ex':'')+' '+(i===cur?' on':'')+(st[x.q.id]?' '+st[x.q.id]:''),'<span class="num">'+x.num+'</span><span class="r">'+short(x.q.ref)+'</span><span class="m">'+mark(x.q.id)+'</span>');
+    var b=el('button','qlink c'+((x.pi-1)%6+1)+(x.q.ref.indexOf('Sample exam')===0?' ex':'')+' '+(i===cur?' on':'')+(st[x.q.id]?' '+st[x.q.id]:''),'<span class="num">'+x.num+'</span><span class="r">'+short(x.q.ref)+'</span>'+(notes[x.q.id]?'<span class="nt" title="You wrote a note">✎</span>':'')+'<span class="m">'+mark(x.q.id)+'</span>');
     b.onclick=function(){go(i)};
     n.appendChild(b);
   });
@@ -245,6 +253,11 @@ function render(){
   if(o.sim){var sb=el('button','b simb',sim?'← Back to original':'Similar question ↻');sb.onclick=toggleSim;row.appendChild(sb)}
   v.appendChild(row);
 
+  var nb=el('div','mynotes','<label for="note">✎ My notes on this question</label>');
+  var ta=document.createElement('textarea');ta.id='note';ta.rows=3;ta.placeholder='Type anything you want to remember here. It saves by itself.';ta.value=notes[o.id]||'';
+  function grow(){ta.style.height='auto';ta.style.height=(ta.scrollHeight+2)+'px'}
+  ta.oninput=function(){var had=!!notes[o.id];if(ta.value.trim())notes[o.id]=ta.value;else delete notes[o.id];saveNotes();grow();if(had!==!!notes[o.id])nav()};
+  nb.appendChild(ta);v.appendChild(nb);setTimeout(grow,0);
   var pg=el('div','pager');
   function lbl(i){var y=list[i];return '<span>'+y.num+' · '+y.t.title+'</span><small>'+short(y.q.ref)+'</small>'}
   var pv=el('button','pv'+(cur>0?' c'+((list[cur-1].pi-1)%6+1):''),cur>0?'<small>← Previous</small>'+lbl(cur-1):'');pv.disabled=cur===0;pv.onclick=function(){go(cur-1)};pg.appendChild(pv);
@@ -256,7 +269,7 @@ function render(){
 }
 document.getElementById('menu').onclick=function(){document.getElementById('nav').classList.toggle('open')};
 document.addEventListener('keydown',function(e){
-  if(e.target.tagName==='INPUT'||e.metaKey||e.ctrlKey||e.altKey)return;
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.metaKey||e.ctrlKey||e.altKey)return;
   var o=list[cur].q, n=((sim&&o.sim)?o.sim:o).steps.length;
   if(e.key===' '){e.preventDefault();if(shown<=n){shown++;render()}}
   else if(e.key==='a'||e.key==='A'){shown=n+1;render()}
