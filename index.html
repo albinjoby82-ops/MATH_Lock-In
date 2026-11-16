@@ -41,6 +41,8 @@ nav .sub{color:var(--mute);margin:2px 0 14px}
 .qlink .r{flex:1;font-size:15px}
 .qlink .m{width:1em;text-align:center;font-size:14px}
 .qlink:hover .r{text-decoration:underline}
+.qlink.ex .r{font-weight:700;color:var(--c)}
+.qlink.ex.on .r{color:#fff}
 .qlink.on{background:var(--c);color:#fff}
 .qlink.on .num{color:#fff;opacity:.8}
 .qlink:hover{background:var(--ct)}.qlink.on:hover{background:var(--c)}
@@ -141,7 +143,7 @@ details.notes .body{padding:2px 0 14px}
     <div id="view"></div>
   </div></main>
 </div>
-<script src="data.js?v=a9556bfa"></script>
+<script src="data.js?v=4ded8763"></script>
 <script>
 (function(){
 var KEY='mathlockin-v1', st={}, mode='core', D, list;
@@ -159,11 +161,11 @@ load();
 try{st=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
 var cur=0, shown=0, sim=false;
-function restore(){cur=0;try{var h=localStorage.getItem(KEY+'-at-'+mode);for(var i=0;i<list.length;i++)if(list[i].q.id===h){cur=i;break}}catch(e){}}
+function restore(){cur=0;try{var h=localStorage.getItem(KEY+'-at-'+mode),k=+localStorage.getItem(KEY+'-ati-'+mode);if(list[k]&&list[k].q.id===h){cur=k;return}for(var i=0;i<list.length;i++)if(list[i].q.id===h){cur=i;break}}catch(e){}}
 restore();
 function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
 function math(node){if(window.renderMathInElement)renderMathInElement(node,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})}
-function short(ref){return ref.replace(/^(Sheet \d+|Sample exam) · /,'').replace(/^Sheet (\d+)$/,'Sheet $1')}
+function short(ref){if(ref.indexOf('Sample exam · ')===0)return 'Exam '+ref.slice(14);return ref.replace(/^(Sheet \d+|Sample exam) · /,'').replace(/^Sheet (\d+)$/,'Sheet $1')}
 function sheet(ref){var m=ref.match(/^Sheet (\d+)/);return m?'S'+m[1]+' ':''}
 function mark(id){return st[id]==='done'?'✓':st[id]==='again'?'↺':''}
 function toggleSim(){if(!list[cur].q.sim)return;sim=!sim;shown=0;render();window.scrollTo(0,0)}
@@ -171,7 +173,7 @@ function go(i){cur=Math.max(0,Math.min(list.length-1,i));shown=0;sim=false;docum
 
 function nav(){
   var n=document.getElementById('nav');var keep=n.scrollTop;n.innerHTML='';
-  var done=list.filter(function(x){return st[x.q.id]==='done'}).length;
+  var ids={},done=0;list.forEach(function(x){if(!ids[x.q.id]){ids[x.q.id]=1;if(st[x.q.id]==='done')done++}});var total=Object.keys(ids).length;
   n.appendChild(el('h1','','MATH Lock-In'));
   n.appendChild(el('div','sub sc','math20290 · multivariable calculus'));
   var ms=el('div','mode');
@@ -180,13 +182,13 @@ function nav(){
     b.onclick=function(){if(mode===m[0])return;mode=m[0];sim=false;try{localStorage.setItem(KEY+'-mode',mode)}catch(e){}load();restore();shown=0;render();window.scrollTo(0,0)};
     ms.appendChild(b)});
   n.appendChild(ms);
-  n.appendChild(el('div','prog','<span>'+done+' / '+list.length+'</span><span class="bar"><i style="width:'+(100*done/list.length)+'%"></i></span>'));
+  n.appendChild(el('div','prog','<span>'+done+' / '+total+'</span><span class="bar"><i style="width:'+(100*done/total)+'%"></i></span>'));
   n.appendChild(el('div','toc-h sc','contents'));
   var lastP=null,lastT=null;
   list.forEach(function(x,i){
     if(x.p!==lastP){lastP=x.p;n.appendChild(el('div','part c'+((x.pi-1)%6+1),'<span class="num">'+x.pi+'</span><span>'+strip(x.p.title)+'</span>'))}
     if(x.t!==lastT){lastT=x.t;n.appendChild(el('div','topic c'+((x.pi-1)%6+1),'<span class="num">'+x.pi+'.'+x.ti+'</span><span>'+x.t.title+'</span>'))}
-    var b=el('button','qlink c'+((x.pi-1)%6+1)+' '+(i===cur?' on':'')+(st[x.q.id]?' '+st[x.q.id]:''),'<span class="num">'+x.num+'</span><span class="r">'+short(x.q.ref)+'</span><span class="m">'+mark(x.q.id)+'</span>');
+    var b=el('button','qlink c'+((x.pi-1)%6+1)+(x.q.ref.indexOf('Sample exam')===0?' ex':'')+' '+(i===cur?' on':'')+(st[x.q.id]?' '+st[x.q.id]:''),'<span class="num">'+x.num+'</span><span class="r">'+short(x.q.ref)+'</span><span class="m">'+mark(x.q.id)+'</span>');
     b.onclick=function(){go(i)};
     n.appendChild(b);
   });
@@ -198,7 +200,7 @@ function nav(){
 }
 
 function render(){
-  try{localStorage.setItem(KEY+'-at-'+mode,list[cur].q.id)}catch(e){}
+  try{localStorage.setItem(KEY+'-at-'+mode,list[cur].q.id);localStorage.setItem(KEY+'-ati-'+mode,cur)}catch(e){}
   nav();
   var x=list[cur], t=x.t, o=x.q, q=(sim&&o.sim)?o.sim:o, v=document.getElementById('view');v.innerHTML='';v.className='c'+((x.pi-1)%6+1);
   v.appendChild(el('div','head','<span class="sc">'+x.pi+' · '+strip(x.p.title).toLowerCase()+'</span><span>Problem <b>'+(cur+1)+'</b> of '+list.length+'</span>'));
@@ -219,7 +221,7 @@ function render(){
 
   var pr=el('div','prob');
   if(sim)pr.appendChild(el('div','simtag','Similar question · same method, new numbers'));
-  pr.appendChild(el('div','qtext','<span class="lead">Problem '+x.num+(sim?'′':'')+'</span> <span class="ref">('+(sim?'like '+o.ref:o.ref)+')</span>. '+q.q));
+  pr.appendChild(el('div','qtext','<span class="lead">Problem '+x.num+(sim?'′':'')+'</span> <span class="ref">('+(sim?'like '+o.ref:o.ref).replace('Sample exam · ','Exam 2021/22 · ')+')</span>. '+q.q));
   v.appendChild(pr);
 
   var n=q.steps.length, all=shown>n;

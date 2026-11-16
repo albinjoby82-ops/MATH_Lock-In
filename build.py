@@ -155,6 +155,17 @@ for p in data['core']:
             qq['sim'] = sm; used.add(qq['id'])
 assert used == set(sims), set(sims) - used
 print('similar questions', len(used))
+# Show each past-exam part inside its topic too (last in the topic), so you see what the exam asks.
+EXAM_IN_TOPIC = {'x-q1-0': 'c-domains', 'x-q1-1': 'c-domains', 'x-q1-2': 'c-limits',
+    'x-q2-0': 'c-partials', 'x-q2-1': 'c-chain', 'x-q2-2': 'c-chain',
+    'x-q3-0': 'c-implicit', 'x-q3-1': 'c-jacobian', 'x-q3-2': 'c-approx',
+    'x-q4-0': 'c-gradient', 'x-q4-1': 'c-gradient', 'x-q4-2': 'c-gradient', 'x-q4-3': 'c-gradient',
+    'x-q5-0': 'c-tangent', 'x-q5-1': 'c-critical3', 'x-q6-0': 'c-lagrange', 'x-q6-1': 'c-undet'}
+core_topics = {t['id']: t for p in data['core'] for t in p['topics']}
+exam_qs = {q['id']: q for p in data['core'] for t in p['topics'] for q in t['qs'] if q['id'].startswith('x-')}
+assert set(exam_qs) == set(EXAM_IN_TOPIC), set(exam_qs) ^ set(EXAM_IN_TOPIC)
+for qid, tid in EXAM_IN_TOPIC.items():
+    core_topics[tid]['qs'].append(exam_qs[qid])
 data = {'core': data['core'], 'off': off}
 open(os.path.join(here, 'data.js'), 'w', encoding='utf-8').write('window.DATA=' + json.dumps(data, ensure_ascii=False) + ';\n')
 for k, v in data.items():
