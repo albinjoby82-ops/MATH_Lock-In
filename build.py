@@ -75,6 +75,7 @@ def parse(folder):
         kind, arg = m; t = st['topic']; q = st['q']
         if kind == 'method': t['method'] = fmt(text)
         elif kind == 'learn': t['learn'] = fmt(text)
+        elif kind == 'stem': t['stem'] = fmt(text)
         elif kind == 'check': t['check'] = {'q': fmt(arg + ('\n' + text if text.strip() else '')), 'a': ''}
         elif kind == 'checka': t['check']['a'] = fmt(arg + ('\n' + text if text.strip() else ''))
         elif kind == 'q': q['q'] = fmt(text)
@@ -86,10 +87,11 @@ def parse(folder):
                 flush(); parts.append({'title': line[7:].strip(), 'topics': []})
             elif line.startswith('@@topic '):
                 flush(); i, t, src = [x.strip() for x in line[8:].split('|')]
-                st['topic'] = {'id': i, 'title': t, 'src': src, 'method': '', 'learn': '', 'check': None, 'qs': []}
+                st['topic'] = {'id': i, 'title': t, 'src': src, 'method': '', 'learn': '', 'stem': '', 'check': None, 'qs': []}
                 parts[-1]['topics'].append(st['topic'])
             elif line.startswith('@method'): flush(); st['mode'] = ('method', None)
             elif line.startswith('@learn'): flush(); st['mode'] = ('learn', None)
+            elif line.startswith('@stem'): flush(); st['mode'] = ('stem', None)
             elif line.startswith('@checka '): flush(); st['mode'] = ('checka', line[8:].strip())
             elif line.startswith('@check '): flush(); st['mode'] = ('check', line[7:].strip())
             elif line.startswith('@q '):
@@ -108,24 +110,27 @@ def parse(folder):
 
 def parse_sim():
     """content/sim/*.txt: one similar question (new numbers) per exam-path question, keyed by question id"""
-    sims = {}; cur = None; mode = None; buf = []
+    sims = {}; stems = {}; cur = None; mode = None; buf = []
     def flush():
         nonlocal mode, buf
         text = '\n'.join(buf); buf = []
         if mode is None: return
         kind, arg = mode; mode = None
-        if kind == 'q': cur['q'] = fmt(text)
+        if kind == 'stem': stems[arg] = fmt(text)
+        elif kind == 'q': cur['q'] = fmt(text)
         elif kind == 's': cur['steps'].append({'t': html.escape(arg, quote=False), 'b': fmt(text)})
         elif kind == 'a': cur['a'] = fmt(arg + ('\n' + text if text.strip() else ''))
     for f in sorted(glob.glob(os.path.join(here, 'content', 'sim', '*.txt'))):
         for line in open(f, encoding='utf-8').read().split('\n'):
-            if line.startswith('@sim '):
+            if line.startswith('@simstem '):
+                flush(); mode = ('stem', line[9:].strip())
+            elif line.startswith('@sim '):
                 flush(); cur = {'q': '', 'steps': [], 'a': ''}; sims[line[5:].strip()] = cur; mode = ('q', None)
             elif line.startswith('@s '): flush(); mode = ('s', line[3:].strip())
             elif line.startswith('@a '): flush(); mode = ('a', line[3:].strip())
             else: buf.append(line)
         flush()
-    return sims
+    return sims, stems
 
 data = {'core': parse('core'), 'full': parse('full')}
 
@@ -146,7 +151,7 @@ n_full = sum(len(t['qs']) for p in data['full'] for t in p['topics'])
 n_core_hw = sum(1 for r in core_refs if not r.startswith('Sample exam'))
 assert n_off + n_core_hw == n_full, (n_off, n_core_hw, n_full)
 print('off the exam path', n_off)
-sims = parse_sim(); used = set()
+sims, sim_stems = parse_sim(); used = set()
 for p in data['core']:
     for t in p['topics']:
         for qq in t['qs']:
@@ -155,6 +160,36 @@ for p in data['core']:
             qq['sim'] = sm; used.add(qq['id'])
 assert used == set(sims), set(sims) - used
 print('similar questions', len(used))
+# Multi-part questions that share a stem ("Let T = ... and P = ..."): every part shows the
+# whole question, stem plus all parts, with the current part highlighted.
+def whole(stem, qs):
+    def lbl(ref):
+        m = re.search(r'Q\d+(\(\w\))$', ref)
+        return f'<span class="pl">{m.group(1)}</span> ' if m else ''
+    texts = [(lbl(q['ref']), re.sub(r'^<p>|</p>$', '', q['q'].strip())) for q in qs]
+    # a merged part like "(d) ... (e) ..." carries its own labels in the text: bold those too
+    texts = [(l, t if l else re.sub(r'(^|(?<=[.?] ))(\([a-e]\))', r'\1<span class="pl">\2</span>', t)) for l, t in texts]
+    out = []
+    for i in range(len(qs)):
+        parts = ''.join(f'<div class="qpart{" on" if j == i else ""}">{l}{t}</div>' for j, (l, t) in enumerate(texts))
+        out.append(stem + f'<div class="qparts">{parts}</div>')
+    return out
+stemmed = set()
+for p in data['core']:
+    for t in p['topics']:
+        stem = t.pop('stem')
+        if not stem: continue
+        assert t['id'] in sim_stems, 'no @simstem for ' + t['id']
+        qs = t['qs']
+        main = whole(stem, qs)
+        alt = whole(sim_stems[t['id']], [{'ref': q['ref'], 'q': q['sim']['q']} for q in qs])
+        for q, w, ws in zip(qs, main, alt):
+            q['q'] = w; q['sim'] = dict(q['sim'], q=ws)
+        stemmed.add(t['id'])
+for p in data['full'] + off:
+    for t in p['topics']: t.pop('stem', None)
+assert stemmed == set(sim_stems), set(sim_stems) ^ stemmed
+print('shared-stem questions', sorted(stemmed))
 # Show each past-exam part inside its topic too (last in the topic), so you see what the exam asks.
 EXAM_IN_TOPIC = {'x-q1-0': 'c-domains', 'x-q1-1': 'c-domains', 'x-q1-2': 'c-limits',
     'x-q2-0': 'c-partials', 'x-q2-1': 'c-chain', 'x-q2-2': 'c-chain',

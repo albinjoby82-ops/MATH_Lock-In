@@ -1,5 +1,8 @@
+@simstem x-q1
+Let $f(x,y)=\dfrac{\ln(y)}{\sqrt{9-x^2-y^2}}$.
+
 @sim x-q1-0
-Let $f(x,y)=\dfrac{\ln(y)}{\sqrt{9-x^2-y^2}}$. Determine the domain of $f$ in set notation.
+Determine the domain of $f$ in set notation.
 @s Spot everything that could break
 $\ln(y)$ → needs $y>0$.
 
@@ -14,7 +17,7 @@ Both must be true at the same time ("and").
 @a $\text{dom}(f)=\{(x,y)\in\mathbb{R}^2\mid y>0\ \text{and}\ x^2+y^2<9\}$
 
 @sim x-q1-1
-Sketch the domain $\{(x,y)\mid y>0\ \text{and}\ x^2+y^2<9\}$.
+Sketch the domain from part (a).
 @s Draw each condition
 $x^2+y^2<9$: inside the circle, centre $(0,0)$, radius $3$. Not the edge, so **dashed** circle.
 
@@ -25,7 +28,7 @@ The top half of the disk.
 @a The open half-disk: centre $(0,0)$, radius $3$, above the $x$-axis, with no edges included.
 
 @sim x-q1-2
-For $f(x,y)=\dfrac{\ln(y)}{\sqrt{9-x^2-y^2}}$, determine $\displaystyle\lim_{(x,y)\to(0,e)}f(x,y)$.
+Determine $\displaystyle\lim_{(x,y)\to(0,e)}f(x,y)$.
 @s Is the point allowed?
 $y=e>0$ ✓ and $0^2+e^2\approx7.39<9$ ✓. So $(0,e)$ is in the domain.
 @s So just plug in
@@ -141,8 +144,11 @@ Increase → $+3$. Decrease → $-2$.
 $$\%E\approx3+2(-2)=3-4=-1$$
 @a About a $1\%$ decrease.
 
+@simstem x-q4
+Let $T(x,y,z)=e^{2x^2-y^2-z^2}$ and $P=(1,1,1)$.
+
 @sim x-q4-0
-$T(x,y,z)=e^{2x^2-y^2-z^2}$. Find $\nabla T$ at $P=(1,1,1)$.
+Find $\nabla T$ at $P$.
 @s Partials (chain rule on $e$)
 Each one keeps the same $e$ part, times the derivative of the exponent:
 $$\nabla T=e^{2x^2-y^2-z^2}\,\langle4x,\ -2y,\ -2z\rangle$$
@@ -152,7 +158,7 @@ $$\nabla T=\langle4,\ -2,\ -2\rangle$$
 @a $\nabla T(P)=\langle4,-2,-2\rangle$
 
 @sim x-q4-1
-Find a unit vector $\mathbf u$ pointing from $P=(1,1,1)$ towards $Q=(3,2,-1)$.
+Find a unit vector $\mathbf u$ pointing from $P$ towards $Q=(3,2,-1)$.
 @s Arrow from P to Q
 Subtract $P$ from $Q$:
 $$\mathbf v=\langle3-1,\ 2-1,\ -1-1\rangle=\langle2,\ 1,\ -2\rangle$$
@@ -161,7 +167,7 @@ $$\|\mathbf v\|=\sqrt{4+1+4}=3$$
 @a $\mathbf u=\dfrac13\langle2,1,-2\rangle$
 
 @sim x-q4-2
-With $\nabla T(P)=\langle4,-2,-2\rangle$ and $\mathbf u=\tfrac13\langle2,1,-2\rangle$, find the rate of change of $T$ at $P$ in the direction of $\mathbf u$.
+Find the rate of change of $T$ at $P$ in the direction of $\mathbf u$.
 @s It's the directional derivative
 $$D_{\mathbf u}T=\nabla T\cdot\mathbf u$$
 @s Dot product
@@ -169,7 +175,7 @@ $$\frac13\langle4,-2,-2\rangle\cdot\langle2,1,-2\rangle=\frac{8-2+4}{3}$$
 @a $\dfrac{10}{3}$ (temperature is rising in that direction)
 
 @sim x-q4-3
-With $\nabla T(P)=\langle4,-2,-2\rangle$: (d) In which direction does $T$ increase fastest at $P$? (e) What is that maximum rate?
+(d) In which direction does $T$ increase fastest at $P$? (e) What is that maximum rate?
 @s Fastest increase
 Always the direction of the gradient: $\langle4,-2,-2\rangle$.
 @s Maximum rate
