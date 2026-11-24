@@ -75,3 +75,56 @@ $$f(0,y)=\frac{-y^2}{y^2}=-1$$
 @s Compare
 $1\neq-1$. Two paths, two different answers, so there is no limit.
 @a The limit does not exist (it is $1$ along the $x$-axis and $-1$ along the $y$-axis).
+
+@sim c-continuity-0
+At what points $(x,y)$ is $f(x,y)=\ln(x^2+y^2-4)$ continuous?
+@s What could break?
+$\ln$ needs a positive input:
+$$x^2+y^2-4>0\ \Longleftrightarrow\ x^2+y^2>4$$
+@s Describe it
+$x^2+y^2=4$ is the circle of radius $2$ (because $2^2=4$).
+
+$>4$ means strictly **outside** it. The circle itself is not included.
+{{fig:outdisk2}}
+@a $\{(x,y)\mid x^2+y^2>4\}$, everything outside the circle of radius 2 (not the circle itself).
+
+@sim c-continuity-1
+At what points $(x,y)$ is $f(x,y)=\dfrac{x^2-y^2}{y^2-5y+6}$ continuous?
+@s What could break?
+A fraction: the bottom cannot be zero.
+@s Factorise the bottom
+Two numbers that multiply to $6$ and add to $-5$: $-2$ and $-3$.
+$$y^2-5y+6=(y-2)(y-3)$$
+@s Condition
+$(y-2)(y-3)\neq0$, so $y\neq2$ and $y\neq3$.
+@s Describe it
+$y=2$ and $y=3$ are two horizontal lines. Remove them, keep everything else.
+@a $\{(x,y)\mid y\neq 2 \text{ and } y\neq 3\}$, the plane without the lines $y=2$ and $y=3$.
+
+@sim c-continuity-2
+At what points $(x,y,z)$ is $f(x,y,z)=\sqrt{4-x^2-z^2}$ continuous?
+@s What could break?
+Square root: inside $\ge 0$.
+$$4-x^2-z^2\ge 0\ \Longleftrightarrow\ x^2+z^2\le 4$$
+@s Describe it
+In 3D, $x^2+z^2=4$ is a cylinder of radius $2$ around the $y$-axis (this time $y$ is the free letter).
+
+$\le4$ means on the cylinder or inside it.
+@a $\{(x,y,z)\mid x^2+z^2\le 4\}$, the solid cylinder of radius 2 around the $y$-axis, surface included.
+
+@sim c-continuity-3
+Find the continuous extension $g$ of $f(x,y)=\dfrac{x^3-3x^2-xy^2+3y^2}{x^3-3x^2+xy^2-3y^2+2x-6}$ at $(3,1)$.
+@s Check the point
+At $(3,1)$: top $=27-27-3+3=0$, bottom $=27-27+3-3+6-6=0$.
+
+$\frac00$, so $f(3,1)$ is not defined. There is a hole.
+@s Factorise the top
+Group in pairs:
+$$x^2(x-3)-y^2(x-3)=(x-3)(x^2-y^2)$$
+@s Factorise the bottom
+$$x^2(x-3)+y^2(x-3)+2(x-3)=(x-3)(x^2+y^2+2)$$
+@s Cancel and take the limit
+$$\lim_{(x,y)\to(3,1)}\frac{x^2-y^2}{x^2+y^2+2}=\frac{9-1}{9+1+2}=\frac{8}{12}=\frac23$$
+@s Fill the hole
+$g=f$ everywhere else, and $g(3,1)=\tfrac23$.
+@a $g(x,y)=f(x,y)$ for $(x,y)\neq(3,1)$, and $g(3,1)=\dfrac23$. (Same as $g=\dfrac{x^2-y^2}{x^2+y^2+2}$.)

@@ -284,13 +284,17 @@ $$4x_1^2=4x_2^2\ \Rightarrow\ x_1^2=x_2^2$$
 @a $J=\begin{pmatrix}2x_1&2x_2\\2x_2&2x_1\end{pmatrix}$; determinant is $0$ when $x_1^2=x_2^2$ (i.e. $x_1=\pm x_2$).
 
 
-@@topic c-approx | Linear approximation and % error | Sheet 2 · Q9 to Q11
+@@topic c-approx | Linearization and % change | Sheet 2 · Q9 to Q12
 @learn
 **Linear approximation.** Zoom in close enough and any surface looks flat. So near a point $(a,b)$ that you know:
 $$f(a+\Delta x,\ b+\Delta y)\approx f(a,b)+f_x(a,b)\,\Delta x+f_y(a,b)\,\Delta y$$
 In words: start value + (slope in $x$ × step in $x$) + (slope in $y$ × step in $y$).
 
 Use it to estimate awkward numbers. Pick a nearby point where $f$ is easy.
+
+**The exam words.** The same formula, written with $x-a$ instead of $\Delta x$, is the **linearization** of $f$ at $(a,b)$:
+$$L(x,y)=f(a,b)+f_x(a,b)\,(x-a)+f_y(a,b)\,(y-b)$$
+Using $f(x,y)\approx L(x,y)$ near $(a,b)$ is called the **standard linear approximation**.
 
 **Percentage error shortcut.** For a formula that is only products and powers, $Q=k\,a^m b^n$:
 $$\%\,Q\approx m\,(\%\,a)+n\,(\%\,b)$$
@@ -339,3 +343,36 @@ $\Delta x=1.02-1=0.02$, $\quad\Delta y=2.01-2=0.01$
 @s Linear approximation
 $$f\approx3+\tfrac13(0.02)+2(0.01)=3+0.0067+0.02=3.0267$$
 @a $\approx3.03$
+
+@q Extra · Linearization
+Find the linearization $L(x,y)$ of $f(x,y)=x\,e^{xy}$ at $(1,0)$. Then use it to estimate $f(1.1,\,-0.1)$.
+@s Value at the point
+$$f(1,0)=1\cdot e^{0}=1$$
+@s $f_x$: product rule
+$x$ times $e^{xy}$, and $e^{xy}\to e^{xy}\cdot y$:
+$$f_x=e^{xy}+xy\,e^{xy}\qquad f_x(1,0)=1+0=1$$
+@s $f_y$
+Now $x$ is a number. $e^{xy}\to e^{xy}\cdot x$:
+$$f_y=x^2e^{xy}\qquad f_y(1,0)=1$$
+@s Linearization formula
+$$L(x,y)=1+1\,(x-1)+1\,(y-0)=x+y$$
+@s Estimate
+$$f(1.1,-0.1)\approx L(1.1,-0.1)=1.1-0.1=1$$
+@a $L(x,y)=x+y$, so $f(1.1,-0.1)\approx1$. (The true value is $0.985\ldots$)
+
+@q Sheet 2 · Q12
+Use linear approximation to estimate $\left((3.8)^2+2(2.1)^3\right)^{1/5}$.
+@s Choose the function and easy point
+$f(x,y)=(x^2+2y^3)^{1/5}$. $(3.8,2.1)$ is close to $(4,2)$, and there
+$$f(4,2)=(16+16)^{1/5}=32^{1/5}=2$$
+@s Partial derivatives
+Power of anything: $u^{1/5}\to\tfrac15u^{-4/5}\cdot u'$.
+$$f_x=\tfrac15\cdot 2x\,(x^2+2y^3)^{-4/5}\qquad f_y=\tfrac15\cdot 6y^2(x^2+2y^3)^{-4/5}$$
+@s Slopes at $(4,2)$
+$32^{-4/5}=\dfrac{1}{2^4}=\dfrac1{16}$.
+$$f_x(4,2)=\frac{8}{5\cdot16}=\frac1{10}\qquad f_y(4,2)=\frac{24}{5\cdot 16}=\frac3{10}$$
+@s Steps
+$\Delta x=3.8-4=-0.2$, $\quad\Delta y=2.1-2=0.1$
+@s Linear approximation
+$$f\approx 2+\tfrac1{10}(-0.2)+\tfrac3{10}(0.1)=2-0.02+0.03=2.01$$
+@a $\approx 2.01$

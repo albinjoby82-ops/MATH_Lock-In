@@ -84,3 +84,39 @@ $$F_x=0+1=1\qquad F_y=0+0+1=1\qquad F_z=0+2=2$$
 @s Plane formula
 $$1(x-2)+1(y-0)+2(z-1)=0$$
 @a $x+y+2z=4$
+
+@sim c-directions-0
+In what directions is the directional derivative of $f(x,y)=x^2+xy$ at $P=(1,3)$ equal to zero?
+@s Gradient
+$$\nabla f=\langle 2x+y,\ x\rangle\ \Longrightarrow\ \nabla f(1,3)=\langle 5,\,1\rangle$$
+@s Right angles to the gradient
+Swap and change one sign: $\mathbf v=\langle 1,-5\rangle$.
+
+Check: $5\cdot1+1\cdot(-5)=0$. ✓
+@s Make it length 1
+$\|\mathbf v\|=\sqrt{1+25}=\sqrt{26}$.
+@a $\mathbf u=\left\langle\dfrac{1}{\sqrt{26}},-\dfrac{5}{\sqrt{26}}\right\rangle$ and $-\mathbf u=\left\langle-\dfrac{1}{\sqrt{26}},\dfrac{5}{\sqrt{26}}\right\rangle$
+
+@sim c-directions-1
+Is there a direction $\mathbf u$ in which the rate of change of $f(x,y)=x^2+2xy-y^2$ at $P=(2,1)$ equals 6?
+@s Gradient
+$$\nabla f=\langle 2x+2y,\ 2x-2y\rangle\ \Longrightarrow\ \nabla f(2,1)=\langle 6,\,2\rangle$$
+@s Biggest possible rate
+$$\|\nabla f\|=\sqrt{36+4}=\sqrt{40}\approx 6.32$$
+@s Compare
+$6$ is between $-6.32$ and $6.32$, so it is possible.
+@a Yes. The rate can be anything from $-\sqrt{40}$ to $\sqrt{40}\approx6.32$, and $6$ is in that range.
+
+@sim c-directions-2
+In what direction (unit vector) does the directional derivative of $f(x,y)=x^2+y^2$ at $(0,2)$ equal $-2$? Can it ever equal $5$?
+@s Gradient
+$$\nabla f=\langle 2x,\,2y\rangle\ \Longrightarrow\ \nabla f(0,2)=\langle 0,\,4\rangle$$
+@s Unknown unit vector
+Let $\mathbf u=\langle a,b\rangle$ with $a^2+b^2=1$.
+$$D_{\mathbf u}f=0a+4b=4b$$
+@s Set it equal to $-2$
+$$4b=-2\ \Longrightarrow\ b=-\tfrac12$$
+$$a^2=1-\tfrac14=\tfrac34\ \Longrightarrow\ a=\pm\tfrac{\sqrt3}{2}$$
+@s Can it be $5$?
+$\|\nabla f\|=4$, so the rate always lies between $-4$ and $4$. $5$ is outside.
+@a $\mathbf u=\left\langle\tfrac{\sqrt3}{2},\ -\tfrac12\right\rangle$ or $\left\langle-\tfrac{\sqrt3}{2},\ -\tfrac12\right\rangle$. It can never be $5$.

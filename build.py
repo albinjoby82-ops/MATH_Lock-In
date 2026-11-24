@@ -44,6 +44,7 @@ FIGS = {
  'punct10': svg('<rect x="10" y="10" width="140" height="140" class="in"/>'+AX+'<circle cx="105" cy="80" r="4" class="hole"/><text x="102" y="96" class="lb">1</text>', 'Shaded = domain. Open dot = the point (1, 0) removed.'),
  'halfplaneneg': svg('<polygon points="10,10 150,10 150,150" class="in"/>'+AX+'<line x1="10" y1="10" x2="150" y2="150" class="edge"/><text x="92" y="134" class="lb">y = −x</text>', 'Shaded = domain: on and above the line y = −x.'),
  'opendisk3': svg(AX+'<circle cx="80" cy="80" r="50" class="in"/><circle cx="80" cy="80" r="50" class="out"/><text x="132" y="94" class="lb">3</text>', 'Open disk, radius 3. Dashed circle NOT included.'),
+ 'outdisk2': svg('<rect x="10" y="10" width="140" height="140" class="in"/><circle cx="80" cy="80" r="40" fill="#fff"/>'+AX+'<circle cx="80" cy="80" r="40" class="out"/><text x="122" y="94" class="lb">2</text>', 'Shaded = where f is continuous: outside the circle of radius 2. Dashed circle NOT included.'),
  'halfdiskup': svg('<path d="M30,80 A50,50 0 0,1 130,80 Z" class="in"/>'+AX+'<path d="M30,80 A50,50 0 0,1 130,80" class="out"/><line x1="30" y1="80" x2="130" y2="80" class="out"/><text x="133" y="94" class="lb">3</text><text x="14" y="94" class="lb">−3</text>', 'Shaded = domain: top half of the disk. Dashed edges NOT included.'),
 }
 
@@ -134,22 +135,29 @@ def parse_sim():
 
 data = {'core': parse('core'), 'full': parse('full')}
 
-# "Off the exam path": every homework question that is NOT on the exam path.
-# New topics first (most likely to come up first), then extra practice by chapter.
-NEW_TOPICS = ['levelcurves', 'continuity', 'variation', 'directions', 'region', 'higher']
+# "Off the exam path": every homework question that is NOT on the exam path, by chapter.
+# The official exam info (Autumn 2026-27) says first order ODEs (8.3), variation of parameters (8.4.3)
+# and n-th order ODEs (8.6) are not on the final, so those are left off the site completely.
+NOT_ON_FINAL = ['firstorder', 'variation', 'higher']
+# Not named in the exam's topic list: goes last.
+LOW = ['levelcurves']
 core_refs = {q['ref'] for p in data['core'] for t in p['topics'] for q in t['qs']}
 full_topics = {t['id']: t for p in data['full'] for t in p['topics']}
+assert all(i in full_topics for i in NOT_ON_FINAL + LOW)
 def rest(t):
     qs = [q for q in t['qs'] if q['ref'] not in core_refs]
     return dict(t, qs=qs) if qs else None
-off = [{'title': 'New topics (most likely first)', 'topics': [rest(full_topics[i]) for i in NEW_TOPICS]}]
+off = []
 for p in data['full']:
-    ts = [r for r in (rest(t) for t in p['topics'] if t['id'] not in NEW_TOPICS) if r]
+    ts = [r for r in (rest(t) for t in p['topics'] if t['id'] not in NOT_ON_FINAL + LOW) if r]
     if ts: off.append({'title': 'More practice: ' + p['title'], 'topics': ts})
+off.append({'title': 'Not named on the exam sheet (spare time only)', 'topics': [rest(full_topics[i]) for i in LOW]})
 n_off = sum(len(t['qs']) for p in off for t in p['topics'])
 n_full = sum(len(t['qs']) for p in data['full'] for t in p['topics'])
-n_core_hw = sum(1 for r in core_refs if not r.startswith('Sample exam'))
-assert n_off + n_core_hw == n_full, (n_off, n_core_hw, n_full)
+n_skip = sum(len(full_topics[i]['qs']) for i in NOT_ON_FINAL)
+assert not any(q['ref'] in core_refs for i in NOT_ON_FINAL for q in full_topics[i]['qs'])
+n_core_hw = sum(1 for r in core_refs if r.startswith('Sheet'))
+assert n_off + n_core_hw + n_skip == n_full, (n_off, n_core_hw, n_skip, n_full)
 print('off the exam path', n_off)
 sims, sim_stems = parse_sim(); used = set()
 for p in data['core']:

@@ -14,7 +14,7 @@ Leave answers **exact** ($\sqrt{14}$, $\cos2$, $\tfrac{11\pi}{2}$), not decimals
 
 **How to use this section:** do each question on paper with a timer first, then check it step by step.
 
-**This question uses:** Domains, Limits.
+**This question uses:** Domains, Limits, Continuity.
 @check What 2 things can make a point not allowed in the domain?
 @checka Dividing by zero, and a negative inside a square root (and $\ln$ of something $\le0$).
 @stem
@@ -131,7 +131,7 @@ Check in (i): $8=8-\tfrac\pi4w_y$, so $w_y=0$. ✓
 
 @@topic x-q3 | Exam Q3: implicit, Jacobian, % error | Sample exam · Q3
 @learn
-**This question uses:** Implicit differentiation, Jacobian matrix, Linear approximation and % error.
+**This question uses:** Implicit differentiation, Jacobian matrix, Linearization and % change.
 
 Three separate mini-questions. Each one is a recipe you can learn.
 @check Percentage error shortcut for $Q=k\,a^2b^3$?

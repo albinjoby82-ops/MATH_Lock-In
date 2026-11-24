@@ -76,6 +76,66 @@ Fastest up rate = length of gradient $=\sqrt2$. Fastest down $=-\sqrt2$.
 @a Increase fastest along $\left\langle-\tfrac1{\sqrt2},\tfrac1{\sqrt2}\right\rangle$ (rate $\sqrt2$); decrease fastest along $\left\langle\tfrac1{\sqrt2},-\tfrac1{\sqrt2}\right\rangle$ (rate $-\sqrt2$).
 
 
+@@topic c-directions | Direction problems | Sheet 3 · Q4, Q6, Q7
+@learn
+Same formula as the last topic:
+$$D_{\mathbf u}f=\nabla f\cdot\mathbf u\qquad(\mathbf u\text{ has length }1)$$
+The twist: now you are told the **rate** and must find the **direction**.
+
+**Type 1: "in which directions is the rate zero?"**
+
+Zero rate means $\mathbf u$ is at right angles to $\nabla f$ (you walk along a contour line).
+
+At right angles to $\langle a,b\rangle$: swap the numbers and change one sign → $\langle b,-a\rangle$. Make it length $1$. There are always two answers, $\mathbf u$ and $-\mathbf u$.
+
+**Type 2: "can the rate be $k$?"**
+
+The biggest rate is $\|\nabla f\|$, the smallest is $-\|\nabla f\|$. So the answer is yes only if
+$$-\|\nabla f\|\le k\le\|\nabla f\|$$
+
+**Type 3: "find the direction where the rate is $k$".**
+
+Write $\mathbf u=\langle a,b\rangle$. Solve the two equations $\nabla f\cdot\mathbf u=k$ and $a^2+b^2=1$.
+@check $\nabla f=\langle3,4\rangle$. Can the rate of change be $6$ in some direction?
+@checka No. $\|\nabla f\|=5$, and $6$ is bigger than $5$.
+
+@q Sheet 3 · Q4
+In what directions is the directional derivative of $f(x,y)=xy+y^2$ at $P=(3,2)$ equal to zero?
+@s Gradient
+$$\nabla f=\langle y,\ x+2y\rangle\ \Longrightarrow\ \nabla f(3,2)=\langle 2,\,7\rangle$$
+@s Right angles to the gradient
+Swap and change one sign: $\mathbf v=\langle 7,-2\rangle$.
+
+Check: $2\cdot7+7\cdot(-2)=0$. ✓
+@s Make it length 1
+$\|\mathbf v\|=\sqrt{49+4}=\sqrt{53}$.
+@a $\mathbf u=\left\langle\dfrac{7}{\sqrt{53}},-\dfrac{2}{\sqrt{53}}\right\rangle$ and $-\mathbf u=\left\langle-\dfrac{7}{\sqrt{53}},\dfrac{2}{\sqrt{53}}\right\rangle$
+
+@q Sheet 3 · Q6
+Is there a direction $\mathbf u$ in which the rate of change of $f(x,y)=x^2-3xy+4y^2$ at $P=(1,2)$ equals 14?
+@s Gradient
+$$\nabla f=\langle 2x-3y,\ -3x+8y\rangle\ \Longrightarrow\ \nabla f(1,2)=\langle -4,\,13\rangle$$
+@s Biggest possible rate
+$$\|\nabla f\|=\sqrt{16+169}=\sqrt{185}\approx 13.6$$
+@s Compare
+$14>13.6$. The rate can never be bigger than $\|\nabla f\|$.
+@a No. The largest possible rate is $\sqrt{185}\approx13.6<14$.
+
+@q Sheet 3 · Q7
+In what direction (unit vector) does the directional derivative of $f(x,y)=xy$ at $(0,2)$ equal $-1$? Can it ever equal $-3$?
+@s Gradient
+$$\nabla f=\langle y,\,x\rangle\ \Longrightarrow\ \nabla f(0,2)=\langle 2,\,0\rangle$$
+@s Unknown unit vector
+Let $\mathbf u=\langle a,b\rangle$ with $a^2+b^2=1$.
+$$D_{\mathbf u}f=2a+0b=2a$$
+@s Set it equal to $-1$
+$$2a=-1\ \Longrightarrow\ a=-\tfrac12$$
+$$b^2=1-\tfrac14=\tfrac34\ \Longrightarrow\ b=\pm\tfrac{\sqrt3}{2}$$
+@s Can it be $-3$?
+$\|\nabla f\|=2$, so the rate always lies between $-2$ and $2$. $-3$ is outside.
+@a $\mathbf u=\left\langle-\tfrac12,\ \tfrac{\sqrt3}{2}\right\rangle$ or $\left\langle-\tfrac12,\ -\tfrac{\sqrt3}{2}\right\rangle$. It can never be $-3$.
+
+
 @@topic c-tangent | Tangent lines and planes | Sheet 3 · Q9, Q10
 @learn
 **Tangent plane** = the flat plane that just touches a surface at one point (like a sheet of paper resting on a ball).

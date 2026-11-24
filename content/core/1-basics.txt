@@ -127,3 +127,79 @@ So on this path, $f$ is always $0$.
 @s Compare
 $1\neq0$. Two paths, two different answers, so there is no single limit.
 @a The limit does not exist (it is $1$ along the $x$-axis and $0$ along the $y$-axis).
+
+
+@@topic c-continuity | Continuity | Sheet 1 · Q4, Q5, Q7
+@learn
+**Continuous** means no holes, jumps or breaks: you could draw the surface without lifting your pen.
+
+**The one fact you need:** polynomials, fractions, roots, $\sin$, $\cos$, $\ln$, $e^x$ and any mix of them are continuous **everywhere they are defined**.
+
+So "where is $f$ continuous?" is the same job as "find the domain":
+
+Fraction → bottom $\neq0$.
+
+Square root → inside $\ge0$.
+
+$\ln$ → inside $>0$.
+
+**With three letters** $(x,y,z)$: $x^2+y^2=1$ is a **cylinder** (because $z$ can be anything), not a circle.
+
+**Continuous at one point** $(a,b)$ means the limit equals the value:
+$$\lim_{(x,y)\to(a,b)}f(x,y)=f(a,b)$$
+**Continuous extension:** $f$ gives $\frac00$ at a point, so it has a hole there. Find the limit (factorise, cancel, plug in). Filling the hole with that number makes $f$ continuous.
+@check Where is $f(x,y)=\dfrac{1}{x-y}$ continuous?
+@checka Everywhere except where the bottom is zero: all points with $x\neq y$ (the plane without the line $y=x$).
+
+@q Sheet 1 · Q4(b)
+At what points $(x,y)$ is $f(x,y)=\ln(x^2+y^2)$ continuous?
+@s What could break?
+$\ln$ needs a positive input:
+$$x^2+y^2>0$$
+@s When does that fail?
+Two squares added are never negative. They are $0$ only when $x=0$ and $y=0$.
+@s Describe it
+So only the origin is banned.
+{{fig:punctured}}
+@a $\{(x,y)\mid (x,y)\neq(0,0)\}$, the whole plane except the origin.
+
+@q Sheet 1 · Q4(d)
+At what points $(x,y)$ is $f(x,y)=\dfrac{x^2+y^2}{x^2-3x+2}$ continuous?
+@s What could break?
+A fraction: the bottom cannot be zero.
+@s Factorise the bottom
+Two numbers that multiply to $2$ and add to $-3$: $-1$ and $-2$.
+$$x^2-3x+2=(x-1)(x-2)$$
+@s Condition
+$(x-1)(x-2)\neq0$, so $x\neq1$ and $x\neq2$.
+@s Describe it
+$x=1$ and $x=2$ are two vertical lines. Remove them, keep everything else.
+@a $\{(x,y)\mid x\neq 1 \text{ and } x\neq 2\}$, the plane without the lines $x=1$ and $x=2$.
+
+@q Sheet 1 · Q5(b)
+At what points $(x,y,z)$ is $f(x,y,z)=\sqrt{x^2+y^2-1}$ continuous?
+@s What could break?
+Square root: inside $\ge 0$.
+$$x^2+y^2-1\ge 0\ \Longleftrightarrow\ x^2+y^2\ge 1$$
+@s Describe it
+In 3D, $x^2+y^2=1$ is an infinitely tall cylinder of radius $1$ around the $z$-axis ($z$ is free).
+
+$\ge1$ means on the cylinder or outside it.
+@a $\{(x,y,z)\mid x^2+y^2\ge 1\}$, all of space except the inside of the cylinder $x^2+y^2=1$.
+
+@q Sheet 1 · Q7(a)
+Find the continuous extension $g$ of $f(x,y)=\dfrac{x^3-2x^2-xy^2+2y^2}{x^3-2x^2+xy^2-2y^2+x-2}$ at $(2,1)$.
+@s Check the point
+At $(2,1)$: top $=8-8-2+2=0$, bottom $=8-8+2-2+2-2=0$.
+
+$\frac00$, so $f(2,1)$ is not defined. There is a hole.
+@s Factorise the top
+Group in pairs:
+$$x^2(x-2)-y^2(x-2)=(x-2)(x^2-y^2)$$
+@s Factorise the bottom
+$$x^2(x-2)+y^2(x-2)+(x-2)=(x-2)(x^2+y^2+1)$$
+@s Cancel and take the limit
+$$\lim_{(x,y)\to(2,1)}\frac{x^2-y^2}{x^2+y^2+1}=\frac{4-1}{4+1+1}=\frac12$$
+@s Fill the hole
+$g=f$ everywhere else, and $g(2,1)=\tfrac12$.
+@a $g(x,y)=f(x,y)$ for $(x,y)\neq(2,1)$, and $g(2,1)=\dfrac12$. (Same as $g=\dfrac{x^2-y^2}{x^2+y^2+1}$.)

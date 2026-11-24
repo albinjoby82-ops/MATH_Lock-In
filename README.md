@@ -4,8 +4,10 @@ Cram site for **MATH20290 Multivariable Calculus for Engineers** (UCD, 2026/27).
 
 Two modes:
 
-- **Exam path** (default): core questions matched to the official sample exam, plus a fully explained walkthrough of that sample exam at the end. Each topic starts with a short from-scratch explanation and a quick check question.
-- **Off the exam path**: every homework question that is not on the exam path (96 parts). New topics come first (level curves, continuity, variation of parameters, direction problems, max/min on a region, higher order ODEs), each with a from-scratch explanation, then extra practice by chapter.
+- **Exam path** (default): core questions matched to the official exam topic list (6 questions, see Exam info), plus a fully explained walkthrough of the sample exam at the end. Each topic starts with a short from-scratch explanation and a quick check question.
+- **Off the exam path**: the rest of the homework on the exam topics, by chapter (69 parts). Level curves come last (not named on the exam sheet). First order ODEs, variation of parameters and n-th order ODEs are not on the final, so they are left off the site (still in `content/full/`).
+
+**Exam info** (button at the top of the contents, press E, or open `#exam`): date, time, place, countdown, marking rules, each exam question linked to its topics, and what is not on the exam. `exam-info.png` is the original sheet.
 
 **Live site:** https://albinjoby82-ops.github.io/MATH_Lock-In/
 

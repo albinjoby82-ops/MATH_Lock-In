@@ -133,6 +133,27 @@ details.notes .body{padding:2px 0 14px}
 .fig .edge{stroke:#1f4fbf;stroke-width:1.8;fill:none}.fig .hole{fill:#fff;stroke:#b3261e;stroke-width:1.5}
 .fig .ct{stroke:#777;stroke-width:1;fill:none}.fig .dot{fill:#b3261e}.fig .arr{stroke:#b3261e;stroke-width:2}.fig .ahd{fill:#b3261e}.fig .b{font-weight:700;font-style:normal;font-size:11px}
 
+/* ---------- exam info ---------- */
+.xbtn{display:flex;justify-content:space-between;align-items:baseline;gap:8px;width:100%;border:1px solid var(--rule);padding:6px 10px;margin-bottom:10px;font-size:15px;text-align:left}
+.xbtn:hover{background:var(--tint)}
+.xbtn.on{background:var(--ink);color:#fff}
+.xbtn .cd{color:var(--mute);font-size:14px}
+.xbtn.on .cd{color:#ccc}
+.xi .when{border:1.5px solid var(--ink);padding:12px 18px;margin:16px 0 4px}
+.xi .when .big{font-size:22px;font-weight:700}
+.xi .when .cdl{color:var(--acc);font-weight:700;margin-top:4px}
+.xi h3{font-size:21px;margin:32px 0 6px;border-bottom:1px solid var(--rule);padding-bottom:3px}
+.xi ul{margin:6px 0;padding-left:1.2em}
+.xi li{margin:5px 0}
+.xq{display:grid;grid-template-columns:2.4em 1fr;gap:0 8px;padding:10px 0;border-bottom:1px solid var(--hair)}
+.xq .qn{font-weight:700}
+.xq .lk{display:flex;flex-wrap:wrap;gap:2px 16px;margin-top:5px;font-size:16px}
+.xq .lk button{color:var(--c);text-decoration:underline;text-underline-offset:3px;text-align:left}
+.xq .lk button:hover{background:var(--ct)}
+.xi .skip li{color:var(--mute)}
+.xi .skip b{color:var(--ink);font-weight:400;font-variant-numeric:tabular-nums}
+.xi .orig{display:inline-block;margin-top:10px;color:var(--acc)}
+
 #menu{display:none}
 @media (max-width:860px){
   .app{display:block}
@@ -154,7 +175,7 @@ details.notes .body{padding:2px 0 14px}
     <div id="view"></div>
   </div></main>
 </div>
-<script src="data.js?v=46255b73"></script>
+<script src="data.js?v=afa998c2"></script>
 <script>
 (function(){
 var KEY='mathlockin-v1', st={}, mode='core', D, list;
@@ -173,7 +194,23 @@ try{st=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
 var notes={};try{notes=JSON.parse(localStorage.getItem(KEY+'-notes'))||{}}catch(e){}
 function saveNotes(){try{localStorage.setItem(KEY+'-notes',JSON.stringify(notes))}catch(e){}}
-var cur=0, shown=0, sim=false;
+var cur=0, shown=0, sim=false, page=location.hash==='#exam'?'info':'q';
+// Official exam info (MATH20290, Autumn 2026-27). Exam: Sat 5 Dec 2026, 13:00 Dublin time (GMT in winter).
+var EXAM=Date.UTC(2026,11,5,13,0);
+function countdown(full){var ms=EXAM-Date.now();if(ms<=0)return full?'The exam has started or is over.':'done';
+  var d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5);
+  if(!full)return d>0?d+(d===1?' day':' days'):h+(h===1?' hour':' hours');
+  return (d>0?d+(d===1?' day, ':' days, '):'')+h+(h===1?' hour':' hours')+' to go'}
+var XQ=[
+  ['Q1','Domain of functions, limits, continuity',['c-domains','c-limits','c-continuity','x-q1']],
+  ['Q2','Partial derivatives, chain rule',['c-partials','c-chain','x-q2']],
+  ['Q3','Implicit partial differentiation, Jacobian matrix and determinant, approximate percentage change, linearization, standard linear approximation',['c-implicit','c-jacobian','c-approx','x-q3']],
+  ['Q4','Directional derivatives, gradients',['c-gradient','c-directions','x-q4']],
+  ['Q5','Tangent planes to level surfaces, finding critical points, classifying critical points (leading principal minors test, second derivatives test)',['c-tangent','c-critical','c-critical3','x-q5']],
+  ['Q6','Lagrange multipliers; second order linear ODEs and IVPs with constant coefficients',['c-lagrange','c-homog','c-undet','x-q6']]];
+var XSKIP=[['§4.3','Taylor series and polynomials in several variables'],['§5.4','Inverse functions'],['§7.3','The bordered Hessian test'],['§8.3','First order ODEs and IVPs (taken off this site)'],['§8.4.3','Variation of parameters (taken off this site)'],['§8.6','n-th order linear ODEs (taken off this site)']];
+function showInfo(){page='info';try{history.replaceState(null,'','#exam')}catch(e){}document.getElementById('nav').classList.remove('open');render();window.scrollTo(0,0)}
+function hideInfo(){page='q';try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
 function restore(){cur=0;try{var h=localStorage.getItem(KEY+'-at-'+mode),k=+localStorage.getItem(KEY+'-ati-'+mode);if(list[k]&&list[k].q.id===h){cur=k;return}for(var i=0;i<list.length;i++)if(list[i].q.id===h){cur=i;break}}catch(e){}}
 restore();
 function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
@@ -182,17 +219,19 @@ function short(ref){if(ref.indexOf('Sample exam · ')===0)return 'Exam '+ref.sli
 function sheet(ref){var m=ref.match(/^Sheet (\d+)/);return m?'S'+m[1]+' ':''}
 function mark(id){return st[id]==='done'?'✓':st[id]==='again'?'↺':''}
 function toggleSim(){if(!list[cur].q.sim)return;sim=!sim;shown=0;render();window.scrollTo(0,0)}
-function go(i){cur=Math.max(0,Math.min(list.length-1,i));shown=0;sim=false;document.getElementById('nav').classList.remove('open');render();window.scrollTo(0,0)}
+function go(i){if(page==='info')hideInfo();cur=Math.max(0,Math.min(list.length-1,i));shown=0;sim=false;document.getElementById('nav').classList.remove('open');render();window.scrollTo(0,0)}
 
 function nav(){
   var n=document.getElementById('nav');var keep=n.scrollTop;n.innerHTML='';
   var ids={},done=0;list.forEach(function(x){if(!ids[x.q.id]){ids[x.q.id]=1;if(st[x.q.id]==='done')done++}});var total=Object.keys(ids).length;
   n.appendChild(el('h1','','MATH Lock-In'));
   n.appendChild(el('div','sub sc','math20290 · multivariable calculus'));
+  var xb=el('button','xbtn'+(page==='info'?' on':''),'<span>Exam info · Sat 5 Dec, 13:00</span><span class="cd">'+countdown(false)+'</span>');
+  xb.onclick=function(){page==='info'?(hideInfo(),render()):showInfo()};n.appendChild(xb);
   var ms=el('div','mode');
   [['core','Exam path'],['off','Off the exam path']].forEach(function(m){
     var b=el('button',mode===m[0]?'on':'',m[1]);
-    b.onclick=function(){if(mode===m[0])return;mode=m[0];sim=false;try{localStorage.setItem(KEY+'-mode',mode)}catch(e){}load();restore();shown=0;render();window.scrollTo(0,0)};
+    b.onclick=function(){if(mode===m[0]&&page==='q')return;if(page==='info')hideInfo();mode=m[0];sim=false;try{localStorage.setItem(KEY+'-mode',mode)}catch(e){}load();restore();shown=0;render();window.scrollTo(0,0)};
     ms.appendChild(b)});
   n.appendChild(ms);
   n.appendChild(el('div','prog','<span>'+done+' / '+total+'</span><span class="bar"><i style="width:'+(100*done/total)+'%"></i></span>'));
@@ -201,18 +240,19 @@ function nav(){
   list.forEach(function(x,i){
     if(x.p!==lastP){lastP=x.p;n.appendChild(el('div','part c'+((x.pi-1)%6+1),'<span class="num">'+x.pi+'</span><span>'+strip(x.p.title)+'</span>'))}
     if(x.t!==lastT){lastT=x.t;n.appendChild(el('div','topic c'+((x.pi-1)%6+1),'<span class="num">'+x.pi+'.'+x.ti+'</span><span>'+x.t.title+'</span>'))}
-    var b=el('button','qlink c'+((x.pi-1)%6+1)+(x.q.ref.indexOf('Sample exam')===0?' ex':'')+' '+(i===cur?' on':'')+(st[x.q.id]?' '+st[x.q.id]:''),'<span class="num">'+x.num+'</span><span class="r">'+short(x.q.ref)+'</span>'+(notes[x.q.id]?'<span class="nt" title="You wrote a note">✎</span>':'')+'<span class="m">'+mark(x.q.id)+'</span>');
+    var b=el('button','qlink c'+((x.pi-1)%6+1)+(x.q.ref.indexOf('Sample exam')===0?' ex':'')+' '+(page==='q'&&i===cur?' on':'')+(st[x.q.id]?' '+st[x.q.id]:''),'<span class="num">'+x.num+'</span><span class="r">'+short(x.q.ref)+'</span>'+(notes[x.q.id]?'<span class="nt" title="You wrote a note">✎</span>':'')+'<span class="m">'+mark(x.q.id)+'</span>');
     b.onclick=function(){go(i)};
     n.appendChild(b);
   });
-  if(mode==='core')n.appendChild(el('div','cut','<i>Matched to the sample exam.</i> Skipped here (not on it): level curves, continuity, the hot plate and wire problems, variation of parameters, 3rd/4th order ODEs. They are in <b>Off the exam path</b>.'));
-  else n.appendChild(el('div','cut','<i>Only if you have time.</i> Finish the exam path first. Chapter 1 here is the new topics, most likely to come up first. The rest is extra practice on topics you already know.'));
+  if(mode==='core')n.appendChild(el('div','cut','<i>Matched to the official exam topics</i> (see Exam info). Not on the final, so taken off the site: first order ODEs, variation of parameters, 3rd/4th order ODEs. More practice is in <b>Off the exam path</b>.'));
+  else n.appendChild(el('div','cut','<i>Only if you have time.</i> Finish the exam path first. This is extra practice on the same exam topics, by chapter. Level curves are last: they are not named on the exam sheet.'));
   n.scrollTop=keep;
   var on=n.querySelector('.qlink.on');
   if(on){var r=on.getBoundingClientRect(),nr=n.getBoundingClientRect();if(r.top<nr.top+40||r.bottom>nr.bottom-20)n.scrollTop+=r.top-nr.top-nr.height/3}
 }
 
 function render(){
+  if(page==='info'){info();return}
   try{localStorage.setItem(KEY+'-at-'+mode,list[cur].q.id);localStorage.setItem(KEY+'-ati-'+mode,cur)}catch(e){}
   nav();
   var x=list[cur], t=x.t, o=x.q, q=(sim&&o.sim)?o.sim:o, v=document.getElementById('view');v.innerHTML='';v.className='c'+((x.pi-1)%6+1);
@@ -268,13 +308,47 @@ function render(){
   var pv=el('button','pv'+(cur>0?' c'+((list[cur-1].pi-1)%6+1):''),cur>0?'<small>← Previous</small>'+lbl(cur-1):'');pv.disabled=cur===0;pv.onclick=function(){go(cur-1)};pg.appendChild(pv);
   var nx=el('button','nx'+(cur<list.length-1?' c'+((list[cur+1].pi-1)%6+1):''),cur<list.length-1?'<small>Next →</small>'+lbl(cur+1):'');nx.disabled=cur===list.length-1;nx.onclick=function(){go(cur+1)};pg.appendChild(nx);
   v.appendChild(pg);
-  v.appendChild(el('div','keys','Space: next step · A: full solution · '+(o.sim?'S: similar question · ':'')+'← / →: previous / next problem'));
+  v.appendChild(el('div','keys','Space: next step · A: full solution · '+(o.sim?'S: similar question · ':'')+'← / →: previous / next problem · E: exam info'));
   math(v);
   if(shown>0){var last=v.querySelector('.ans')||v.querySelectorAll('.step')[shown-1];if(last&&last.scrollIntoView)last.scrollIntoView({block:'nearest',behavior:'smooth'})}
+}
+// exam info page: the official sheet as text, each exam question linked to its topics on the exam path
+function info(){
+  nav();
+  var v=document.getElementById('view');v.innerHTML='';v.className='xi c1';
+  v.appendChild(el('div','head','<span class="sc">exam info</span><span>MATH20290 · Autumn 2026–27</span>'));
+  v.appendChild(el('h2','','Exam info'));
+  v.appendChild(el('div','src','From the official exam information sheet. Tap a topic to practise it.'));
+  v.appendChild(el('div','when','<div class="big">Saturday 5 December 2026, 13:00</div><div>Blackrock Exam Centre · 2 hours (plus extra time with exam accommodations)</div><div class="cdl">'+countdown(true)+'</div>'));
+  v.appendChild(el('h3','','How it works'));
+  v.appendChild(el('ul','','<li>Written exam, <b>no multiple choice</b>.</li>'+
+    '<li><b>6 questions</b>, all worth the same. Full marks means all 6 right.</li>'+
+    '<li><b>No formula sheet.</b> You have to know the formulas (∑ Rules button, or press R).</li>'+
+    '<li>Write clearly and <b>show all your work</b>.</li>'+
+    '<li><b>Hard questions:</b> marks for the right method even if the answer is wrong. <b>Easy questions:</b> right or wrong, no part marks.</li>'+
+    '<li>Questions are like the problem sheets, the examples in the lecture notes and slides, and the midterm.</li>'+
+    '<li>Layout and style are the same as the <b>sample exam</b> (Part 6 here). It is on Brightspace. There are no past exams.</li>'));
+  v.appendChild(el('h3','','The six questions'));
+  var where={},k=0;window.DATA.core.forEach(function(p,pi){p.topics.forEach(function(t,ti){where[t.id]={i:k,num:(pi+1)+'.'+(ti+1),title:t.title,c:pi%6+1};k+=t.qs.length})});
+  XQ.forEach(function(r){
+    var row=el('div','xq','<span class="qn">'+r[0]+'</span><div><div>'+r[1]+'</div></div>');
+    var lk=el('div','lk');
+    r[2].forEach(function(id){var w=where[id];if(!w)return;
+      var b=el('button','c'+w.c,w.num+' '+w.title);
+      b.onclick=function(){if(mode!=='core'){mode='core';try{localStorage.setItem(KEY+'-mode',mode)}catch(e){}load()}go(w.i)};
+      lk.appendChild(b)});
+    row.lastChild.appendChild(lk);v.appendChild(row)});
+  v.appendChild(el('h3','','Not on the exam'));
+  v.appendChild(el('ul','skip',XSKIP.map(function(s){return '<li><b>'+s[0]+'</b> '+s[1]+'</li>'}).join('')));
+  v.appendChild(el('a','orig','View the original sheet →')).href='exam-info.png';
+  var row=el('div','row');var bk=el('button','b pri','← Back to questions');bk.onclick=function(){hideInfo();render();window.scrollTo(0,0)};row.appendChild(bk);v.appendChild(row);
+  v.appendChild(el('div','keys','E or Esc: back to questions'));
 }
 document.getElementById('menu').onclick=function(){document.getElementById('nav').classList.toggle('open')};
 document.addEventListener('keydown',function(e){
   if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.metaKey||e.ctrlKey||e.altKey)return;
+  if(page==='info'){if(e.key==='e'||e.key==='E'||e.key==='Escape'){hideInfo();render();window.scrollTo(0,0)}return}
+  if(e.key==='e'||e.key==='E'){showInfo();return}
   var o=list[cur].q, n=((sim&&o.sim)?o.sim:o).steps.length;
   if(e.key===' '){e.preventDefault();if(shown<=n){shown++;render()}}
   else if(e.key==='a'||e.key==='A'){shown=n+1;render()}
